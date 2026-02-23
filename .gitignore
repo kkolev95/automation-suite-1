@@ -1,0 +1,29 @@
+# Build results
+bin/
+obj/
+TestResults/
+
+# Test outputs
+*.trx
+test-output.txt
+test-report.html
+test-report.zip
+reports/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test logs
+*.log
