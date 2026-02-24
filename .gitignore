@@ -9,6 +9,7 @@ test-output.txt
 test-report.html
 test-report.zip
 reports/
+manual-runs/
 
 # User-specific files
 *.user
