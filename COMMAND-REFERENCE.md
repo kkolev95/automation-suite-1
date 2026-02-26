@@ -60,17 +60,17 @@ dotnet test --logger "console;verbosity=normal"
 ### Manual Test Run (Saves to manual-runs/)
 ```bash
 # Basic run
-./manual-test-run.sh
+bash manual-test-run.sh
 
 # With description
-./manual-test-run.sh "after-integration-tests"
-./manual-test-run.sh "bug-fix-verification"
-./manual-test-run.sh "before-release"
+bash manual-test-run.sh "after-integration-tests"
+bash manual-test-run.sh "bug-fix-verification"
+bash manual-test-run.sh "before-release"
 ```
 
 ### Automated Test Run (Saves to reports/)
 ```bash
-./automated-test-run.sh
+bash automated-test-run.sh
 ```
 
 ---
@@ -85,7 +85,7 @@ dotnet test --filter "Category=Smoke"
 ### Run Integration Tests Only
 ```bash
 dotnet test --filter "Category=Integration"
-./manual-test-run.sh "integration-only"  # (then manually filter if needed)
+bash manual-test-run.sh "integration-only"  # (then manually filter if needed)
 ```
 
 ### Run Security Tests Only
@@ -292,7 +292,7 @@ open reports/latest-report.html
 
 ```bash
 # Remove old reports while keeping 5 most recent of each type
-./cleanup-old-reports.sh
+bash cleanup-old-reports.sh
 ```
 
 This script will:
@@ -465,7 +465,7 @@ dotnet test --filter "Priority=P0" --logger "console;verbosity=normal"
 
 ### Full Suite with Report
 ```bash
-./manual-test-run.sh "full-regression"
+bash manual-test-run.sh "full-regression"
 ```
 
 ### Integration Tests Only with Report
@@ -481,7 +481,7 @@ dotnet test --filter "Category=Security|Category=Authentication" --logger "conso
 
 ### All P0 Tests (Critical Path)
 ```bash
-./manual-test-run.sh "critical-path-p0"
+bash manual-test-run.sh "critical-path-p0"
 # Then filter manually or:
 dotnet test --filter "Priority=P0" --logger "console;verbosity=detailed"
 ```
@@ -526,14 +526,14 @@ crontab -e
 
 | Command | Purpose |
 |---------|---------|
-| `./run.sh` | List all available test classes |
-| `./run.sh integration` | Run IntegrationTests class |
-| `./run.sh auth` | Run AuthenticationTests class |
-| `./run.sh all` | Run all tests |
+| `bash run.sh` | List all available test classes |
+| `bash run.sh integration` | Run IntegrationTests class |
+| `bash run.sh auth` | Run AuthenticationTests class |
+| `bash run.sh all` | Run all tests |
 | `dotnet test` | Run all tests (no report) |
-| `./manual-test-run.sh "description"` | Run all tests with HTML report (manual-runs/) |
-| `./automated-test-run.sh` | Run all tests with HTML report (reports/) |
-| `./cleanup-old-reports.sh` | Clean up old reports (keep 5 most recent) |
+| `bash manual-test-run.sh "description"` | Run all tests with HTML report (manual-runs/) |
+| `bash automated-test-run.sh` | Run all tests with HTML report (reports/) |
+| `bash cleanup-old-reports.sh` | Clean up old reports (keep 5 most recent) |
 | `dotnet test --filter "Category=Integration"` | Run integration tests only |
 | `dotnet test --filter "Priority=P0"` | Run critical tests only |
 | `dotnet test --list-tests` | List all available tests |
