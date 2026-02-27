@@ -206,14 +206,14 @@ public class StressTests : IDisposable
                 try
                 {
                     var client = CreateClient();
-                    var uniqueEmail = $"stress_{Guid.NewGuid().ToString("N")[..8]}@test.com";
+                    var uniqueEmail = $"stress_{Guid.NewGuid().ToString("N")[..8]}@example.com";
                     var password = "StressTest123!";
                     var registerRequest = new RegisterRequest
                     {
                         Email = uniqueEmail,
                         Password = password,
                         PasswordConfirm = password,
-                        FirstName = $"User{userNum}",
+                        FirstName = "User",
                         LastName = "Stress"
                     };
 
@@ -265,6 +265,9 @@ public class StressTests : IDisposable
         serverErrors.Should().Be(0,
             $"concurrent registration attempts must not cause server errors; " +
             $"{serverErrors} of {concurrentRegistrations} returned 5xx");
+
+        successful.Should().BeGreaterThanOrEqualTo((int)(concurrentRegistrations * 0.8),
+            $"at least 80% of concurrent registrations must succeed; got {successful}/{concurrentRegistrations}");
     }
 
     [Fact]
