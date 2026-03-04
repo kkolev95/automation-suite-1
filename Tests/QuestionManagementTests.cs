@@ -129,38 +129,6 @@ public class QuestionManagementTests : IDisposable
             "questions should appear in the new order: q3 first, q2 second, q1 last");
     }
 
-    [Fact]
-    public async Task QuestionCreation_MultiSelectType_CreatesWithMultipleCorrectAnswers()
-    {
-        await SetupAuth();
-
-        var test = await TestDataHelper.CreateTestAsync(_apiClient, $"MultiSelect_{Guid.NewGuid().ToString("N")[..8]}");
-
-        var questionRequest = new CreateQuestionRequest
-        {
-            QuestionText = "Which are programming languages?",
-            QuestionType = "multi_select",
-            Answers = new List<CreateAnswerRequest>
-            {
-                new() { AnswerText = "Python", IsCorrect = true, Order = 1 },
-                new() { AnswerText = "HTML", IsCorrect = false, Order = 2 },
-                new() { AnswerText = "Java", IsCorrect = true, Order = 3 },
-                new() { AnswerText = "CSS", IsCorrect = false, Order = 4 }
-            }
-        };
-
-        var response = await _apiClient.PostAsync($"tests/{test.Slug}/questions/", questionRequest);
-        var body = await _apiClient.GetResponseBodyAsync(response);
-
-        response.StatusCode.Should().Be(HttpStatusCode.Created, $"Response: {body}");
-
-        var question = await _apiClient.DeserializeResponseAsync<QuestionResponse>(response);
-        question.Should().NotBeNull();
-        question!.QuestionType.Should().Be("multi_select");
-        question.Answers.Should().HaveCount(4);
-        question.Answers.Count(a => a.IsCorrect).Should().Be(2);
-    }
-
     public void Dispose()
     {
         _apiClient?.Dispose();

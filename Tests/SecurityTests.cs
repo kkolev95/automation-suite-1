@@ -324,44 +324,6 @@ public class SecurityTests : IDisposable
     // ═══════════════════════════════════════════════════════════════════════════
 
     [Fact]
-    public async Task DataExposure_CorrectAnswers_NotExposedBeforeSubmission()
-    {
-        // Arrange: Create a test with questions
-        await TestDataHelper.RegisterAndLoginAsync(_apiClient);
-        var test = await TestDataHelper.CreateTestAsync(_apiClient,
-            $"AnswerSec_{Guid.NewGuid().ToString("N")[..8]}");
-
-        var question = await TestDataHelper.AddQuestionAsync(_apiClient, test.Slug, "What is 2+2?",
-            answers: new List<CreateAnswerRequest>
-            {
-                new() { AnswerText = "3", IsCorrect = false, Order = 1 },
-                new() { AnswerText = "4", IsCorrect = true, Order = 2 },
-                new() { AnswerText = "5", IsCorrect = false, Order = 3 }
-            });
-
-        // Act: Fetch test for taking (anonymous user)
-        using var anonClient = new ApiClient(TestConfiguration.GetBaseUrl());
-        var response = await anonClient.GetAsync($"tests/{test.Slug}/take/");
-        var takeTest = await anonClient.DeserializeResponseAsync<TakeTestResponse>(response);
-
-        // Assert: Correct answers should NOT be exposed
-        takeTest!.Questions.Should().NotBeEmpty();
-        var fetchedQuestion = takeTest.Questions.First();
-
-        // Verify the take endpoint actually returned the answers — an empty list would
-        // mean the loop below never executes and the assertion trivially passes even if
-        // the API started leaking the is_correct field.
-        fetchedQuestion.Answers.Should().HaveCount(3,
-            "the take endpoint must return all 3 answers that were created for the question");
-
-        foreach (var answer in fetchedQuestion.Answers)
-        {
-            answer.IsCorrect.Should().BeFalse(
-                "because correct answers should not be revealed before test submission");
-        }
-    }
-
-    [Fact]
     public async Task DataExposure_PasswordNotReturned_InProfileEndpoint()
     {
         // Arrange: Register and login

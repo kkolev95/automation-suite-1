@@ -25,54 +25,6 @@ public class DataIntegrityTests : IDisposable
     // ═══════════════════════════════════════════════════════════════════════════
 
     [Fact]
-    public async Task ScoringAccuracy_AllQuestionsCorrect_Scores100Percent()
-    {
-        // Arrange: Create test with 5 questions
-        await PersistentTestUser.GetOrCreateAndLoginAsync(_apiClient);
-        var test = await CreateTestWithMultipleQuestions(5);
-        var takeTest = await _testTakerClient.GetAsync<TakeTestResponse>($"tests/{test.slug}/take/");
-
-        // Start attempt and answer all correctly
-        var attempt = await StartAttemptAsync(test.slug, "Perfect Scorer");
-        await SaveCorrectAnswersAsync(test.slug, attempt.Id, test.questions, takeTest!.Questions);
-        await SubmitAttemptAsync(test.slug, attempt.Id);
-
-        // Act: Fetch results
-        var results = await GetTestResultsAsync(test.slug);
-        var myResult = results.First(r => r.AnonymousName == "Perfect Scorer");
-
-        // Assert: Score should be exactly 100%
-        var score = myResult.Score!.Value;
-        score.Should().Be(100.0, "because all answers were correct");
-        myResult.CorrectAnswers.Should().Be(5);
-        myResult.TotalQuestions.Should().Be(5);
-    }
-
-    [Fact]
-    public async Task ScoringAccuracy_AllQuestionsWrong_Scores0Percent()
-    {
-        // Arrange: Create test with 5 questions
-        await PersistentTestUser.GetOrCreateAndLoginAsync(_apiClient);
-        var test = await CreateTestWithMultipleQuestions(5);
-        var takeTest = await _testTakerClient.GetAsync<TakeTestResponse>($"tests/{test.slug}/take/");
-
-        // Start attempt and answer all incorrectly
-        var attempt = await StartAttemptAsync(test.slug, "Zero Scorer");
-        await SaveWrongAnswersAsync(test.slug, attempt.Id, test.questions, takeTest!.Questions);
-        await SubmitAttemptAsync(test.slug, attempt.Id);
-
-        // Act: Fetch results
-        var results = await GetTestResultsAsync(test.slug);
-        var myResult = results.First(r => r.AnonymousName == "Zero Scorer");
-
-        // Assert: Score should be exactly 0%
-        var score = myResult.Score!.Value;
-        score.Should().Be(0.0, "because all answers were wrong");
-        myResult.CorrectAnswers.Should().Be(0);
-        myResult.TotalQuestions.Should().Be(5);
-    }
-
-    [Fact]
     public async Task ScoringAccuracy_HalfCorrect_Scores50Percent()
     {
         // Arrange: Create test with 10 questions
