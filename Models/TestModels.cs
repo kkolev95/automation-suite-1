@@ -69,6 +69,12 @@ public class CreateQuestionRequest
 
     [JsonPropertyName("answers")]
     public List<CreateAnswerRequest> Answers { get; set; } = new();
+
+    [JsonPropertyName("correct_answer")]
+    public string? CorrectAnswer { get; set; }
+
+    [JsonPropertyName("case_sensitive")]
+    public bool? CaseSensitive { get; set; }
 }
 
 public class CreateAnswerRequest
@@ -99,6 +105,9 @@ public class QuestionResponse
 
     [JsonPropertyName("answers")]
     public List<AnswerResponse> Answers { get; set; } = new();
+
+    [JsonPropertyName("correct_answer")]
+    public string? CorrectAnswer { get; set; }
 }
 
 public class AnswerResponse

@@ -102,6 +102,10 @@ public class TakeQuestionResponse
 
     [JsonPropertyName("answers")]
     public List<TakeAnswerResponse> Answers { get; set; } = new();
+
+    // Should be null/absent for exact_answer on the take endpoint (correct answer must not be exposed)
+    [JsonPropertyName("correct_answer")]
+    public string? CorrectAnswer { get; set; }
 }
 
 public class TakeAnswerResponse
