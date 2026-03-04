@@ -52,8 +52,17 @@ public class TestResponse
     [JsonPropertyName("show_answers_after")]
     public bool ShowAnswersAfter { get; set; }
 
+    [JsonPropertyName("folder")]
+    public int? Folder { get; set; }
+
+    [JsonPropertyName("author_name")]
+    public string? AuthorName { get; set; }
+
     [JsonPropertyName("created_at")]
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
+
+    [JsonPropertyName("updated_at")]
+    public DateTime? UpdatedAt { get; set; }
 
     [JsonPropertyName("questions")]
     public List<QuestionResponse>? Questions { get; set; }

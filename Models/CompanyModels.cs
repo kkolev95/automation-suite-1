@@ -133,4 +133,10 @@ public class FolderResponse
 
     [JsonPropertyName("company")]
     public int Company { get; set; }
+
+    [JsonPropertyName("test_count")]
+    public int TestCount { get; set; }
+
+    [JsonPropertyName("created_at")]
+    public DateTime? CreatedAt { get; set; }
 }

@@ -131,6 +131,91 @@ public class FolderTests : IDisposable
         child.Parent.Should().Be(parent.Id);
     }
 
+    [Fact]
+    public async Task TestFolderAssignment_WithValidFolder_AssignsTestToFolder()
+    {
+        var company = await SetupCompanyAsync();
+        var folder = await CreateFolderAsync(company.Id, "Engineering");
+
+        var test = await TestDataHelper.CreateTestAsync(_apiClient,
+            $"AssignTest_{Guid.NewGuid().ToString("N")[..8]}");
+
+        var response = await _apiClient.PatchAsync($"tests/{test.Slug}/",
+            new { folder = folder.Id });
+        var body = await _apiClient.GetResponseBodyAsync(response);
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK, $"Response: {body}");
+
+        var updated = await _apiClient.DeserializeResponseAsync<TestResponse>(response);
+        updated.Should().NotBeNull();
+        updated!.Folder.Should().Be(folder.Id, "because the test should be assigned to the specified folder");
+    }
+
+    [Fact]
+    public async Task TestFolderAssignment_Unassign_ClearsFolder()
+    {
+        var company = await SetupCompanyAsync();
+        var folder = await CreateFolderAsync(company.Id, "TempFolder");
+
+        var test = await TestDataHelper.CreateTestAsync(_apiClient,
+            $"UnassignTest_{Guid.NewGuid().ToString("N")[..8]}");
+
+        // Assign first
+        await _apiClient.PatchAsync($"tests/{test.Slug}/", new { folder = folder.Id });
+
+        // Unassign by setting folder to null — use a dictionary so the null value is not dropped by the serializer
+        var response = await _apiClient.PatchAsync($"tests/{test.Slug}/",
+            new Dictionary<string, object?> { { "folder", null } });
+        var body = await _apiClient.GetResponseBodyAsync(response);
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK, $"Response: {body}");
+
+        var updated = await _apiClient.DeserializeResponseAsync<TestResponse>(response);
+        updated!.Folder.Should().BeNull("because the test was removed from the folder");
+    }
+
+    [Fact]
+    public async Task TestFolderAssignment_UpdatesFolderTestCount()
+    {
+        var company = await SetupCompanyAsync();
+        var folder = await CreateFolderAsync(company.Id, "CountFolder");
+
+        // test_count should start at 0
+        var folderBefore = await _apiClient.GetAsync<FolderResponse>(
+            $"companies/{company.Id}/folders/{folder.Id}/");
+        folderBefore!.TestCount.Should().Be(0, "because no tests are assigned yet");
+
+        var test = await TestDataHelper.CreateTestAsync(_apiClient,
+            $"CountTest_{Guid.NewGuid().ToString("N")[..8]}");
+
+        // Assign test to folder
+        await _apiClient.PatchAsync($"tests/{test.Slug}/", new { folder = folder.Id });
+
+        var folderAfter = await _apiClient.GetAsync<FolderResponse>(
+            $"companies/{company.Id}/folders/{folder.Id}/");
+        folderAfter!.TestCount.Should().Be(1, "because one test is now assigned to this folder");
+    }
+
+    [Fact]
+    public async Task TestResponse_DetailEndpoint_IncludesFolderAndUpdatedAt()
+    {
+        var company = await SetupCompanyAsync();
+        var folder = await CreateFolderAsync(company.Id, "MetaFolder");
+
+        var test = await TestDataHelper.CreateTestAsync(_apiClient,
+            $"MetaTest_{Guid.NewGuid().ToString("N")[..8]}");
+        await _apiClient.PatchAsync($"tests/{test.Slug}/", new { folder = folder.Id });
+
+        var response = await _apiClient.GetAsync($"tests/{test.Slug}/");
+        var full = await _apiClient.DeserializeResponseAsync<TestResponse>(response);
+
+        full.Should().NotBeNull();
+        full!.Folder.Should().Be(folder.Id, "because the folder was assigned");
+        full.UpdatedAt.Should().NotBeNull("because updated_at is now returned in the test detail endpoint");
+        full.UpdatedAt.Should().BeAfter(full.CreatedAt!.Value,
+            "because the test was updated after it was created");
+    }
+
     public void Dispose()
     {
         _apiClient?.Dispose();
