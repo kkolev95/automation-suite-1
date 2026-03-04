@@ -5,11 +5,23 @@ on:
     - cron: '0 1 * * *'  # 01:00 UTC = 03:00 EET, offset from local cron (02:00 EET) to avoid overlap
   workflow_dispatch:       # allow manual trigger from GitHub UI
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   test:
-    name: Run API Test Suite
+    name: Run Tests & Publish Report
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
@@ -50,9 +62,29 @@ jobs:
           REPORT="reports/test-report-$TIMESTAMP.html"
           if [ -f "$TRX" ] && [ -f "generate_report.py" ]; then
             python3 generate_report.py "$TRX" "$REPORT"
+            cp "$REPORT" reports/index.html
+            cp "$REPORT" reports/current-report.html
           fi
 
-      - name: Upload results
+      - name: Commit current-report.html to repository
+        if: always()
+        run: |
+          if [ ! -f "reports/current-report.html" ]; then
+            echo "No report generated, skipping commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f reports/current-report.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update nightly test report [skip ci]"
+          git pull --rebase origin main
+          git push origin main
+
+      - name: Upload results artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -61,6 +93,17 @@ jobs:
             TestResults/
             reports/
           retention-days: 30
+
+      - name: Upload Pages artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports/
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Fail if tests failed
         if: steps.run_tests.outcome == 'failure'

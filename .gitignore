@@ -9,6 +9,7 @@ test-output.txt
 test-report.html
 test-report.zip
 reports/
+!reports/current-report.html
 manual-runs/
 cron.log
 
