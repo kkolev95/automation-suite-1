@@ -50,6 +50,10 @@ public class NewQuestionTypeTests : IDisposable
     // MULTI-SELECT  (multiple correct answers)
     // =========================================================================
 
+    /// <summary>
+    /// Verifies that a multi_select question with two correct answers is created successfully
+    /// and the API returns 201 with the correct question type and answer count.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_Creation_WithMultipleCorrectAnswers_Succeeds()
     {
@@ -82,6 +86,10 @@ public class NewQuestionTypeTests : IDisposable
             "because two answers are marked correct");
     }
 
+    /// <summary>
+    /// Verifies that creating a multi_select question with no correct answers is rejected
+    /// with 400 Bad Request, enforcing the minimum-one-correct-answer constraint.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_Creation_WithNoCorrectAnswer_RejectsRequest()
     {
@@ -105,6 +113,10 @@ public class NewQuestionTypeTests : IDisposable
             "because multi_select questions must have at least one correct answer");
     }
 
+    /// <summary>
+    /// Verifies that selecting every required correct answer in a multi_select question
+    /// and no wrong answers scores 100%.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_Scoring_AllCorrectAnswersSelected_ScoresFullMarks()
     {
@@ -151,6 +163,10 @@ public class NewQuestionTypeTests : IDisposable
         result.CorrectAnswers.Should().Be(1, "because the single multi-select question was answered correctly");
     }
 
+    /// <summary>
+    /// Verifies the all-or-nothing scoring rule: selecting only a subset of the required
+    /// correct answers scores 0%, even though some selected answers are correct.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_Scoring_OnlyPartialCorrectAnswers_ScoresZero()
     {
@@ -195,6 +211,10 @@ public class NewQuestionTypeTests : IDisposable
             "because multi_select scoring is all-or-nothing: missing one correct answer scores zero");
     }
 
+    /// <summary>
+    /// Verifies the all-or-nothing scoring rule: selecting all correct answers together
+    /// with at least one wrong answer scores 0%.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_Scoring_CorrectPlusWrongAnswers_ScoresZero()
     {
@@ -241,6 +261,10 @@ public class NewQuestionTypeTests : IDisposable
             "because selecting a wrong answer in addition to correct ones disqualifies the attempt");
     }
 
+    /// <summary>
+    /// Verifies that the take endpoint returns all answers with is_correct = false
+    /// for multi_select questions, preventing test takers from identifying correct options.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_TakeEndpoint_DoesNotExposeIsCorrect()
     {
@@ -271,6 +295,10 @@ public class NewQuestionTypeTests : IDisposable
     // EXACT-ANSWER  (free-text input)
     // =========================================================================
 
+    /// <summary>
+    /// Verifies that an exact_answer question is created successfully with a valid
+    /// correct_answer value, and that the stored answer is returned to the author.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Creation_WithCorrectAnswer_Succeeds()
     {
@@ -298,6 +326,10 @@ public class NewQuestionTypeTests : IDisposable
         question.Answers.Should().BeEmpty("because exact_answer questions use a text field, not answer choices");
     }
 
+    /// <summary>
+    /// Verifies that creating an exact_answer question with an empty correct_answer
+    /// is rejected with 400 Bad Request.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Creation_WithEmptyCorrectAnswer_RejectsRequest()
     {
@@ -318,6 +350,10 @@ public class NewQuestionTypeTests : IDisposable
             "because an exact_answer question requires a non-empty correct answer");
     }
 
+    /// <summary>
+    /// Verifies that a correct_answer value exceeding the 30-character maximum is rejected
+    /// with 400 Bad Request.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Creation_CorrectAnswerExceedsMaxLength_RejectsRequest()
     {
@@ -338,6 +374,10 @@ public class NewQuestionTypeTests : IDisposable
             "because the correct answer must be 30 characters or fewer");
     }
 
+    /// <summary>
+    /// Verifies that the take endpoint omits the correct_answer field for exact_answer
+    /// questions, ensuring test takers cannot see the expected answer.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_TakeEndpoint_DoesNotRevealCorrectAnswer()
     {
@@ -365,6 +405,10 @@ public class NewQuestionTypeTests : IDisposable
             "because the take endpoint must not expose the correct answer to test takers");
     }
 
+    /// <summary>
+    /// Verifies that submitting the exact correct text for an exact_answer question
+    /// scores 100%.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Scoring_ExactTextMatch_ScoresFullMarks()
     {
@@ -398,6 +442,10 @@ public class NewQuestionTypeTests : IDisposable
         result.CorrectAnswers.Should().Be(1);
     }
 
+    /// <summary>
+    /// Verifies that submitting a text answer that does not match the stored correct
+    /// answer scores 0%.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Scoring_WrongText_ScoresZero()
     {
@@ -430,6 +478,11 @@ public class NewQuestionTypeTests : IDisposable
         result.CorrectAnswers.Should().Be(0);
     }
 
+    /// <summary>
+    /// Documents the current case-insensitive matching behaviour: submitting "paris"
+    /// scores 100% when the stored correct answer is "Paris". If the API ever enforces
+    /// case-sensitive matching, this test will catch the regression.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Scoring_DifferentCase_ScoresCorrectly()
     {
@@ -467,6 +520,9 @@ public class NewQuestionTypeTests : IDisposable
             "because the API currently performs case-insensitive matching on exact_answer questions");
     }
 
+    /// <summary>
+    /// Verifies that submitting no text answer for an exact_answer question scores 0%.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Scoring_EmptySubmission_ScoresZero()
     {

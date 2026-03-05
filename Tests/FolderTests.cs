@@ -131,6 +131,10 @@ public class FolderTests : IDisposable
         child.Parent.Should().Be(parent.Id);
     }
 
+    /// <summary>
+    /// Verifies that PATCHing a test with a valid folder ID assigns the test to that
+    /// folder and the response reflects the updated folder field.
+    /// </summary>
     [Fact]
     public async Task TestFolderAssignment_WithValidFolder_AssignsTestToFolder()
     {
@@ -151,6 +155,10 @@ public class FolderTests : IDisposable
         updated!.Folder.Should().Be(folder.Id, "because the test should be assigned to the specified folder");
     }
 
+    /// <summary>
+    /// Verifies that PATCHing a test with folder set to null removes the folder
+    /// assignment, returning null in the folder field of the response.
+    /// </summary>
     [Fact]
     public async Task TestFolderAssignment_Unassign_ClearsFolder()
     {
@@ -174,6 +182,10 @@ public class FolderTests : IDisposable
         updated!.Folder.Should().BeNull("because the test was removed from the folder");
     }
 
+    /// <summary>
+    /// Verifies that assigning a test to a folder increments the folder's test_count
+    /// from 0 to 1, confirming the counter is kept in sync.
+    /// </summary>
     [Fact]
     public async Task TestFolderAssignment_UpdatesFolderTestCount()
     {
@@ -196,6 +208,10 @@ public class FolderTests : IDisposable
         folderAfter!.TestCount.Should().Be(1, "because one test is now assigned to this folder");
     }
 
+    /// <summary>
+    /// Verifies that the test detail endpoint includes the folder and updated_at fields
+    /// after a folder assignment, and that updated_at is later than created_at.
+    /// </summary>
     [Fact]
     public async Task TestResponse_DetailEndpoint_IncludesFolderAndUpdatedAt()
     {

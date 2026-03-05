@@ -30,6 +30,10 @@ public class LatestFeatureTests : IDisposable
     // TEST-TO-FOLDER ASSIGNMENT — edge cases
     // =========================================================================
 
+    /// <summary>
+    /// Verifies that PATCHing a test with a folder ID that does not exist returns
+    /// 400 Bad Request rather than silently ignoring the invalid reference.
+    /// </summary>
     [Fact]
     public async Task TestFolderAssignment_ToNonExistentFolder_ReturnsBadRequest()
     {
@@ -44,6 +48,10 @@ public class LatestFeatureTests : IDisposable
             "because folder ID 999999 does not exist");
     }
 
+    /// <summary>
+    /// Verifies that a user cannot assign another user's test to a folder;
+    /// the API must return 403 Forbidden or 404 Not Found.
+    /// </summary>
     [Fact]
     public async Task TestFolderAssignment_ByNonOwner_DeniesAccess()
     {
@@ -73,6 +81,10 @@ public class LatestFeatureTests : IDisposable
             "because a non-owner must not be able to modify another user's test");
     }
 
+    /// <summary>
+    /// Verifies that moving a test from Folder A to Folder B decrements Folder A's
+    /// test_count to 0 and increments Folder B's test_count to 1.
+    /// </summary>
     [Fact]
     public async Task TestFolderAssignment_ReassignBetweenFolders_UpdatesBothCounts()
     {
@@ -111,6 +123,10 @@ public class LatestFeatureTests : IDisposable
         bAfterMove!.TestCount.Should().Be(1, "Folder B should have 1 test after receiving the reassigned test");
     }
 
+    /// <summary>
+    /// Verifies that the folder detail endpoint (GET companies/{id}/folders/{id}/)
+    /// returns all expected fields: id, name, parent, test_count, and created_at.
+    /// </summary>
     [Fact]
     public async Task FolderDetail_WithValidId_ReturnsAllExpectedFields()
     {
@@ -141,6 +157,9 @@ public class LatestFeatureTests : IDisposable
     // MULTI-SELECT — additional depth
     // =========================================================================
 
+    /// <summary>
+    /// Verifies that selecting only incorrect answers in a multi_select question scores 0%.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_Scoring_OnlyWrongAnswersSelected_ScoresZero()
     {
@@ -183,6 +202,10 @@ public class LatestFeatureTests : IDisposable
             "because selecting only wrong answers must score zero");
     }
 
+    /// <summary>
+    /// Verifies that updating a multi_select question to change which answers are correct
+    /// is reflected immediately in the response with the new correct answer marked.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_Update_ChangesCorrectAnswers_NewScoringApplied()
     {
@@ -222,6 +245,10 @@ public class LatestFeatureTests : IDisposable
         updated.Answers.First(a => a.AnswerText == "B").IsCorrect.Should().BeTrue();
     }
 
+    /// <summary>
+    /// Verifies that a test containing both multiple_choice and multi_select questions
+    /// scores each question independently, yielding 100% and 2 correct when both are answered correctly.
+    /// </summary>
     [Fact]
     public async Task MultiSelect_MixedTest_WithMultipleChoiceQuestion_EachScoredIndependently()
     {
@@ -287,6 +314,10 @@ public class LatestFeatureTests : IDisposable
     // EXACT-ANSWER — additional depth
     // =========================================================================
 
+    /// <summary>
+    /// Verifies that updating the correct_answer on an exact_answer question takes effect
+    /// immediately: the previously correct answer no longer scores any points.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Update_ChangesCorrectAnswer_NewAnswerIsScored()
     {
@@ -335,6 +366,10 @@ public class LatestFeatureTests : IDisposable
             "because 'Berlin' is no longer the correct answer after the update");
     }
 
+    /// <summary>
+    /// Verifies that the analytics endpoint correctly counts text-answer submissions
+    /// in TotalAttempts and calculates AverageScore across exact_answer questions.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_Analytics_TotalAttemptsReflectsTextSubmissions()
     {
@@ -376,6 +411,10 @@ public class LatestFeatureTests : IDisposable
             "because one correct and one incorrect text answer yields a 50% average");
     }
 
+    /// <summary>
+    /// Verifies that a test containing both multiple_choice and exact_answer questions
+    /// can be submitted in a single draft_answers payload and both questions are scored correctly.
+    /// </summary>
     [Fact]
     public async Task ExactAnswer_MixedTest_WithMultipleChoiceQuestion_ScoresCorrectly()
     {
