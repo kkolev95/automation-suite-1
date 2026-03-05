@@ -103,6 +103,7 @@ jobs:
       - name: Deploy to GitHub Pages
         if: always()
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
 
       - name: Fail if tests failed
