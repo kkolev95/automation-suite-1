@@ -99,6 +99,52 @@ public class MissingCoverageTests : IDisposable
     // ShowAnswersAfter Feature
     // ═══════════════════════════════════════════════════════════════════════════
 
+    /// <summary>
+    /// BUG: When show_answers_after=true, submitting an attempt returns HTTP 200 but
+    /// the response body contains no "score" field. A taker who just finished the test
+    /// has no way to see their result immediately from the submit response alone.
+    /// Score must be fetched separately via GET /tests/{slug}/results/ (author-only).
+    /// Expected: submit response includes "score" when show_answers_after=true.
+    /// </summary>
+    [Fact]
+    [Trait("Category", "Functional")]
+    [Trait("Priority", "P1")]
+    public async Task ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore()
+    {
+        await TestDataHelper.RegisterAndLoginAsync(_apiClient);
+        var test = await TestDataHelper.CreateTestAsync(_apiClient,
+            $"ShowAfter_{Guid.NewGuid().ToString("N")[..8]}",
+            showAnswersAfter: true);
+        var question = await TestDataHelper.AddQuestionAsync(_apiClient, test.Slug, "Capital of France?");
+        var correctId = question.Answers.First(a => a.IsCorrect).Id;
+
+        var startResp = await _anonClient.PostAsync($"tests/{test.Slug}/attempts/",
+            new StartAttemptRequest { AnonymousName = "ShowAfter Tester" });
+        startResp.StatusCode.Should().Be(HttpStatusCode.Created);
+        var attempt = await _anonClient.DeserializeResponseAsync<AttemptResponse>(startResp);
+
+        var takeTest = await _anonClient.GetAsync<TakeTestResponse>($"tests/{test.Slug}/take/");
+        await _anonClient.PutAsync($"tests/{test.Slug}/attempts/{attempt!.Id}/",
+            new SaveDraftRequest
+            {
+                DraftAnswers = new Dictionary<string, List<int>>
+                {
+                    { takeTest!.Questions[0].Id.ToString(), new List<int> { correctId } }
+                }
+            });
+
+        var submitResp = await _anonClient.PostAsync(
+            $"tests/{test.Slug}/attempts/{attempt.Id}/submit/",
+            new Dictionary<string, object>());
+        submitResp.StatusCode.Should().Be(HttpStatusCode.OK);
+
+        var json = await submitResp.Content.ReadAsStringAsync();
+        using var doc = JsonDocument.Parse(json);
+        doc.RootElement.TryGetProperty("score", out _).Should().BeTrue(
+            "when show_answers_after=true the submit response must include a 'score' field " +
+            "so the taker can see their result immediately");
+    }
+
     [Fact]
     [Trait("Category", "Security")]
     [Trait("Priority", "P1")]
@@ -271,6 +317,40 @@ public class MissingCoverageTests : IDisposable
         JsonDocument.Parse(afterJson).RootElement.EnumerateArray()
             .Any(t => t.TryGetProperty("slug", out var s) && s.GetString() == test.Slug)
             .Should().BeFalse("after changing to link_only the test must not appear in the public listing");
+    }
+
+    /// <summary>
+    /// BUG/MISSING FEATURE: PATCH /tests/{slug}/ with visibility="private" returns 400.
+    /// The API does not support a "private" visibility state that would hide a test from
+    /// the author's own listing without making it entirely inaccessible. Only "public",
+    /// "link_only", and "password_protected" are accepted.
+    /// Expected: "private" is a valid visibility option allowing the author to archive/hide a test.
+    /// </summary>
+    [Fact]
+    [Trait("Category", "Functional")]
+    [Trait("Priority", "P2")]
+    public async Task TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing()
+    {
+        await TestDataHelper.RegisterAndLoginAsync(_apiClient);
+        var test = await TestDataHelper.CreateTestAsync(_apiClient,
+            $"VisPriv_{Guid.NewGuid().ToString("N")[..8]}",
+            visibility: "public");
+
+        var beforeJson = await (await _anonClient.GetAsync("tests/public/")).Content.ReadAsStringAsync();
+        JsonDocument.Parse(beforeJson).RootElement.EnumerateArray()
+            .Any(t => t.TryGetProperty("slug", out var s) && s.GetString() == test.Slug)
+            .Should().BeTrue("a public test must appear in the public listing");
+
+        // This PATCH currently returns 400 — "private" is not an accepted visibility value
+        var updateResp = await _apiClient.PatchAsync($"tests/{test.Slug}/",
+            new { visibility = "private" });
+        updateResp.StatusCode.Should().Be(HttpStatusCode.OK,
+            "visibility change to 'private' must succeed — this is a missing API feature");
+
+        var afterJson = await (await _anonClient.GetAsync("tests/public/")).Content.ReadAsStringAsync();
+        JsonDocument.Parse(afterJson).RootElement.EnumerateArray()
+            .Any(t => t.TryGetProperty("slug", out var s) && s.GetString() == test.Slug)
+            .Should().BeFalse("after setting visibility to private the test must leave the public listing");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
