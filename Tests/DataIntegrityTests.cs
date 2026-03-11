@@ -160,15 +160,17 @@ public class DataIntegrityTests : IDisposable
             });
         await SubmitAttemptAsync(test.Slug, attempt.Id);
 
-        // Assert: score is a valid percentage in [0, 100].
-        // NOTE: the API may award 0 (all-or-nothing) or partial credit — both are valid.
-        // This test documents the actual behaviour without prescribing which model is used.
+        // Assert: submitting only 2 of 3 correct answers scores 0% under all-or-nothing rules.
+        // NewQuestionTypeTests establishes that multi_select uses all-or-nothing scoring —
+        // partial selection (correct subset, no wrong answers) must award 0, not partial credit.
+        // If this assertion fails it means the API switched to partial credit, which is a
+        // behaviour change that must be explicitly documented and tested.
         var results = await GetTestResultsAsync(test.Slug);
         var myResult = results.First(r => r.AnonymousName == "Partial Selector");
 
         myResult.Score.Should().NotBeNull("a score must always be present after submission");
-        myResult.Score!.Value.Should().BeInRange(0.0, 100.0,
-            "score must be a valid percentage between 0 and 100");
+        myResult.Score!.Value.Should().Be(0.0,
+            "submitting an incomplete correct subset under all-or-nothing scoring must award 0%");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -394,9 +396,10 @@ public class DataIntegrityTests : IDisposable
                 }
             });
 
-        // Assert: Should be rejected
-        response.StatusCode.Should().NotBe(HttpStatusCode.OK,
-            "because submitted attempts should be immutable");
+        // Assert: updating a submitted attempt must return 400 Bad Request.
+        // If 200 is returned the attempt is mutable after submission — that is a data integrity bug.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            "because updating a submitted attempt must be rejected with 400 Bad Request");
 
         // Verify score is still 0 (wrong answer)
         var results = await GetTestResultsAsync(test.slug);
@@ -435,13 +438,14 @@ public class DataIntegrityTests : IDisposable
         deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent,
             "test deletion should succeed");
 
-        // Assert: accessing results after deletion should never cause a server error.
-        // Accept 200 (soft delete) or 404 (hard delete/cascade) — both are valid designs.
+        // Assert: once the test is deleted its results endpoint must return 404.
+        // Standard REST cascade-delete means the test and its nested resources are gone.
+        // If 200 is returned the API uses soft-delete, which is a design choice that must
+        // be explicitly modelled — document this as a failing test if that is the case.
         var resultsAfter = await _apiClient.GetAsync($"tests/{test.slug}/results/");
-        resultsAfter.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.OK, HttpStatusCode.NotFound },
-            $"after test deletion the results endpoint should return 200 (soft delete) or 404 (cascade delete), " +
-            $"not a server error. Score recorded before deletion: {scoreBefore}");
+        resultsAfter.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            $"after test deletion the results endpoint must return 404 (cascade delete). " +
+            $"Score recorded before deletion: {scoreBefore}");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════

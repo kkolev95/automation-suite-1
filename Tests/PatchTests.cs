@@ -175,10 +175,10 @@ public class PatchTests : IDisposable
             title = "Stolen Title"
         });
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Unauthorized, HttpStatusCode.Forbidden },
-            "unauthenticated test updates must be rejected");
+        // Assert: no auth token → 401 Unauthorized. 403 would incorrectly imply the request
+        // was authenticated but lacked permission; it was never authenticated at all.
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized,
+            "a request with no auth token must return 401 Unauthorized, not 403 Forbidden");
     }
 
     [Fact]
@@ -199,10 +199,10 @@ public class PatchTests : IDisposable
             title = "Hijacked Title"
         });
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Unauthorized, HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "another user must not be able to patch someone else's test");
+        // Assert: authenticated user patching another user's test must get 403 Forbidden.
+        // 401 implies unauthenticated; 404 hides the resource. Neither is correct here.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-owner must receive 403 Forbidden when patching another user's test");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -255,10 +255,9 @@ public class PatchTests : IDisposable
                 question_text = "Tampered question"
             });
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Unauthorized, HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "another user must not be able to patch someone else's question");
+        // Assert: authenticated non-owner patching another user's question must get 403 Forbidden.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-owner must receive 403 Forbidden when patching another user's question");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -307,10 +306,9 @@ public class PatchTests : IDisposable
         var response = await userBClient.PatchAsync($"companies/{company!.Id}/",
             new UpdateCompanyRequest { Name = "Hijacked" });
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Unauthorized, HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "non-member must not be able to patch a company");
+        // Assert: authenticated non-member patching another user's company must get 403 Forbidden.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden when patching another user's company");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════

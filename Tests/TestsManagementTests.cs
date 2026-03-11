@@ -100,8 +100,11 @@ public class TestsManagementTests : IDisposable
         testResponse.Visibility.Should().BeOneOf(knownVisibilities,
             "because visibility must default to a known, valid value");
 
-        testResponse.MaxAttempts.Should().BeGreaterThan(0,
-            "because default max_attempts must be a positive integer");
+        // The documented API default for max_attempts is 1.
+        // If a different value is returned, the API has changed its default — which must be
+        // explicitly documented, not silently accepted.
+        testResponse.MaxAttempts.Should().Be(1,
+            "because the default max_attempts must be 1 when not explicitly specified");
 
         // ShowAnswersAfter is bool — deserialization succeeding already proves it's a valid boolean
         _ = testResponse.ShowAnswersAfter;

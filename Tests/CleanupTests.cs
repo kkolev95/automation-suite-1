@@ -274,9 +274,10 @@ public class CleanupTests : IDisposable
         var loginAttempt = await _apiClient.PostAsync("auth/login/",
             new Models.LoginRequest { Email = email, Password = password });
 
-        loginAttempt.StatusCode.Should().BeOneOf(
-            new[] { System.Net.HttpStatusCode.BadRequest, System.Net.HttpStatusCode.Unauthorized },
-            "login should fail after account deletion");
+        // DRF returns 400 (not 401) for invalid credentials — the credentials are malformed
+        // from the server's perspective because the account no longer exists.
+        loginAttempt.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest,
+            "login must fail with 400 after account deletion (invalid credentials)");
 
         _output.WriteLine($"✓ Account and all cascade data deleted successfully");
     }
@@ -323,28 +324,21 @@ public class CleanupTests : IDisposable
 
         _output.WriteLine($"DELETE /auth/me/ returned: {deleteResp.StatusCode}");
 
-        // Verify deletion worked
-        if (deleteResp.StatusCode == System.Net.HttpStatusCode.NoContent ||
-            deleteResp.StatusCode == System.Net.HttpStatusCode.OK)
-        {
-            _output.WriteLine("✓ DELETE endpoint works correctly");
+        // DELETE /auth/me/ must return 204 No Content — no else branch, no silent pass.
+        // If this fails, the endpoint is not implemented or is returning the wrong status code.
+        deleteResp.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent,
+            "DELETE /auth/me/ must return 204 No Content");
 
-            // Verify account is actually gone
-            var loginAttempt = await _apiClient.PostAsync("auth/login/",
-                new Models.LoginRequest { Email = email, Password = password });
+        _output.WriteLine("✓ DELETE endpoint works correctly");
 
-            loginAttempt.StatusCode.Should().BeOneOf(
-                new[] { System.Net.HttpStatusCode.BadRequest, System.Net.HttpStatusCode.Unauthorized },
-                "login should fail after account deletion");
+        // Verify account is actually gone — login must fail with 400 (invalid credentials).
+        var loginAttempt = await _apiClient.PostAsync("auth/login/",
+            new Models.LoginRequest { Email = email, Password = password });
 
-            _output.WriteLine("✓ Account deletion verified (login fails)");
-        }
-        else
-        {
-            _output.WriteLine($"✗ DELETE endpoint returned unexpected status: {deleteResp.StatusCode}");
-            _output.WriteLine("");
-            _output.WriteLine("The endpoint may not be implemented. Expected 204 No Content.");
-        }
+        loginAttempt.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest,
+            "login must return 400 after account deletion (invalid credentials)");
+
+        _output.WriteLine("✓ Account deletion verified (login fails with 400)");
     }
 
     public void Dispose()

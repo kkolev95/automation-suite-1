@@ -116,10 +116,10 @@ public class AnalyticsTests : IDisposable
 
         var response = await _otherClient.GetAsync($"analytics/tests/{test.Slug}/");
 
-        // API may return 403 (forbidden) or 404 (hide existence) — both are correct
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "because only the test author can view analytics");
+        // The API must return 403 Forbidden — authenticated users who are not the author
+        // should not silently get 404, which would mask the resource's existence entirely.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "because an authenticated non-author must receive 403, not a 404 that hides the resource");
     }
 
     [Fact]
@@ -289,8 +289,11 @@ public class AnalyticsTests : IDisposable
         var analytics = await _apiClient.DeserializeResponseAsync<AnalyticsResponse>(response);
 
         var qStats = analytics!.QuestionStats.Should().ContainSingle().Subject;
-        qStats.Difficulty.Should().BeInRange(0.0, 1.0,
-            "because difficulty must be a normalised score between 0 and 1");
+        // With the only submission being fully correct, difficulty = 1 - proportion_correct = 0.
+        // If this assertion fails it means the API uses a different formula (e.g. proportion_correct)
+        // which would make difficulty = 1 here — that is a bug in the metric definition.
+        qStats.Difficulty.Should().BeApproximately(0.0, 0.01,
+            "because difficulty = 1 - proportion_correct, and everyone answered correctly → difficulty ≈ 0");
     }
 
     [Fact]
@@ -317,8 +320,12 @@ public class AnalyticsTests : IDisposable
         var analytics = await _apiClient.DeserializeResponseAsync<AnalyticsResponse>(response);
 
         analytics!.PassRate.Should().NotBeNull("because there is at least one submission");
-        analytics.PassRate.Should().BeInRange(0.0, 100.0,
-            "because pass rate is a percentage");
+        // The submission was made with no answers → score = 0%.
+        // Any positive pass threshold means this attempt fails → pass rate = 0%.
+        // If this assertion fails, the API is either using a 0% pass threshold (bug) or
+        // counting zero-score submissions as passes.
+        analytics.PassRate.Should().BeApproximately(0.0, 1.0,
+            "because a zero-score submission should not count as a pass — pass rate must be 0%");
     }
 
     public void Dispose()

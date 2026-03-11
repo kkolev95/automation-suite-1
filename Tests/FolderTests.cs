@@ -316,9 +316,8 @@ public class FolderTests : IDisposable
         var response = await userB.PostAsync($"companies/{company.Id}/folders/",
             new CreateFolderRequest { Name = "Intruder Folder" });
 
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "because user B must not be able to create folders in user A's company");
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden, not 404 which would hide the company's existence");
     }
 
     /// <summary>
@@ -336,9 +335,8 @@ public class FolderTests : IDisposable
         var response = await userB.PutAsync($"companies/{company.Id}/folders/{folder.Id}/",
             new UpdateFolderRequest { Name = "Hijacked Name" });
 
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "because user B must not be able to rename user A's folder");
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden when renaming another user's folder");
     }
 
     /// <summary>
@@ -355,9 +353,8 @@ public class FolderTests : IDisposable
 
         var response = await userB.DeleteAsync($"companies/{company.Id}/folders/{folder.Id}/");
 
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "because user B must not be able to delete user A's folder");
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden when deleting another user's folder");
     }
 
     /// <summary>
@@ -374,9 +371,8 @@ public class FolderTests : IDisposable
 
         var response = await userB.GetAsync($"companies/{company.Id}/folders/");
 
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "because user B must not be able to see user A's folder list");
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden when listing another user's folders");
     }
 
     // =========================================================================
@@ -415,27 +411,19 @@ public class FolderTests : IDisposable
 
         await _apiClient.PatchAsync($"tests/{test.Slug}/", new { folder = folder.Id });
 
+        // Deleting a folder that has tests assigned must succeed (tests get unlinked, not deleted).
+        // Standard REST behaviour: cascade-nullify the folder FK on each test rather than blocking.
+        // If 400/409 is returned, the API is enforcing a "folder must be empty" rule — that is a
+        // design choice that must be explicitly documented; this test will fail to surface it.
         var deleteResponse = await _apiClient.DeleteAsync($"companies/{company.Id}/folders/{folder.Id}/");
+        deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent,
+            "deleting a folder with assigned tests must succeed (tests should be unlinked, not block deletion)");
 
-        if (deleteResponse.IsSuccessStatusCode)
-        {
-            // Folder was removed — the test's folder field should be cleared
-            var updatedTest = await _apiClient.GetAsync<TestResponse>($"tests/{test.Slug}/");
-            updatedTest.Should().NotBeNull("because the test itself should not be deleted");
-            updatedTest!.Folder.Should().BeNull(
-                "because deleting the folder should unlink the assigned test");
-        }
-        else
-        {
-            // Deletion was rejected — the folder and test must still exist
-            deleteResponse.StatusCode.Should().BeOneOf(
-                new[] { HttpStatusCode.BadRequest, HttpStatusCode.Conflict },
-                "because the only valid rejection reasons are bad request or conflict");
-
-            var folders = await _apiClient.GetAsync<List<FolderResponse>>($"companies/{company.Id}/folders/");
-            folders.Should().Contain(f => f.Id == folder.Id,
-                "because if deletion was rejected the folder must still exist");
-        }
+        // After deletion the test must still exist, with its folder field cleared to null.
+        var updatedTest = await _apiClient.GetAsync<TestResponse>($"tests/{test.Slug}/");
+        updatedTest.Should().NotBeNull("because the test itself must not be deleted when its folder is removed");
+        updatedTest!.Folder.Should().BeNull(
+            "because deleting the folder must clear the folder FK on all previously-assigned tests");
     }
 
     // =========================================================================

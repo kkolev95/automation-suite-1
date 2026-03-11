@@ -141,10 +141,10 @@ public class CoverageTests : IDisposable
         // Act
         var response = await userBClient.GetAsync($"tests/{test.Slug}/results/{resultId}/");
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "non-author must not access someone else's test result detail");
+        // Assert — authenticated non-author must get 403, not 404.
+        // 404 would silently hide the resource and could mask a missing auth check.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-author must receive 403 Forbidden, not a 404 that hides the resource");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -268,10 +268,10 @@ public class CoverageTests : IDisposable
             $"companies/{company.Id}/members/{memberC.UserId}/",
             new UpdateMemberRoleRequest { Role = "admin" });
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized },
-            "non-admin member must not be able to change another member's role");
+        // Assert — authenticated student trying to promote another member must get 403.
+        // 401 would incorrectly imply the user is unauthenticated.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "an authenticated student must receive 403 Forbidden when trying to change another member's role");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -324,10 +324,9 @@ public class CoverageTests : IDisposable
         // Act — admin tries to remove themselves (the only admin)
         var response = await _apiClient.DeleteAsync($"companies/{company!.Id}/members/{me!.Id}/");
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.BadRequest, HttpStatusCode.Forbidden },
-            "removing the last admin should be rejected to prevent orphaned companies");
+        // Assert — removing the last admin is a validation error (business rule), not an auth issue.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            "removing the last admin must return 400 Bad Request — it violates the business rule that a company must always have at least one admin");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -377,10 +376,9 @@ public class CoverageTests : IDisposable
         // Act
         var response = await userBClient.GetAsync($"tests/company/{company.Id}/{test!.Slug}/");
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "non-member must not access company test detail");
+        // Assert — authenticated non-member must get 403, not 404.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden when accessing company test detail");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -435,10 +433,9 @@ public class CoverageTests : IDisposable
             title = "Hijacked"
         });
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "non-member must not patch a company test");
+        // Assert — authenticated non-member must get 403, not 404.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden when patching a company test");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -489,10 +486,9 @@ public class CoverageTests : IDisposable
         // Act
         var response = await userBClient.DeleteAsync($"tests/company/{company.Id}/{test!.Slug}/");
 
-        // Assert
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Forbidden, HttpStatusCode.NotFound },
-            "non-member must not delete a company test");
+        // Assert — authenticated non-member must get 403, not 404.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "authenticated non-member must receive 403 Forbidden when deleting a company test");
     }
 
     public void Dispose()

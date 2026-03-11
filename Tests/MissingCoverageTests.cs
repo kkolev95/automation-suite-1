@@ -69,8 +69,8 @@ public class MissingCoverageTests : IDisposable
         var response = await _apiClient.PostAsync("auth/refresh/",
             new RefreshTokenRequest { RefreshToken = "completely.invalid.token.xyz" });
 
-        ((int)response.StatusCode).Should().BeInRange(400, 401,
-            "an invalid refresh token must be rejected with 400 or 401");
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized,
+            "an invalid refresh token must return 401 Unauthorized — 400 would incorrectly suggest a malformed request rather than an authentication failure");
     }
 
     [Fact]
@@ -189,8 +189,8 @@ public class MissingCoverageTests : IDisposable
         var response = await _apiClient.PostAsync("invites/totally-fake-token-999/accept/",
             new Dictionary<string, object>());
 
-        ((int)response.StatusCode).Should().BeInRange(400, 404,
-            "accepting an invalid invite token must return a 4xx error");
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "accepting a non-existent invite token must return 404 Not Found — the token does not exist in the system");
     }
 
     [Fact]
@@ -252,9 +252,9 @@ public class MissingCoverageTests : IDisposable
             new Dictionary<string, object>());
         var body = await _apiClient.GetResponseBodyAsync(response);
 
-        // Assert: the invite is addressed to userA's email — userB must be rejected
-        ((int)response.StatusCode).Should().BeInRange(400, 403,
-            $"a user must not be able to accept an invite addressed to a different email. Response: {body}");
+        // Assert: the invite is addressed to userA's email — userB (authenticated but wrong user) must get 403.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            $"an authenticated user must not be able to accept an invite addressed to a different email. Response: {body}");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -381,9 +381,10 @@ public class MissingCoverageTests : IDisposable
         var response = await _apiClient.GetAsync($"companies/{company.Id}/folders/");
         var body = await _apiClient.GetResponseBodyAsync(response);
 
-        // Assert: must be denied
-        ((int)response.StatusCode).Should().BeInRange(403, 404,
-            $"a non-member must not be able to list another company's folders. Response: {body}");
+        // Assert: authenticated non-member must get 403 Forbidden.
+        // 404 would mask the company's existence and could obscure a missing auth check.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            $"authenticated non-member must receive 403 Forbidden when listing another company's folders. Response: {body}");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -418,9 +419,10 @@ public class MissingCoverageTests : IDisposable
         using var unauthClient = new ApiClient(TestConfiguration.GetBaseUrl());
         var response = await unauthClient.GetAsync($"tests/{test.Slug}/results/{resultId}/");
 
-        // Assert: must be denied
-        ((int)response.StatusCode).Should().BeInRange(401, 404,
-            "an unauthenticated user must not be able to access a result detail");
+        // Assert: unauthenticated access must return 401 Unauthorized.
+        // 404 would hide the resource entirely instead of requiring authentication.
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized,
+            "an unauthenticated request to a result detail endpoint must return 401 Unauthorized");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -442,11 +444,12 @@ public class MissingCoverageTests : IDisposable
             new StartAttemptRequest { AnonymousName = "" });
         var body = await _anonClient.GetResponseBodyAsync(response);
 
-        // Assert: API should either reject (400) or accept gracefully (201).
-        // A server error (5xx) is never acceptable.
-        ((int)response.StatusCode).Should().BeOneOf(
-            new[] { 201, 400 },
-            $"empty anonymous_name must result in 201 (allowed) or 400 (rejected). Response: {body}");
+        // Assert: empty anonymous_name must be rejected with 400 Bad Request.
+        // anonymous_name is a required identifier for the attempt; accepting an empty string
+        // would make the attempt untraceable in the results list.
+        // If 201 is returned, the API has no validation on this required field — that is a bug.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            $"empty anonymous_name must be rejected with 400 — it is a required identifier. Response: {body}");
     }
 
     public void Dispose()

@@ -60,17 +60,11 @@ public class EdgeCaseTests : IDisposable
         // Act
         var response = await _apiClient.PostAsync("tests/", request);
 
-        // Assert
-        // Either accepts it OR returns 400 with clear error message
-        if (response.StatusCode == HttpStatusCode.BadRequest)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty("error message should be provided");
-        }
-        else
-        {
-            response.StatusCode.Should().Be(HttpStatusCode.Created);
-        }
+        // Assert: a 1000-character title must be rejected with 400.
+        // APIs should enforce a reasonable maximum title length to prevent abuse and
+        // storage bloat. If 201 is returned, the API has no title length limit — that is a bug.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            "a 1000-character title must be rejected; the API must enforce a maximum title length");
     }
 
     [Fact]
@@ -172,10 +166,11 @@ public class EdgeCaseTests : IDisposable
         // Act
         var response = await _apiClient.PostAsync("tests/", request);
 
-        // Assert: must accept (any 2xx) or cleanly reject — never a server error
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Created, HttpStatusCode.BadRequest },
-            "extremely large time limit should be accepted or cleanly rejected, not cause a server error");
+        // Assert: int.MaxValue (~2.1 billion) minutes ≈ 4,000 years. The API must reject this.
+        // If 201 is returned, the API has no upper bound on time_limit_minutes — that is a bug
+        // because it allows nonsensical values that could cause issues in the UI and scheduling logic.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            "int.MaxValue minutes is not a valid time limit; the API must enforce a sensible upper bound");
     }
 
     [Fact]
@@ -437,10 +432,12 @@ public class EdgeCaseTests : IDisposable
         // Act
         var response = await _apiClient.GetAsync($"tests/{veryLongSlug}/");
 
-        // Assert
-        var isValid = response.StatusCode == HttpStatusCode.NotFound ||
-                     response.StatusCode == HttpStatusCode.BadRequest;
-        isValid.Should().BeTrue("very long slug should be handled gracefully");
+        // Assert: a 500-character slug does not match any real test → 404 Not Found.
+        // 400 would imply the routing layer is rejecting the slug format, which is also
+        // a valid API design — but 404 is the expected REST behaviour for a GET on a non-existent resource.
+        // If 400 is returned by the API, that is a minor design inconsistency worth documenting.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "a very long slug that matches no test must return 404, not a server error or 400");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -482,10 +479,11 @@ public class EdgeCaseTests : IDisposable
         // Act
         var response = await _apiClient.PostAsync("tests/", request);
 
-        // Assert: must accept (any 2xx) or cleanly reject — never a server error
-        response.StatusCode.Should().BeOneOf(
-            new[] { HttpStatusCode.Created, HttpStatusCode.BadRequest },
-            "extremely long test password should be accepted or cleanly rejected, not cause a server error");
+        // Assert: a 500-character test password must be rejected.
+        // The API must enforce a maximum password length to prevent storage abuse.
+        // If 201 is returned, the API has no maximum password length — that is a bug.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            "a 500-character test password must be rejected; the API must enforce a maximum password length");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -580,11 +578,11 @@ public class EdgeCaseTests : IDisposable
         // Act
         var response = await _apiClient.PostAsync("auth/register/", request);
 
-        // Assert
-        // Should either accept or reject with clear limit
-        var isValid = response.StatusCode == HttpStatusCode.Created ||
-                     response.StatusCode == HttpStatusCode.BadRequest;
-        isValid.Should().BeTrue("should handle gracefully");
+        // Assert: RFC 5321 limits the local part of an email to 64 characters.
+        // A 200-character local part is invalid and must be rejected with 400.
+        // If 201 is returned, the API is not enforcing email length — that is a validation bug.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            "a 200-character email local part violates RFC 5321 (max 64 chars) and must be rejected");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════

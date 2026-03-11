@@ -40,9 +40,11 @@ public class SecurityTests : IDisposable
         var response = await _attackerClient.GetAsync($"tests/{testA.Slug}/");
         var body = await _attackerClient.GetResponseBodyAsync(response);
 
-        // Assert: Should be denied (403) or hidden (404)
-        (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.NotFound)
-            .Should().BeTrue($"because User B should not access User A's private test. Response: {body}");
+        // Assert: authenticated User B must get 403 Forbidden.
+        // 404 would hide the resource and could mask a missing auth check — the test exists,
+        // so the correct response for an unauthorised authenticated request is 403.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            $"because User B should not access User A's private test. Response: {body}");
     }
 
     [Fact]
@@ -68,9 +70,9 @@ public class SecurityTests : IDisposable
         // Act: User B attempts to fetch results
         var response = await _attackerClient.GetAsync($"tests/{test.Slug}/results/");
 
-        // Assert: Should be denied
-        (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.NotFound)
-            .Should().BeTrue("because only test author should access results");
+        // Assert: authenticated non-author must get 403 Forbidden, not 404.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "because only the test author should access results — non-author must get 403 Forbidden");
     }
 
     [Fact]
@@ -93,9 +95,9 @@ public class SecurityTests : IDisposable
         // Act: User B attempts to update User A's test
         var response = await _attackerClient.PutAsync($"tests/{test.Slug}/", updateRequest);
 
-        // Assert: Should be denied
-        (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.NotFound)
-            .Should().BeTrue("because users should not modify others' tests");
+        // Assert: authenticated non-owner must get 403 Forbidden, not 404.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "because authenticated non-owner must receive 403 Forbidden when updating another user's test");
     }
 
     [Fact]
@@ -112,9 +114,9 @@ public class SecurityTests : IDisposable
         // Act: User B attempts to delete User A's test
         var response = await _attackerClient.DeleteAsync($"tests/{test.Slug}/");
 
-        // Assert: Should be denied
-        (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.NotFound)
-            .Should().BeTrue("because users should not delete others' tests");
+        // Assert: authenticated non-owner must get 403 Forbidden, not 404.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "because authenticated non-owner must receive 403 Forbidden when deleting another user's test");
     }
 
     [Fact]
@@ -138,9 +140,9 @@ public class SecurityTests : IDisposable
         // Act: User B tries to access Company A's members
         var response = await _attackerClient.GetAsync($"companies/{companyA.Id}/members/");
 
-        // Assert: Should be denied
-        (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.NotFound)
-            .Should().BeTrue("because users should not access other companies' member data");
+        // Assert: authenticated non-member must get 403 Forbidden.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            "because authenticated non-member must receive 403 Forbidden when accessing another company's data");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -203,18 +205,17 @@ public class SecurityTests : IDisposable
         // Act: Create test with SQL injection attempt
         var response = await _apiClient.PostAsync("tests/", createRequest);
 
-        // Assert: Either rejected or safely stored
-        if (response.StatusCode == HttpStatusCode.Created)
-        {
-            var test = await _apiClient.DeserializeResponseAsync<TestResponse>(response);
-            test!.Title.Should().Be(maliciousTitle,
-                "because SQL injection should be escaped/parameterized, not rejected");
-        }
-        else
-        {
-            response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
-                "because dangerous characters might be rejected");
-        }
+        // Assert: SQL injection payloads must be safely stored by the ORM's parameterised queries,
+        // NOT rejected at the application layer. A 400 here would indicate the API is using
+        // string sanitisation instead of parameterised queries — which is a security antipattern
+        // that creates a false sense of security.
+        // If this assertion fails (400 returned), the API is blocking SQL meta-characters rather
+        // than parameterising them — that is a design flaw worth surfacing.
+        response.StatusCode.Should().Be(HttpStatusCode.Created,
+            "because SQL injection strings must be stored safely via parameterised queries, not rejected");
+        var test = await _apiClient.DeserializeResponseAsync<TestResponse>(response);
+        test!.Title.Should().Be(maliciousTitle,
+            "because the SQL injection payload must be stored literally — parameterised queries must not modify it");
     }
 
     [Fact]
@@ -239,19 +240,15 @@ public class SecurityTests : IDisposable
         // Act: Create question with XSS payload
         var response = await _apiClient.PostAsync($"tests/{test.Slug}/questions/", questionRequest);
 
-        // Assert: Should either reject or escape the payload
-        if (response.StatusCode == HttpStatusCode.Created)
-        {
-            var question = await _apiClient.DeserializeResponseAsync<QuestionResponse>(response);
-            // The payload should be stored but will be escaped on render (client-side responsibility)
-            question!.QuestionText.Should().Contain("script",
-                "because API should accept HTML tags (frontend must escape on render)");
-        }
-        else
-        {
-            response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
-                "because dangerous HTML might be rejected");
-        }
+        // Assert: XSS payloads must be stored as-is. The API is a JSON REST backend —
+        // HTML escaping is the responsibility of the frontend renderer, not the data store.
+        // If 400 is returned, the API is incorrectly blocking HTML characters as security theatre,
+        // which would prevent legitimate use of markup in question text (e.g., code snippets).
+        response.StatusCode.Should().Be(HttpStatusCode.Created,
+            "because the API must store XSS payloads as-is and rely on the frontend to escape on render");
+        var question = await _apiClient.DeserializeResponseAsync<QuestionResponse>(response);
+        question!.QuestionText.Should().Contain("script",
+            "because the XSS payload must be stored literally without server-side modification");
     }
 
     [Fact]
@@ -271,9 +268,12 @@ public class SecurityTests : IDisposable
         // Act: Attempt to create test with huge payload
         var response = await _apiClient.PostAsync("tests/", createRequest);
 
-        // Assert: Should be rejected (413 Payload Too Large or 400 Bad Request)
-        ((int)response.StatusCode == 413 || response.StatusCode == HttpStatusCode.BadRequest)
-            .Should().BeTrue("because oversized payloads should be rejected to prevent DoS");
+        // Assert: 413 Request Entity Too Large (from the web server/reverse proxy) or
+        // 400 Bad Request (from Django field length validation) — both are correct rejections.
+        // If 201 is returned, the API accepts a 1MB description, which is a DoS vector.
+        response.StatusCode.Should().BeOneOf(
+            new[] { HttpStatusCode.RequestEntityTooLarge, HttpStatusCode.BadRequest },
+            "because a 1MB payload must be rejected by the server or application layer to prevent DoS");
     }
 
     [Fact]
