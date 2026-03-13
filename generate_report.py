@@ -263,6 +263,34 @@ TEST_DESCRIPTIONS = {
     "CrossCompanySecurity_UserBCannotAccessUserACompany": "Tests security boundaries between companies. User A creates a company and test, User B (not a member) attempts to access the company and test analytics, confirming both are properly denied.",
     "PermissionFlow_StudentCannotCreateCompanyTests": "Tests role-based permission enforcement. Admin creates a company and invites a student, student accepts the invite, then attempts to create a company test and is properly denied due to insufficient permissions.",
 
+    # New Question Type Tests (Group 19)
+    "MultiSelect_Creation_WithMultipleCorrectAnswers_Succeeds": "Creates a multi_select question with four answers, two marked correct. Verifies 201 is returned, the question type is stored correctly, and both correct answers are present.",
+    "MultiSelect_Creation_WithNoCorrectAnswer_RejectsRequest": "Attempts to create a multi_select question where all answers are marked incorrect. Verifies 400 is returned, enforcing the minimum-one-correct-answer rule.",
+    "MultiSelect_Scoring_AllCorrectAnswersSelected_ScoresFullMarks": "Selects every required correct answer and no wrong answers. Verifies the result is 100% and the question is counted as correctly answered.",
+    "MultiSelect_Scoring_OnlyPartialCorrectAnswers_ScoresZero": "Selects only one of two required correct answers. Verifies the result is 0% — all-or-nothing scoring means missing a single correct answer fails the whole question.",
+    "MultiSelect_Scoring_CorrectPlusWrongAnswers_ScoresZero": "Selects all correct answers but also includes one wrong answer. Verifies the result is 0% — any wrong selection disqualifies the attempt regardless of correct ones.",
+    "MultiSelect_TakeEndpoint_DoesNotExposeIsCorrect": "Fetches a multi_select question via the anonymous take endpoint. Verifies every answer has is_correct=false, confirming correct options are never revealed to takers.",
+    "ExactAnswer_Creation_WithCorrectAnswer_Succeeds": "Creates an exact_answer question with a valid correct_answer. Verifies 201 is returned, the question type is stored, and the correct_answer is visible to the author.",
+    "ExactAnswer_Creation_WithEmptyCorrectAnswer_RejectsRequest": "Attempts to create an exact_answer question with an empty correct_answer string. Verifies 400 is returned because a non-empty answer is required.",
+    "ExactAnswer_Creation_CorrectAnswerExceedsMaxLength_RejectsRequest": "Submits a correct_answer of 31 characters, one over the 30-character limit. Verifies 400 is returned, enforcing the maximum length constraint.",
+    "ExactAnswer_TakeEndpoint_DoesNotRevealCorrectAnswer": "Fetches an exact_answer question via the anonymous take endpoint. Verifies the correct_answer field is null or empty, ensuring takers cannot see the expected answer.",
+    "ExactAnswer_Scoring_ExactTextMatch_ScoresFullMarks": "Submits the exact correct text for an exact_answer question. Verifies the result is 100% and the question is counted as correctly answered.",
+    "ExactAnswer_Scoring_WrongText_ScoresZero": "Submits a text answer that does not match the stored correct answer. Verifies the result is 0% and no questions are counted as correct.",
+    "ExactAnswer_Scoring_DifferentCase_ScoresCorrectly": "Submits the correct answer in lowercase when the stored answer is mixed case. Documents the current case-insensitive matching behaviour — if this changes to strict matching, the test will catch the regression.",
+    "ExactAnswer_Scoring_EmptySubmission_ScoresZero": "Submits an attempt without providing any text answer for an exact_answer question. Verifies the result is 0% because an empty submission cannot match any correct answer.",
+
+    # Latest Feature Tests (Group 21)
+    "TestFolderAssignment_ToNonExistentFolder_ReturnsBadRequest": "PATCHes a test with folder ID 999999 which does not exist. Verifies 400 is returned rather than silently ignoring the invalid reference.",
+    "TestFolderAssignment_ByNonOwner_DeniesAccess": "User B creates a folder then attempts to assign User A's test to it. Verifies 403 or 404 is returned, confirming non-owners cannot modify another user's test.",
+    "TestFolderAssignment_ReassignBetweenFolders_UpdatesBothCounts": "Assigns a test to Folder A, then reassigns it to Folder B. Verifies Folder A's test_count drops to 0 and Folder B's rises to 1, confirming counts stay consistent on reassignment.",
+    "FolderDetail_WithValidId_ReturnsAllExpectedFields": "Fetches a newly created folder via the detail endpoint. Verifies the response contains id, name, parent (null for top-level), test_count (0), and created_at.",
+    "MultiSelect_Scoring_OnlyWrongAnswersSelected_ScoresZero": "Selects only incorrect answers for a multi_select question. Verifies the result is 0%, confirming wrong-only selections score as failures.",
+    "MultiSelect_Update_ChangesCorrectAnswers_NewScoringApplied": "Creates a multi_select question with A as correct, then PUTs an update making B the only correct answer. Verifies the updated response reflects the new correct answer.",
+    "MultiSelect_MixedTest_WithMultipleChoiceQuestion_EachScoredIndependently": "Creates a test with one multiple_choice and one multi_select question, answers both correctly. Verifies the result is 100% with 2 correct answers out of 2 total.",
+    "ExactAnswer_Update_ChangesCorrectAnswer_NewAnswerIsScored": "Creates an exact_answer question with 'Berlin', updates the correct answer to 'Frankfurt', then submits 'Berlin'. Verifies the old answer now scores 0%.",
+    "ExactAnswer_Analytics_TotalAttemptsReflectsTextSubmissions": "Submits two attempts (one correct, one wrong) to an exact_answer test. Verifies the analytics endpoint shows 2 total attempts and a 50% average score.",
+    "ExactAnswer_MixedTest_WithMultipleChoiceQuestion_ScoresCorrectly": "Creates a test with one multiple_choice and one exact_answer question, submits both correct answers in a single payload. Verifies the result is 100% with 2 correct answers out of 2 total.",
+
     # Missing Coverage Tests
     "Registration_WithDuplicateEmail_RejectsRequest": "Registers a user, then attempts a second registration with the exact same email. Verifies the uniqueness constraint returns 400 on the duplicate attempt.",
     "TokenRefresh_WithInvalidToken_DeniesAccess": "POSTs a fabricated string to the refresh endpoint. Verifies the API returns 401 (authentication failure) rather than 400 (malformed request).",
