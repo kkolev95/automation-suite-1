@@ -262,6 +262,22 @@ TEST_DESCRIPTIONS = {
     "CompanyWorkflow_AdminCreatesInvitesMemberTakesTest": "Tests complete company collaboration workflow. Admin creates a company, creates a company test with questions, invites a member, member accepts and takes the test, then admin views analytics showing the member's attempt.",
     "CrossCompanySecurity_UserBCannotAccessUserACompany": "Tests security boundaries between companies. User A creates a company and test, User B (not a member) attempts to access the company and test analytics, confirming both are properly denied.",
     "PermissionFlow_StudentCannotCreateCompanyTests": "Tests role-based permission enforcement. Admin creates a company and invites a student, student accepts the invite, then attempts to create a company test and is properly denied due to insufficient permissions.",
+
+    # Missing Coverage Tests
+    "Registration_WithDuplicateEmail_RejectsRequest": "Registers a user, then attempts a second registration with the exact same email. Verifies the uniqueness constraint returns 400 on the duplicate attempt.",
+    "TokenRefresh_WithInvalidToken_DeniesAccess": "POSTs a fabricated string to the refresh endpoint. Verifies the API returns 401 (authentication failure) rather than 400 (malformed request).",
+    "ProfileUpdate_ChangesPersistAcrossRequests": "PATCHes the authenticated user's first and last name, then issues a fresh GET to confirm the new values are persisted server-side.",
+    "ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore": "Creates a test with show_answers_after=true, submits a correct attempt, and asserts the submit response body includes a 'score' field. Currently a known bug — the API omits the score from the submit response.",
+    "TestListing_AsAuthor_DoesNotIncludeOtherUsersTests": "User A creates a test; User B registers, creates their own test, and lists their tests. Verifies B's listing contains B's test and does not leak A's test.",
+    "InviteAcceptance_WithInvalidToken_RejectsRequest": "Authenticated user attempts to accept a non-existent invite token. Verifies a 404 is returned because the token does not exist.",
+    "InviteCreation_WithInstructorRole_CreatesInstructorInvite": "Admin creates a company and sends an invite with role='instructor'. Verifies the request succeeds with 201 and the returned invite object has the instructor role.",
+    "InviteAcceptance_ByWrongUser_RejectsRequest": "Admin invites User A; User B (a different authenticated user) tries to accept User A's token. Verifies 400 is returned with 'Invite is for a different email address' — the API uses 400 rather than 403 for this case.",
+    "TestVisibility_WhenChangedToPublic_AppearsInPublicListing": "Creates a link_only test (not in public listing), PATCHes it to public, then confirms it now appears in the anonymous public listing.",
+    "TestVisibility_WhenChangedFromPublicToLinkOnly_DisappearsFromPublicListing": "Creates a public test (visible in public listing), PATCHes it to link_only, then confirms it is removed from the anonymous public listing.",
+    "TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing": "BUG/MISSING FEATURE: Attempts to PATCH a test's visibility to 'private'. Currently fails — the API returns 400 because 'private' is not a supported visibility value (only public, link_only, password_protected are accepted).",
+    "CompanyFolders_ByNonMember_DeniesAccess": "Admin creates a company and a folder; a separate non-member user lists that company's folders. Verifies 404 is returned — the API uses the resource-hiding pattern ('No Company matches the given query') consistently for non-members.",
+    "ResultDetail_AsUnauthenticatedUser_DeniesAccess": "Author creates a test, an anonymous user submits an attempt, and the author retrieves the result ID. A fresh unauthenticated client then requests that result detail and receives 401.",
+    "AnonymousAttempt_EmptyAnonymousName_BehavesGracefully": "BUG: Starts an anonymous attempt with an empty string for anonymous_name. Currently fails — the API accepts empty names with 201, meaning there is no validation on this required identifier. An empty name makes the attempt untraceable in the results list.",
 }
 
 # ---------------------------------------------------------------------------
