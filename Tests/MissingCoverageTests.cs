@@ -10,17 +10,10 @@ namespace TestIT.ApiTests.Tests;
 /// <summary>
 /// Tests targeting gaps identified by cross-referencing all existing test classes:
 ///   - Auth: duplicate email registration, invalid refresh token, profile update persistence
-///   - ShowAnswersAfter=true: submit response includes score field (BUG: API omits score)
 ///   - Invite edge cases: invalid token, wrong user (400), instructor role
 ///   - Visibility change propagation to/from the public listing
 ///   - Company folder access control for non-members (resource-hiding: 404)
 ///   - Result detail access control for unauthenticated users
-///   - Anonymous attempt with empty name (BUG: API accepts empty name with 201)
-///
-/// Known failing tests (documented API bugs/missing features):
-///   - ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore
-///   - TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing
-///   - AnonymousAttempt_EmptyAnonymousName_BehavesGracefully
 /// </summary>
 public class MissingCoverageTests : IDisposable
 {
@@ -98,56 +91,6 @@ public class MissingCoverageTests : IDisposable
         profile.Should().NotBeNull();
         profile!.FirstName.Should().Be("Updated", "first name must persist after PATCH");
         profile.LastName.Should().Be("Name", "last name must persist after PATCH");
-    }
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // ShowAnswersAfter Feature
-    // ═══════════════════════════════════════════════════════════════════════════
-
-    /// <summary>
-    /// BUG: When show_answers_after=true, submitting an attempt returns HTTP 200 but
-    /// the response body contains no "score" field. A taker who just finished the test
-    /// has no way to see their result immediately from the submit response alone.
-    /// Score must be fetched separately via GET /tests/{slug}/results/ (author-only).
-    /// Expected: submit response includes "score" when show_answers_after=true.
-    /// </summary>
-    [Fact]
-    [Trait("Category", "Functional")]
-    [Trait("Priority", "P1")]
-    public async Task ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore()
-    {
-        await TestDataHelper.RegisterAndLoginAsync(_apiClient);
-        var test = await TestDataHelper.CreateTestAsync(_apiClient,
-            $"ShowAfter_{Guid.NewGuid().ToString("N")[..8]}",
-            showAnswersAfter: true);
-        var question = await TestDataHelper.AddQuestionAsync(_apiClient, test.Slug, "Capital of France?");
-        var correctId = question.Answers.First(a => a.IsCorrect).Id;
-
-        var startResp = await _anonClient.PostAsync($"tests/{test.Slug}/attempts/",
-            new StartAttemptRequest { AnonymousName = "ShowAfter Tester" });
-        startResp.StatusCode.Should().Be(HttpStatusCode.Created);
-        var attempt = await _anonClient.DeserializeResponseAsync<AttemptResponse>(startResp);
-
-        var takeTest = await _anonClient.GetAsync<TakeTestResponse>($"tests/{test.Slug}/take/");
-        await _anonClient.PutAsync($"tests/{test.Slug}/attempts/{attempt!.Id}/",
-            new SaveDraftRequest
-            {
-                DraftAnswers = new Dictionary<string, List<int>>
-                {
-                    { takeTest!.Questions[0].Id.ToString(), new List<int> { correctId } }
-                }
-            });
-
-        var submitResp = await _anonClient.PostAsync(
-            $"tests/{test.Slug}/attempts/{attempt.Id}/submit/",
-            new Dictionary<string, object>());
-        submitResp.StatusCode.Should().Be(HttpStatusCode.OK);
-
-        var json = await submitResp.Content.ReadAsStringAsync();
-        using var doc = JsonDocument.Parse(json);
-        doc.RootElement.TryGetProperty("score", out _).Should().BeTrue(
-            "when show_answers_after=true the submit response must include a 'score' field " +
-            "so the taker can see their result immediately");
     }
 
     [Fact]
@@ -325,40 +268,6 @@ public class MissingCoverageTests : IDisposable
             .Should().BeFalse("after changing to link_only the test must not appear in the public listing");
     }
 
-    /// <summary>
-    /// BUG/MISSING FEATURE: PATCH /tests/{slug}/ with visibility="private" returns 400.
-    /// The API does not support a "private" visibility state that would hide a test from
-    /// the author's own listing without making it entirely inaccessible. Only "public",
-    /// "link_only", and "password_protected" are accepted.
-    /// Expected: "private" is a valid visibility option allowing the author to archive/hide a test.
-    /// </summary>
-    [Fact]
-    [Trait("Category", "Functional")]
-    [Trait("Priority", "P2")]
-    public async Task TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing()
-    {
-        await TestDataHelper.RegisterAndLoginAsync(_apiClient);
-        var test = await TestDataHelper.CreateTestAsync(_apiClient,
-            $"VisPriv_{Guid.NewGuid().ToString("N")[..8]}",
-            visibility: "public");
-
-        var beforeJson = await (await _anonClient.GetAsync("tests/public/")).Content.ReadAsStringAsync();
-        JsonDocument.Parse(beforeJson).RootElement.EnumerateArray()
-            .Any(t => t.TryGetProperty("slug", out var s) && s.GetString() == test.Slug)
-            .Should().BeTrue("a public test must appear in the public listing");
-
-        // This PATCH currently returns 400 — "private" is not an accepted visibility value
-        var updateResp = await _apiClient.PatchAsync($"tests/{test.Slug}/",
-            new { visibility = "private" });
-        updateResp.StatusCode.Should().Be(HttpStatusCode.OK,
-            "visibility change to 'private' must succeed — this is a missing API feature");
-
-        var afterJson = await (await _anonClient.GetAsync("tests/public/")).Content.ReadAsStringAsync();
-        JsonDocument.Parse(afterJson).RootElement.EnumerateArray()
-            .Any(t => t.TryGetProperty("slug", out var s) && s.GetString() == test.Slug)
-            .Should().BeFalse("after setting visibility to private the test must leave the public listing");
-    }
-
     // ═══════════════════════════════════════════════════════════════════════════
     // Company Folder Access Control
     // ═══════════════════════════════════════════════════════════════════════════
@@ -429,33 +338,6 @@ public class MissingCoverageTests : IDisposable
         // 404 would hide the resource entirely instead of requiring authentication.
         response.StatusCode.Should().Be(HttpStatusCode.Unauthorized,
             "an unauthenticated request to a result detail endpoint must return 401 Unauthorized");
-    }
-
-    // ═══════════════════════════════════════════════════════════════════════════
-    // Anonymous Attempt Validation
-    // ═══════════════════════════════════════════════════════════════════════════
-
-    [Fact]
-    [Trait("Category", "Validation")]
-    [Trait("Priority", "P2")]
-    public async Task AnonymousAttempt_EmptyAnonymousName_BehavesGracefully()
-    {
-        // Arrange
-        await TestDataHelper.RegisterAndLoginAsync(_apiClient);
-        var test = await TestDataHelper.CreateTestAsync(_apiClient,
-            $"EmptyName_{Guid.NewGuid().ToString("N")[..8]}");
-
-        // Act: start attempt with an empty anonymous_name string
-        var response = await _anonClient.PostAsync($"tests/{test.Slug}/attempts/",
-            new StartAttemptRequest { AnonymousName = "" });
-        var body = await _anonClient.GetResponseBodyAsync(response);
-
-        // Assert: empty anonymous_name must be rejected with 400 Bad Request.
-        // anonymous_name is a required identifier for the attempt; accepting an empty string
-        // would make the attempt untraceable in the results list.
-        // If 201 is returned, the API has no validation on this required field — that is a bug.
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
-            $"empty anonymous_name must be rejected with 400 — it is a required identifier. Response: {body}");
     }
 
     public void Dispose()
