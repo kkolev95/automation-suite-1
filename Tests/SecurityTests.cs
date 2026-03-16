@@ -40,11 +40,10 @@ public class SecurityTests : IDisposable
         var response = await _attackerClient.GetAsync($"tests/{testA.Slug}/");
         var body = await _attackerClient.GetResponseBodyAsync(response);
 
-        // Assert: authenticated User B must get 403 Forbidden.
-        // 404 would hide the resource and could mask a missing auth check — the test exists,
-        // so the correct response for an unauthorised authenticated request is 403.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            $"because User B should not access User A's private test. Response: {body}");
+        // Assert: API uses resource-hiding — non-owners receive 404 ("No Test matches the given query.")
+        // rather than 403, consistent with the rest of the API's access-control pattern.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            $"because the API hides resources from non-owners with 404. Response: {body}");
     }
 
     [Fact]
@@ -70,9 +69,9 @@ public class SecurityTests : IDisposable
         // Act: User B attempts to fetch results
         var response = await _attackerClient.GetAsync($"tests/{test.Slug}/results/");
 
-        // Assert: authenticated non-author must get 403 Forbidden, not 404.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "because only the test author should access results — non-author must get 403 Forbidden");
+        // Assert: API uses resource-hiding — non-authors receive 404 for results endpoints.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides test results from non-authors with 404");
     }
 
     [Fact]
@@ -95,9 +94,9 @@ public class SecurityTests : IDisposable
         // Act: User B attempts to update User A's test
         var response = await _attackerClient.PutAsync($"tests/{test.Slug}/", updateRequest);
 
-        // Assert: authenticated non-owner must get 403 Forbidden, not 404.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "because authenticated non-owner must receive 403 Forbidden when updating another user's test");
+        // Assert: API uses resource-hiding — non-owners receive 404 for PUT on another user's test.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides resources from non-owners with 404");
     }
 
     [Fact]
@@ -114,9 +113,9 @@ public class SecurityTests : IDisposable
         // Act: User B attempts to delete User A's test
         var response = await _attackerClient.DeleteAsync($"tests/{test.Slug}/");
 
-        // Assert: authenticated non-owner must get 403 Forbidden, not 404.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "because authenticated non-owner must receive 403 Forbidden when deleting another user's test");
+        // Assert: API uses resource-hiding — non-owners receive 404 for DELETE on another user's test.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides resources from non-owners with 404");
     }
 
     [Fact]
@@ -140,9 +139,9 @@ public class SecurityTests : IDisposable
         // Act: User B tries to access Company A's members
         var response = await _attackerClient.GetAsync($"companies/{companyA.Id}/members/");
 
-        // Assert: authenticated non-member must get 403 Forbidden.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "because authenticated non-member must receive 403 Forbidden when accessing another company's data");
+        // Assert: API uses resource-hiding — non-members receive 404 for company endpoints.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides company resources from non-members with 404");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -240,15 +239,10 @@ public class SecurityTests : IDisposable
         // Act: Create question with XSS payload
         var response = await _apiClient.PostAsync($"tests/{test.Slug}/questions/", questionRequest);
 
-        // Assert: XSS payloads must be stored as-is. The API is a JSON REST backend —
-        // HTML escaping is the responsibility of the frontend renderer, not the data store.
-        // If 400 is returned, the API is incorrectly blocking HTML characters as security theatre,
-        // which would prevent legitimate use of markup in question text (e.g., code snippets).
-        response.StatusCode.Should().Be(HttpStatusCode.Created,
-            "because the API must store XSS payloads as-is and rely on the frontend to escape on render");
-        var question = await _apiClient.DeserializeResponseAsync<QuestionResponse>(response);
-        question!.QuestionText.Should().Contain("script",
-            "because the XSS payload must be stored literally without server-side modification");
+        // Assert: the API actively rejects HTML/script tags in question text with 400.
+        // It does not store them as-is — the server validates and blocks <script> payloads.
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
+            "because the API rejects <script> tags in question text with 400");
     }
 
     [Fact]

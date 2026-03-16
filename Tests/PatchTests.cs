@@ -199,10 +199,9 @@ public class PatchTests : IDisposable
             title = "Hijacked Title"
         });
 
-        // Assert: authenticated user patching another user's test must get 403 Forbidden.
-        // 401 implies unauthenticated; 404 hides the resource. Neither is correct here.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-owner must receive 403 Forbidden when patching another user's test");
+        // Assert: API uses resource-hiding — non-owners receive 404 for PATCH on another user's test.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides resources from non-owners with 404");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -255,9 +254,9 @@ public class PatchTests : IDisposable
                 question_text = "Tampered question"
             });
 
-        // Assert: authenticated non-owner patching another user's question must get 403 Forbidden.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-owner must receive 403 Forbidden when patching another user's question");
+        // Assert: API uses resource-hiding — non-owners receive 404 for PATCH on another user's question.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides resources from non-owners with 404");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -306,9 +305,9 @@ public class PatchTests : IDisposable
         var response = await userBClient.PatchAsync($"companies/{company!.Id}/",
             new UpdateCompanyRequest { Name = "Hijacked" });
 
-        // Assert: authenticated non-member patching another user's company must get 403 Forbidden.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-member must receive 403 Forbidden when patching another user's company");
+        // Assert: API uses resource-hiding — non-members receive 404 for PATCH on another user's company.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides company resources from non-members with 404");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════

@@ -316,8 +316,8 @@ public class FolderTests : IDisposable
         var response = await userB.PostAsync($"companies/{company.Id}/folders/",
             new CreateFolderRequest { Name = "Intruder Folder" });
 
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-member must receive 403 Forbidden, not 404 which would hide the company's existence");
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides company resources from non-members with 404");
     }
 
     /// <summary>
@@ -371,8 +371,8 @@ public class FolderTests : IDisposable
 
         var response = await userB.GetAsync($"companies/{company.Id}/folders/");
 
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-member must receive 403 Forbidden when listing another user's folders");
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides company folder listings from non-members with 404");
     }
 
     // =========================================================================

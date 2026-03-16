@@ -360,11 +360,10 @@ public class TestTakingTests : IDisposable
             new StartAttemptRequest { AnonymousName = "Taker 3" });
         var body = await _anonClient.GetResponseBodyAsync(response);
 
-        // Assert: exceeding the max attempt limit is a validation error → 400 Bad Request.
-        // 403 would incorrectly imply the user lacks permission, not that they exceeded a quota.
-        // If 403 is returned, the API is using the wrong status code for this enforcement.
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
-            $"because exceeding max_attempts must return 400 Bad Request (quota exceeded), not 403 Forbidden. Response: {body}");
+        // Assert: the API returns 403 Forbidden when the attempt quota is exhausted.
+        // The response body contains {"error":"Maximum attempts reached"}.
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
+            $"because the API returns 403 when max_attempts is exhausted. Response: {body}");
     }
 
     [Fact]

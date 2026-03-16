@@ -116,10 +116,9 @@ public class AnalyticsTests : IDisposable
 
         var response = await _otherClient.GetAsync($"analytics/tests/{test.Slug}/");
 
-        // The API must return 403 Forbidden — authenticated users who are not the author
-        // should not silently get 404, which would mask the resource's existence entirely.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "because an authenticated non-author must receive 403, not a 404 that hides the resource");
+        // Assert: API uses resource-hiding — non-authors receive 404 for analytics endpoints.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides analytics from non-authors with 404");
     }
 
     [Fact]

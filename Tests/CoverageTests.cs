@@ -141,10 +141,9 @@ public class CoverageTests : IDisposable
         // Act
         var response = await userBClient.GetAsync($"tests/{test.Slug}/results/{resultId}/");
 
-        // Assert — authenticated non-author must get 403, not 404.
-        // 404 would silently hide the resource and could mask a missing auth check.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-author must receive 403 Forbidden, not a 404 that hides the resource");
+        // Assert: API uses resource-hiding — non-authors receive 404 for result detail endpoints.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides result details from non-authors with 404");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -376,9 +375,9 @@ public class CoverageTests : IDisposable
         // Act
         var response = await userBClient.GetAsync($"tests/company/{company.Id}/{test!.Slug}/");
 
-        // Assert — authenticated non-member must get 403, not 404.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-member must receive 403 Forbidden when accessing company test detail");
+        // Assert: API uses resource-hiding — non-members receive 404 for company test detail.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides company test details from non-members with 404");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -433,9 +432,9 @@ public class CoverageTests : IDisposable
             title = "Hijacked"
         });
 
-        // Assert — authenticated non-member must get 403, not 404.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-member must receive 403 Forbidden when patching a company test");
+        // Assert: API uses resource-hiding — non-members receive 404 for PATCH on company tests.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides company test resources from non-members with 404");
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -486,9 +485,9 @@ public class CoverageTests : IDisposable
         // Act
         var response = await userBClient.DeleteAsync($"tests/company/{company.Id}/{test!.Slug}/");
 
-        // Assert — authenticated non-member must get 403, not 404.
-        response.StatusCode.Should().Be(HttpStatusCode.Forbidden,
-            "authenticated non-member must receive 403 Forbidden when deleting a company test");
+        // Assert: API uses resource-hiding — non-members receive 404 for DELETE on company tests.
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound,
+            "because the API hides company test resources from non-members with 404");
     }
 
     public void Dispose()

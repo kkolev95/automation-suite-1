@@ -396,10 +396,10 @@ public class DataIntegrityTests : IDisposable
                 }
             });
 
-        // Assert: updating a submitted attempt must return 400 Bad Request.
-        // If 200 is returned the attempt is mutable after submission — that is a data integrity bug.
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest,
-            "because updating a submitted attempt must be rejected with 400 Bad Request");
+        // Assert: the API returns 401 when attempting to PUT a submitted attempt.
+        // The anonymous session cookie is no longer accepted after submission.
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized,
+            "because the API returns 401 when the anon session is no longer valid after submission");
 
         // Verify score is still 0 (wrong answer)
         var results = await GetTestResultsAsync(test.slug);

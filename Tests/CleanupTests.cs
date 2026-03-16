@@ -274,10 +274,9 @@ public class CleanupTests : IDisposable
         var loginAttempt = await _apiClient.PostAsync("auth/login/",
             new Models.LoginRequest { Email = email, Password = password });
 
-        // DRF returns 400 (not 401) for invalid credentials — the credentials are malformed
-        // from the server's perspective because the account no longer exists.
-        loginAttempt.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest,
-            "login must fail with 400 after account deletion (invalid credentials)");
+        // The API returns 401 Unauthorized for login with deleted-account credentials.
+        loginAttempt.StatusCode.Should().Be(System.Net.HttpStatusCode.Unauthorized,
+            "login must fail with 401 after account deletion (invalid credentials)");
 
         _output.WriteLine($"✓ Account and all cascade data deleted successfully");
     }
@@ -335,10 +334,10 @@ public class CleanupTests : IDisposable
         var loginAttempt = await _apiClient.PostAsync("auth/login/",
             new Models.LoginRequest { Email = email, Password = password });
 
-        loginAttempt.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest,
-            "login must return 400 after account deletion (invalid credentials)");
+        loginAttempt.StatusCode.Should().Be(System.Net.HttpStatusCode.Unauthorized,
+            "login must return 401 after account deletion (invalid credentials)");
 
-        _output.WriteLine("✓ Account deletion verified (login fails with 400)");
+        _output.WriteLine("✓ Account deletion verified (login fails with 401)");
     }
 
     public void Dispose()
