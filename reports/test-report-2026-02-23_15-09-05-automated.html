@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TestIT API Tests &#8212; Test Report</title>
+<style>
+  /* reset details/summary arrow across browsers */
+  details > summary::-webkit-details-marker { display:none; }
+  details > summary { list-style:none; }
+  details[open] > summary > span:first-child { }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#eef0f3;font-family:'Segoe UI',system-ui,Arial,sans-serif;color:#333;">
+
+<!-- ============================================================
+     HEADER (DARK BLUE)
+     ============================================================ -->
+<div style="background:#1a237e;color:#fff;padding:26px 40px 22px;">
+  <h1 style="margin:0 0 6px;font-size:22px;font-weight:600;letter-spacing:.3px;">
+    TestIT API Tests &#8212; Test Report
+  </h1>
+  <p style="margin:0;font-size:13px;opacity:.7;">
+    Started: 2026-02-23T15:09:07.915975+02:00 &nbsp;|&nbsp; Finished: 2026-02-23T15:12:49.238118+02:00
+  </p>
+</div>
+
+<!-- ============================================================
+     SUMMARY BAR (GREEN/RED)
+     ============================================================ -->
+<div style="background:#2e7d32;color:#fff;padding:18px 40px;display:flex;gap:52px;flex-wrap:wrap;align-items:center;">
+  <div style="text-align:center;">
+    <div style="font-size:38px;font-weight:700;line-height:1;">181/185</div>
+    <div style="font-size:12px;opacity:.85;margin-top:2px;text-transform:uppercase;letter-spacing:.8px;">Tests Passed</div>
+  </div>
+  <div style="text-align:center;">
+    <div style="font-size:38px;font-weight:700;line-height:1;">98%</div>
+    <div style="font-size:12px;opacity:.85;margin-top:2px;text-transform:uppercase;letter-spacing:.8px;">Pass Rate</div>
+  </div>
+  <div style="text-align:center;">
+    <div style="font-size:38px;font-weight:700;line-height:1;">3m 41.32s</div>
+    <div style="font-size:12px;opacity:.85;margin-top:2px;text-transform:uppercase;letter-spacing:.8px;">Total Duration</div>
+  </div>
+  <div style="text-align:center;">
+    <div style="font-size:38px;font-weight:700;line-height:1;">1.20s</div>
+    <div style="font-size:12px;opacity:.85;margin-top:2px;text-transform:uppercase;letter-spacing:.8px;">Avg / Test</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     BODY / PER-CLASS BREAKDOWN
+     ============================================================ -->
+<div style="max-width:960px;margin:30px auto;padding:0 20px;">
+  <h2 style="font-size:17px;color:#1a237e;margin-bottom:14px;">
+    Test Classes
+  </h2>
+  <details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; SecurityTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">16 tests &middot; 1m 00.18s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authentication_InvalidToken_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.45s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authentication_MalformedToken_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.23s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authentication_NoToken_DeniesProtectedEndpoints</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.23s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authorization_UserCannotAccessOtherCompaniesData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.57s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authorization_UserCannotAccessOtherUsersTestResults</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">12.83s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authorization_UserCannotAccessOtherUsersTests</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.28s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authorization_UserCannotDeleteOtherUsersTests</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.67s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Authorization_UserCannotUpdateOtherUsersTests</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">9.18s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataExposure_CorrectAnswers_NotExposedBeforeSubmission</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.58s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataExposure_DetailedErrorMessages_DoNotLeakSensitiveInfo</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.86s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataExposure_PasswordNotReturned_InProfileEndpoint</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.01s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InputValidation_ExtremelyLongEmail_IsRejected</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.19s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InputValidation_NegativeMaxAttempts_IsRejected</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.13s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InputValidation_OversizedPayload_IsRejected</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.86s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InputValidation_SQLInjectionInTestTitle_IsSanitized</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.09s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InputValidation_XSSInQuestionText_IsSanitized</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.01s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; AuthenticationTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">10 tests &middot; 24.02s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Login_WithInvalidCredentials_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.16s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Login_WithMissingPassword_RejectsRequest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.11s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Login_WithValidCredentials_ReturnsAuthenticationTokens</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.16s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Registration_WithMismatchedPasswords_RejectsRequest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.75s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Registration_WithMissingRequiredFields_RejectsRequest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.59s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Registration_WithValidCredentials_CreatesUserAccount</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.68s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Registration_WithWeakPassword_RejectsRequest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.29s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TokenRefresh_WithValidRefreshToken_IssuesNewAccessToken</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.81s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">UserProfile_WhenAuthenticated_ReturnsUserDetails</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.44s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">UserProfile_WhenUnauthenticated_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.02s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; EdgeCaseTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">27 tests &middot; 1m 12.73s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyInvite_InvalidRoleValue_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.58s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateQuestion_EmptyQuestionText_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.08s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateQuestion_InvalidQuestionType_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.57s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateQuestion_NoAnswers_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.04s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateQuestion_NoCorrectAnswer_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.88s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_EmptyPassword_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.20s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_InvalidVisibilityValue_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.43s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_NegativeMaxAttempts_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.58s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_NegativeTimeLimit_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.79s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_NullDescription_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.71s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_SpecialCharactersInTitle_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.34s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_UnicodeCharactersInTitle_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.49s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_VeryLargeTimeLimit_ShouldHandleGracefully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.46s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_VeryLongPassword_ShouldHandleGracefully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.64s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_VeryLongTitle_ShouldHandleGracefully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.41s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_WhitespaceOnlyTitle_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.92s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_ZeroMaxAttempts_ShouldFail</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.47s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CreateTest_ZeroTimeLimit_ShouldBeAllowed</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.46s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetTest_InvalidSlugFormat_Returns404</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.70s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetTest_NonExistentSlug_Returns404</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.53s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetTest_VeryLongSlug_ShouldHandleGracefully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.44s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Register_EmailWithDots_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.10s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Register_EmailWithPlus_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.96s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Register_EmailWithSubdomain_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.80s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Register_VeryLongEmail_ShouldHandleGracefully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.23s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">SaveAnswers_EmptyAnswersList_ShouldWork</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.54s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">SubmitAttempt_NoAnswersSaved_ShouldScoreZero</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.37s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; CompanyTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">10 tests &middot; 48.22s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyCreation_WhenUnauthenticated_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.45s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyCreation_WithValidData_CreatesCompanySuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.46s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyDeletion_AsAdmin_RemovesCompanyCompletely</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.48s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyDetails_AsAdmin_ReturnsCompanyData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.54s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyListing_AfterCreation_IncludesNewCompany</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.08s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyTestCreation_AsStudent_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">12.88s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyTestCreation_WithValidData_CreatesTestInCompany</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.09s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyTestListing_AsAdmin_ReturnsCompanyTests</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.92s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">CompanyUpdate_WithValidData_UpdatesCompanySuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.83s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">MemberListing_NewCompany_CreatorIsOnlyAdmin</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.47s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; CoverageTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">17 tests &middot; 1m 18.91s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DeleteCompanyTest_AsAdmin_RemovesTestSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.83s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DeleteCompanyTest_AsNonMember_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">10.35s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetCompanyTestDetail_AsMember_ReturnsTestData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">7.15s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetCompanyTestDetail_AsNonMember_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.74s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetPublicTests_LinkOnlyTest_DoesNotAppearInList</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.17s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetPublicTests_PublicTest_AppearsInList</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.89s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetPublicTests_Unauthenticated_Returns200</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.94s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetQuestion_WithNonExistentId_ReturnsNotFound</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.06s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetQuestion_WithValidId_ReturnsQuestionData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.55s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetResultDetail_ByAuthor_ReturnsDetailedBreakdown</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.32s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">GetResultDetail_ByNonAuthor_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.19s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchCompanyTest_AsAdmin_UpdatesTestSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.19s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchCompanyTest_AsNonMember_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.49s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">RemoveMember_AsAdmin_RemovesMemberSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.02s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">RemoveMember_LastAdmin_DeniesRemoval</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.54s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">UpdateMemberRole_AsAdmin_ChangesRoleSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.38s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">UpdateMemberRole_ByNonAdmin_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.09s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fdedec;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#c0392b;font-size:15px;">&#9654; CleanupTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">11 tests &middot; 2m 21.17s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">AccountCleanup_AllTrackedAccounts_DeletesSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">129.53s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">AccountCleanup_WithCascadeData_DeletesEverything</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.08s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Backend_BulkCleanupEndpoint_IfImplemented</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#c62828;">NotExecuted</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.00s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Diagnostic_VerifyDeleteEndpoint_Works</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.04s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ManualCleanup_AnalyzeTestData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.60s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ManualCleanup_DeleteAllTestData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.68s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ManualCleanup_DeleteOldTestData_7Days</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.59s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ManualCleanup_DryRun</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.64s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Manual_CleanupAllTrackedAccounts</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#c62828;">NotExecuted</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.00s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Manual_CleanupOldAccounts</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#c62828;">NotExecuted</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.00s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Manual_CleanupPersistentUserTests_ByPattern</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#c62828;">NotExecuted</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">0.00s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; QuestionManagementTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">5 tests &middot; 34.26s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">QuestionCreation_MultiSelectType_CreatesWithMultipleCorrectAnswers</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.17s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">QuestionDeletion_VerifyRemoval_QuestionNoLongerInTest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.83s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">QuestionReorder_WithValidOrder_ReordersSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">10.17s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">QuestionUpdate_WithNonExistentId_ReturnsNotFound</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.37s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">QuestionUpdate_WithValidData_UpdatesQuestionSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.71s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; PerformanceTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">10 tests &middot; 50.49s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_CreateTest_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.01s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_GetAnalytics_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.80s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_GetProfile_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.90s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_GetResults_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">7.61s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_GetTakeEndpoint_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.77s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_GetTestDetail_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.04s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_ListTests_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.20s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_Login_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.93s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_StartAttempt_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">7.42s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Latency_SubmitAttempt_RespondsFast</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.80s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; DataIntegrityTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">14 tests &middot; 1m 11.66s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataConsistency_AttemptCountAccurate_AfterMultipleSubmissions</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">7.03s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataConsistency_ConcurrentAttempts_AllScoredCorrectly</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.33s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataConsistency_DraftSaveDoesNotAffectFinalScore</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.08s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataConsistency_QuestionOrderChange_DoesNotCorruptAttempts</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">13.19s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataConsistency_QuestionUpdate_DoesNotAffectSubmittedAttempts</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.12s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DataConsistency_ScoreRemainsConstant_AcrossMultipleFetches</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.96s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Immutability_SubmittedAttempts_CannotBeModified</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.03s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Immutability_TestDeletion_PreservesSubmittedResults</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">13.40s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ScoringAccuracy_AllQuestionsCorrect_Scores100Percent</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">11.05s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ScoringAccuracy_AllQuestionsSkipped_Scores0Percent</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.16s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ScoringAccuracy_AllQuestionsWrong_Scores0Percent</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.66s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ScoringAccuracy_HalfCorrect_Scores50Percent</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.06s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ScoringAccuracy_MultiSelectPartialAnswer_ScoreIsValidPercentage</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.23s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ScoringAccuracy_SingleQuestionTest_ScoresCorrectly</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.38s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; TestsManagementTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">11 tests &middot; 47.78s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">QuestionAddition_WithValidData_AddsQuestionToTest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.31s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestCreation_DuplicateTitle_GeneratesUniqueSlug</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.65s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestCreation_WhenUnauthenticated_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.29s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestCreation_WithMissingTitle_RejectsRequest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.88s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestCreation_WithTitleOnly_PopulatesDefaultFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.26s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestCreation_WithValidData_CreatesTestSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.32s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestDeletion_WithValidSlug_RemovesTestCompletely</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.93s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestDetails_WithNonExistentSlug_ReturnsNotFound</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.58s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestDetails_WithValidSlug_ReturnsTestData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.00s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestListing_AsAuthor_ReturnsOwnTests</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.61s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestUpdate_WithValidData_UpdatesTestSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.95s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; TestTakingTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">13 tests &middot; 1m 07.71s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">AttemptStart_AsAnonymousUser_CreatesAttemptSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">7.89s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">AttemptSubmission_AllCorrectAnswers_ScoresFullMarks</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.29s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">AttemptSubmission_AllWrongAnswers_ScoresZeroMarks</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">11.70s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">AttemptSubmission_AlreadySubmitted_PreventsDoubleSubmission</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.18s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">DraftSave_WithValidAnswers_SavesDraftSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.34s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">MaxAttempts_OnceExhausted_BlocksFurtherAttempts</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.44s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PasswordVerification_WithCorrectPassword_GrantsAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.25s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PasswordVerification_WithWrongPassword_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.75s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ResultsRetrieval_AsAuthor_ReturnsAllSubmissions</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">9.49s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ShowAnswersAfter_WhenFalse_DoesNotRevealCorrectAnswers</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.75s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">ShowAnswersAfter_WhenTrue_ScoreIsRecordedAndTakeEndpointRemainsAccessible</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.42s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestAccess_PasswordProtected_BlocksWithoutPassword</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.18s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">TestAccess_PublicTest_AllowsAnonymousAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.03s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; FolderTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">5 tests &middot; 34.65s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">FolderCreation_TopLevel_CreatesFolderSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.61s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">FolderCreation_WithParent_CreatesNestedFolderStructure</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.62s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">FolderDeletion_WithValidId_RemovesFolder</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.26s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">FolderListing_AfterCreation_IncludesNewFolder</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.17s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">FolderUpdate_WithNewName_RenamesFolderSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.99s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; StressTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">5 tests &middot; 29.47s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">StressTest_ConcurrentTestCreations_HandlesLoad</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.09s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">StressTest_ConcurrentTestRetrieval_HandlesReadLoad</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">9.02s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">StressTest_ConcurrentTestSubmissions_HandlesLoad</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">9.92s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">StressTest_ConcurrentUserRegistrations_HandlesLoad</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.69s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">StressTest_MassQuestionCreation_HandlesLargeTests</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.75s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; SchemaValidationTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">9 tests &middot; 47.54s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_AnalyticsResponse_HasRequiredFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.19s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_AttemptResponse_HasRequiredFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.75s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_CompanyResponse_HasRequiredFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.67s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_LoginResponse_HasRequiredFieldsOnly</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.41s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_QuestionResponse_HasRequiredFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.72s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_ResultResponse_HasRequiredFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">9.45s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_TakeTestResponse_DoesNotLeakCorrectAnswers</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.55s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_TestResponse_HasRequiredFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.18s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Schema_UserResponse_HasRequiredFieldsOnly</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.62s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; InviteTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">4 tests &middot; 38.83s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InviteAcceptance_WithValidToken_AddsUserToCompany</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.25s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InviteCreation_DuplicatePendingInvite_RejectsRequest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">12.18s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InviteCreation_WithValidEmail_SendsInviteSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.79s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">InviteListing_WithPendingInvites_ReturnsPendingInvites</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">9.61s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; PatchTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">14 tests &middot; 58.91s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchCompany_ByNonMember_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.24s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchCompany_Name_UpdatesNameSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.90s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchFolder_MoveToParent_UpdatesParentSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.79s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchFolder_Name_UpdatesNameSuccessfully</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">6.66s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchProfile_BothNames_UpdatesBothFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.83s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchProfile_FirstNameOnly_UpdatesFirstNamePreservesLastName</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">3.13s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchProfile_LastNameOnly_UpdatesLastNamePreservesFirstName</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.39s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchProfile_Unauthenticated_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">1.62s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchQuestion_ByNonOwner_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.39s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchQuestion_TextOnly_UpdatesTextPreservesAnswers</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.18s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchTest_ByNonOwner_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">9.29s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchTest_TitleOnly_UpdatesTitlePreservesOtherFields</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">4.65s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchTest_Unauthenticated_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.00s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">PatchTest_VisibilityOnly_UpdatesVisibilityPreservesTitle</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">2.82s</td></tr>
+</tbody>
+</table>
+</details>
+<details style="margin-bottom:16px;border:1px solid #ddd;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+<summary style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#eafaf1;cursor:pointer;user-select:none;list-style:none;-webkit-list-style:none;">
+  <span style="font-weight:700;color:#1e8449;font-size:15px;">&#9654; AnalyticsTests</span>
+  <span style="font-size:13px;color:#777;font-weight:500;">4 tests &middot; 33.34s</span>
+</summary>
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="background:#ddd;">
+  <th style="padding:8px 12px;text-align:left;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Test Name</th>
+  <th style="padding:8px 12px;text-align:center;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Outcome</th>
+  <th style="padding:8px 12px;text-align:right;font-size:12px;color:#777;font-weight:600;border-bottom:2px solid #ddd;">Duration</th>
+</tr></thead>
+<tbody>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Analytics_AfterSubmission_ReflectsAttemptData</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">11.54s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Analytics_AsNonAuthor_DeniesAccessToOtherUsersTest</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">8.90s</td></tr>
+<tr style="background:#ffffff;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Analytics_NoSubmissions_ReturnsZeroStats</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">7.16s</td></tr>
+<tr style="background:#f9fafb;"><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#333;font-size:13px;">Analytics_WhenUnauthenticated_DeniesAccess</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:center;"><span style="font-weight:600;color:#2e7d32;">Passed</span></td><td style="padding:8px 12px;border-bottom:1px solid #ddd;text-align:right;color:#777;font-size:13px;font-family:monospace;">5.73s</td></tr>
+</tbody>
+</table>
+</details>
+
+</div>
+
+<!-- ============================================================
+     OVERALL STATS
+     ============================================================ -->
+<div style="max-width:960px;margin:32px auto 40px;padding:0 24px;">
+  <h2 style="font-size:18px;font-weight:600;color:#333;margin:0 0 16px;">
+    Overall Stats
+  </h2>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <div style="background:#ffffff;border:1px solid #ddd;border-radius:10px;padding:18px 20px;flex:1 1 140px;max-width:240px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+  <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#777;margin-bottom:6px;">Slowest Test</div>
+  <div style="font-size:26px;font-weight:700;color:#c0392b;">2m 09.53s</div>
+  <div style="font-size:12px;color:#777;margin-top:4px;">AccountCleanup_AllTrackedAccounts_DeletesSuccessfully</div>
+</div>
+
+    <div style="background:#ffffff;border:1px solid #ddd;border-radius:10px;padding:18px 20px;flex:1 1 140px;max-width:240px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+  <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#777;margin-bottom:6px;">Fastest Test</div>
+  <div style="font-size:26px;font-weight:700;color:#1e8449;">0.00s</div>
+  <div style="font-size:12px;color:#777;margin-top:4px;">Backend_BulkCleanupEndpoint_IfImplemented</div>
+</div>
+
+    <div style="background:#ffffff;border:1px solid #ddd;border-radius:10px;padding:18px 20px;flex:1 1 140px;max-width:240px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+  <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#777;margin-bottom:6px;">Avg Duration</div>
+  <div style="font-size:26px;font-weight:700;color:#1565c0;">5.08s</div>
+  <div style="font-size:12px;color:#777;margin-top:4px;">across 185 tests</div>
+</div>
+
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<div style="border-top:1px solid #ddd;padding:16px 0;text-align:center;">
+  <span style="font-size:12px;color:#777;">
+    Report auto-generated &middot; source: results.trx
+  </span>
+</div>
+
+</body>
+</html>

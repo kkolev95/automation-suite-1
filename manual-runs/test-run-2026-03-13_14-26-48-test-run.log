@@ -1,0 +1,1525 @@
+=========================================
+Test Run: 2026-03-13_14-26-48
+Description: test-run
+=========================================
+
+[14:26:48] Running tests...
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  TestIT.ApiTests -> /home/kolev95/examtest1/TestIT.ApiTests/bin/Debug/net8.0/TestIT.ApiTests.dll
+Test run for /home/kolev95/examtest1/TestIT.ApiTests/bin/Debug/net8.0/TestIT.ApiTests.dll (.NETCoreApp,Version=v8.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.8.0 (x64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.5.3.1+6b60a9e56a (64-bit .NET 8.0.25)
+[xUnit.net 00:00:00.14]   Discovering: TestIT.ApiTests
+[xUnit.net 00:00:00.25]   Discovered:  TestIT.ApiTests
+[xUnit.net 00:00:00.25]   Starting:    TestIT.ApiTests
+     Warning:
+     The component "Fluent Assertions" is governed by the rules defined in the Xceed License Agreement and
+     the Xceed Fluent Assertions Community License. You may use Fluent Assertions free of charge for
+     non-commercial use only. An active subscription is required to use Fluent Assertions for commercial use.
+
+     Please contact Xceed Sales mailto:sales@xceed.com to acquire a subscription at a very low cost.
+
+     A paid commercial license supports the development and continued increasing support of
+     Fluent Assertions users under both commercial and community licenses. Help us
+     keep Fluent Assertions at the forefront of unit testing.
+
+     For more information, visit https://xceed.com/products/unit-testing/fluent-assertions/
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Login_WithValidCredentials_ReturnsAuthenticationTokens [7 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.GetTest_InvalidSlugFormat_Returns404 [10 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WithTitleOnly_PopulatesDefaultFields [10 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_SQLInjectionInTestTitle_IsSanitized [10 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionUpdate_WithNonExistentId_ReturnsNotFound [10 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_TestResponse_HasRequiredFields [10 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithValidCredentials_CreatesUserAccount [3 s]
+
+=== Stress Test Results: 100 Concurrent Reads ===
+Total Time: 942ms
+Successful: 100/100
+Avg Duration: 693ms
+Max Duration: 904ms
+Throughput: 106.16 requests/sec
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.FolderDetail_WithValidId_ReturnsAllExpectedFields [10 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetCompanyTestDetail_AsMember_ReturnsTestData [10 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_StartAttempt_RespondsFast [11 s]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentTestRetrieval_HandlesReadLoad [11 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptStart_AsAnonymousUser_CreatesAttemptSuccessfully [12 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithWeakPassword_RejectsRequest [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_NegativeMaxAttempts_ShouldFail [4 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderUpdate_ByNonOwner_DeniesAccess [19 s]
+[xUnit.net 00:00:19.84]     TestIT.ApiTests.Tests.PatchTests.PatchTest_ByNonOwner_DeniesAccess [FAIL]
+[xUnit.net 00:00:19.84]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when patching another user's test, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:00:19.85]       Stack Trace:
+[xUnit.net 00:00:19.85]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:00:19.85]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:00:19.85]            at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+[xUnit.net 00:00:19.85]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:00:19.85]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:00:19.85]            at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+[xUnit.net 00:00:19.85]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:00:19.85]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/PatchTests.cs(204,0): at TestIT.ApiTests.Tests.PatchTests.PatchTest_ByNonOwner_DeniesAccess()
+[xUnit.net 00:00:19.85]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:19.86]       Output:
+[xUnit.net 00:00:19.86]         POST auth/register/  →  201 Created
+[xUnit.net 00:00:19.86]         POST auth/register/  →  201 Created
+[xUnit.net 00:00:19.86]         POST auth/login/  →  200 OK
+[xUnit.net 00:00:19.86]         POST tests/  →  201 Created
+[xUnit.net 00:00:19.86]         POST auth/login/  →  200 OK
+[xUnit.net 00:00:19.86]         POST tests/  →  201 Created
+[xUnit.net 00:00:19.86]         POST tests/  →  201 Created
+[xUnit.net 00:00:19.86]         POST tests/anonstart-d1e82827-51b0351d/questions/  →  201 Created
+[xUnit.net 00:00:19.86]         POST tests/resultac-f61825fd-a3311cd7/questions/  →  201 Created
+[xUnit.net 00:00:19.86]         POST companies/12335/folders/  →  201 Created
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteCreation_DuplicatePendingInvite_RejectsRequest [19 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_DuplicateTitle_GeneratesUniqueSlug [8 s]
+  Failed TestIT.ApiTests.Tests.PatchTests.PatchTest_ByNonOwner_DeniesAccess [19 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when patching another user's test, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.PatchTests.PatchTest_ByNonOwner_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/PatchTests.cs:line 204
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/register/  →  201 Created
+ POST auth/register/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST tests/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST tests/  →  201 Created
+ POST tests/  →  201 Created
+ POST tests/anonstart-d1e82827-51b0351d/questions/  →  201 Created
+ POST tests/resultac-f61825fd-a3311cd7/questions/  →  201 Created
+ POST companies/12335/folders/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.ResultDetail_AsUnauthenticatedUser_DeniesAccess [19 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_Scoring_ExactTextMatch_ScoresFullMarks [19 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_ListTests_RespondsFast [8 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.UserProfile_WhenAuthenticated_ReturnsUserDetails [6 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_Unauthenticated_DeniesAccess [1 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionUpdate_WithValidData_UpdatesQuestionSuccessfully [10 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_QuestionResponse_HasRequiredFields [10 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.PermissionFlow_StudentCannotCreateCompanyTests [21 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Login_WithInvalidCredentials_DeniesAccess [2 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyTestCreation_AsStudent_DeniesAccess [23 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_QuestionOrderChange_DoesNotCorruptAttempts [23 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Login_WithMissingPassword_RejectsRequest [2 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestDetails_WithNonExistentSlug_ReturnsNotFound [7 s]
+[xUnit.net 00:00:28.16]     TestIT.ApiTests.Tests.CoverageTests.DeleteCompanyTest_AsNonMember_DeniesAccess [FAIL]
+[xUnit.net 00:00:28.16]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when deleting a company test, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:00:28.16]       Stack Trace:
+[xUnit.net 00:00:28.16]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:00:28.16]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:00:28.16]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:00:28.16]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:00:28.16]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs(490,0): at TestIT.ApiTests.Tests.CoverageTests.DeleteCompanyTest_AsNonMember_DeniesAccess()
+[xUnit.net 00:00:28.16]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:28.16]       Output:
+[xUnit.net 00:00:28.16]         POST tests/perfattempt-89745802-4bdd7e2f/attempts/  →  201 Created
+[xUnit.net 00:00:28.16]         POST auth/register/  →  201 Created
+[xUnit.net 00:00:28.16]         POST auth/login/  →  200 OK
+[xUnit.net 00:00:28.16]         POST auth/register/  →  201 Created
+[xUnit.net 00:00:28.16]         PUT tests/datacheck-171718e7-dd65f5e5/attempts/17599/  →  200 OK
+
+=== Stress Test Results: 50 Concurrent Submissions ===
+Total Time: 8582ms
+Successful: 37/50 (74.0%)
+Failed: 13
+Response Times:
+  Avg: 7051ms
+  Min: 2846ms
+  Max: 8575ms
+  P95: 8553ms
+Status Code Distribution:
+  OK: 37
+  InternalServerError: 13
+  Failed TestIT.ApiTests.Tests.CoverageTests.DeleteCompanyTest_AsNonMember_DeniesAccess [16 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when deleting a company test, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.CoverageTests.DeleteCompanyTest_AsNonMember_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs:line 490
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/perfattempt-89745802-4bdd7e2f/attempts/  →  201 Created
+ POST auth/register/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST auth/register/  →  201 Created
+ PUT tests/datacheck-171718e7-dd65f5e5/attempts/17599/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithMissingRequiredFields_RejectsRequest [1 s]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentTestSubmissions_HandlesLoad [16 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WhenUnauthenticated_DeniesAccess [1 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_QuestionStats_AnswerDistribution_ReflectsSubmissions [28 s]
+[xUnit.net 00:00:29.93]     TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTestResults [FAIL]
+[xUnit.net 00:00:29.93]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because only the test author should access results — non-author must get 403 Forbidden, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:00:29.93]       Stack Trace:
+[xUnit.net 00:00:29.93]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:00:29.93]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:00:29.93]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:00:29.93]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:00:29.93]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs(74,0): at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTestResults()
+[xUnit.net 00:00:29.93]         --- End of stack trace from previous location ---
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.MultiSelect_Creation_WithNoCorrectAnswer_RejectsRequest [8 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_CompanyResponse_HasRequiredFields [7 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.SaveAnswers_EmptyAnswersList_ShouldWork [13 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithMismatchedPasswords_RejectsRequest [1 s]
+  Failed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTestResults [18 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because only the test author should access results — non-author must get 403 Forbidden, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTestResults() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs:line 74
+--- End of stack trace from previous location ---
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_LastNameOnly_UpdatesLastNamePreservesFirstName [8 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.UserProfile_WhenUnauthenticated_DeniesAccess [2 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyTestCreation_WithValidData_CreatesTestInCompany [8 s]
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.MultiSelect_MixedTest_WithMultipleChoiceQuestion_EachScoredIndependently [21 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptSubmission_AllWrongAnswers_ScoresZeroMarks [20 s]
+
+=== Stress Test Results: 100 Questions Creation ===
+Total Time: 3579ms
+Successful: 100/100
+Throughput: 27.94 questions/sec
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionDeletion_VerifyRemoval_QuestionNoLongerInTest [13 s]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_MassQuestionCreation_HandlesLargeTests [7 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.TestResponse_DetailEndpoint_IncludesFolderAndUpdatedAt [16 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetAnalytics_RespondsFast [15 s]
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteListing_WithPendingInvites_ReturnsPendingInvites [16 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_NullDescription_ShouldWork [7 s]
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.TestListing_AsAuthor_DoesNotIncludeOtherUsersTests [16 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.QuestionAddition_WithValidData_AddsQuestionToTest [8 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetPublicTests_LinkOnlyTest_DoesNotAppearInList [9 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_EmailWithDots_ShouldWork [12 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.TokenRefresh_WithValidRefreshToken_IssuesNewAccessToken [17 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_NoSubmissions_ReturnsZeroStats [31 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyDetails_AsAdmin_ReturnsCompanyData [30 s]
+
+=== Stress Test Results: 40 Concurrent Registrations ===
+Total Time: 27112ms
+Successful: 40/40
+Avg Duration: 20832ms
+P95 Duration: 25559ms
+Status Code Distribution:
+  Created: 40
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentUserRegistrations_HandlesLoad [27 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchFolder_Name_UpdatesNameSuccessfully [32 s]
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.TestFolderAssignment_ToNonExistentFolder_ReturnsBadRequest [31 s]
+[xUnit.net 00:01:04.53]     TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotUpdateOtherUsersTests [FAIL]
+[xUnit.net 00:01:04.53]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when updating another user's test, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:01:04.53]       Stack Trace:
+[xUnit.net 00:01:04.53]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:04.53]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:04.53]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:04.53]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:04.53]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs(99,0): at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotUpdateOtherUsersTests()
+[xUnit.net 00:01:04.53]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:04.53]       Output:
+[xUnit.net 00:01:04.53]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:04.53]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:04.53]         POST tests/perfanalytics-15e75647-8c651ff6/attempts/  →  201 Created
+[xUnit.net 00:01:04.53]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:04.53]         POST tests/  →  201 Created
+[xUnit.net 00:01:04.53]         POST auth/register/  →  201 Created
+  Failed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotUpdateOtherUsersTests [34 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when updating another user's test, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotUpdateOtherUsersTests() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs:line 99
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/register/  →  201 Created
+ POST auth/register/  →  201 Created
+ POST tests/perfanalytics-15e75647-8c651ff6/attempts/  →  201 Created
+ POST auth/register/  →  201 Created
+ POST tests/  →  201 Created
+ POST auth/register/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_Scoring_EmptySubmission_ScoresZero [35 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_ResultResponse_HasRequiredFields [35 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.Immutability_TestDeletion_PreservesSubmittedResults [40 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.AuthorStudentLifecycle_AuthorCreatesStudentTakesAuthorViewsAnalytics [44 s]
+
+=== Stress Test Results: 30 Concurrent Test Creations ===
+Total Time: 2296ms
+Successful: 30/30
+Avg Duration: 2167ms
+Max Duration: 2294ms
+  Passed TestIT.ApiTests.Tests.TestTakingTests.TestAccess_PublicTest_AllowsAnonymousAccess [31 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_EmptyPassword_ShouldWork [16 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetQuestion_WithNonExistentId_ReturnsNotFound [29 s]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentTestCreations_HandlesLoad [4 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestDeletion_WithValidSlug_RemovesTestCompletely [30 s]
+[xUnit.net 00:01:09.71]     TestIT.ApiTests.Tests.MissingCoverageTests.TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing [FAIL]
+[xUnit.net 00:01:09.71]       Expected updateResp.StatusCode to be HttpStatusCode.OK {value: 200} because visibility change to 'private' must succeed — this is a missing API feature, but found HttpStatusCode.BadRequest {value: 400}.
+[xUnit.net 00:01:09.71]       Stack Trace:
+[xUnit.net 00:01:09.71]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:09.71]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:09.71]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:09.71]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:09.71]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs(347,0): at TestIT.ApiTests.Tests.MissingCoverageTests.TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing()
+[xUnit.net 00:01:09.71]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:09.71]       Output:
+[xUnit.net 00:01:09.71]         POST tests/  →  201 Created
+  Failed TestIT.ApiTests.Tests.MissingCoverageTests.TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing [33 s]
+  Error Message:
+   Expected updateResp.StatusCode to be HttpStatusCode.OK {value: 200} because visibility change to 'private' must succeed — this is a missing API feature, but found HttpStatusCode.BadRequest {value: 400}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.MissingCoverageTests.TestVisibility_WhenChangedFromPublicToPrivate_DisappearsFromPublicListing() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs:line 347
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteCreation_WithValidEmail_SendsInviteSuccessfully [33 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_NegativeMaxAttempts_IsRejected [6 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchCompany_Name_UpdatesNameSuccessfully [7 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetResults_RespondsFast [34 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionReorder_WithValidOrder_ReordersSuccessfully [35 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_LoginResponse_HasRequiredFieldsOnly [6 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyTestListing_AsAdmin_ReturnsCompanyTests [9 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_Creation_CorrectAnswerExceedsMaxLength_RejectsRequest [7 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderCreation_ThreeLevelsDeep_CorrectParentChain [37 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyCreation_WhenUnauthenticated_DeniesAccess [1 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestListing_AsAuthor_ReturnsOwnTests [6 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetProfile_RespondsFast [5 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_CompletionRate_ReflectsAbandonedAttempts [15 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.PatchCompanyTest_AsAdmin_UpdatesTestSuccessfully [9 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_UserResponse_HasRequiredFieldsOnly [5 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchTest_TitleOnly_UpdatesTitlePreservesOtherFields [6 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.SubmitAttempt_NoAnswersSaved_ShouldScoreZero [13 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.CompleteTestAuthorJourney_RegisterLoginCreateTestAddQuestionsPublish [13 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyCreation_WithValidData_CreatesCompanySuccessfully [4 s]
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.TestFolderAssignment_ReassignBetweenFolders_UpdatesBothCounts [16 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_DraftSaveDoesNotAffectFinalScore [15 s]
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.TestVisibility_WhenChangedToPublic_AppearsInPublicListing [11 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_CreateTest_RespondsFast [5 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestDetails_WithValidSlug_ReturnsTestData [6 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.ResultsRetrieval_AsAuthor_ReturnsAllSubmissions [15 s]
+[xUnit.net 00:01:23.59]     TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherCompaniesData [FAIL]
+[xUnit.net 00:01:23.59]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when accessing another company's data, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:01:23.59]       Stack Trace:
+[xUnit.net 00:01:23.59]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:23.59]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:23.59]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:23.59]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:23.59]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs(144,0): at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherCompaniesData()
+[xUnit.net 00:01:23.59]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:23.59]       Output:
+[xUnit.net 00:01:23.59]         POST tests/analyticscompletion-01ae3db3-3d436ceb/attempts/  →  201 Created
+[xUnit.net 00:01:23.59]         POST companies/  →  401 Unauthorized
+[xUnit.net 00:01:23.59]         GET tests/datacheck-2333fd42-b4515944/take/  →  200 OK
+[xUnit.net 00:01:23.59]         POST tests/integration-test-14d03996-a548a587/questions/  →  201 Created
+  Failed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherCompaniesData [12 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when accessing another company's data, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherCompaniesData() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs:line 144
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/analyticscompletion-01ae3db3-3d436ceb/attempts/  →  201 Created
+ POST companies/  →  401 Unauthorized
+ GET tests/datacheck-2333fd42-b4515944/take/  →  200 OK
+ POST tests/integration-test-14d03996-a548a587/questions/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetQuestion_WithValidId_ReturnsQuestionData [8 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderCreation_WithParent_CreatesNestedFolderStructure [10 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_AttemptResponse_HasRequiredFields [8 s]
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteAcceptance_WithValidToken_AddsUserToCompany [15 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_EmptyQuestionText_ShouldFail [7 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WithMissingTitle_RejectsRequest [5 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_Login_RespondsFast [6 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.MultiSelect_Scoring_AllCorrectAnswersSelected_ScoresFullMarks [15 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyDeletion_AsAdmin_RemovesCompanyCompletely [8 s]
+[xUnit.net 00:01:29.45]     TestIT.ApiTests.Tests.PatchTests.PatchCompany_ByNonMember_DeniesAccess [FAIL]
+[xUnit.net 00:01:29.45]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when patching another user's company, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:01:29.45]       Stack Trace:
+[xUnit.net 00:01:29.45]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:29.45]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:29.45]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:29.45]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:29.45]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/PatchTests.cs(310,0): at TestIT.ApiTests.Tests.PatchTests.PatchCompany_ByNonMember_DeniesAccess()
+[xUnit.net 00:01:29.45]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:29.45]       Output:
+[xUnit.net 00:01:29.45]         POST companies/  →  201 Created
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.ProfileUpdate_ChangesPersistAcrossRequests [7 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.DataExposure_PasswordNotReturned_InProfileEndpoint [5 s]
+  Failed TestIT.ApiTests.Tests.PatchTests.PatchCompany_ByNonMember_DeniesAccess [12 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when patching another user's company, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.PatchTests.PatchCompany_ByNonMember_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/PatchTests.cs:line 310
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST companies/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.MultiSelect_Update_ChangesCorrectAnswers_NewScoringApplied [9 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.GetTest_NonExistentSlug_Returns404 [6 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_QuestionStats_Difficulty_IsValidScore [16 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderListing_AfterCreation_IncludesNewFolder [8 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.CrossCompanySecurity_UserBCannotAccessUserACompany [14 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestUpdate_WithValidData_UpdatesTestSuccessfully [6 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_TakeTestResponse_DoesNotLeakCorrectAnswers [9 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.DeleteCompanyTest_AsAdmin_RemovesTestSuccessfully [9 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.MemberListing_NewCompany_CreatorIsOnlyAdmin [7 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.MultiSelect_TakeEndpoint_DoesNotExposeIsCorrect [8 s]
+[xUnit.net 00:01:38.01]     TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLongPassword_ShouldHandleGracefully [FAIL]
+[xUnit.net 00:01:38.01]       Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because a 500-character test password must be rejected; the API must enforce a maximum password length, but found HttpStatusCode.Created {value: 201}.
+[xUnit.net 00:01:38.01]       Stack Trace:
+[xUnit.net 00:01:38.01]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:38.01]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:38.01]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:38.01]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:38.01]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/EdgeCaseTests.cs(485,0): at TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLongPassword_ShouldHandleGracefully()
+[xUnit.net 00:01:38.01]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:38.01]       Output:
+[xUnit.net 00:01:38.01]         POST tests/datacheck-ba79334e-40b29936/attempts/17656/submit/  →  200 OK
+[xUnit.net 00:01:38.01]         GET companies/12358/  →  404 NotFound
+[xUnit.net 00:01:38.01]         POST auth/login/  →  200 OK
+[xUnit.net 00:01:38.01]         POST auth/login/  →  200 OK
+[xUnit.net 00:01:38.01]         POST auth/login/  →  200 OK
+[xUnit.net 00:01:38.01]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:38.01]         POST tests/scorable-939d7e52-0a853322/attempts/  →  201 Created
+  Failed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLongPassword_ShouldHandleGracefully [5 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because a 500-character test password must be rejected; the API must enforce a maximum password length, but found HttpStatusCode.Created {value: 201}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLongPassword_ShouldHandleGracefully() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/EdgeCaseTests.cs:line 485
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/datacheck-ba79334e-40b29936/attempts/17656/submit/  →  200 OK
+ GET companies/12358/  →  404 NotFound
+ POST auth/login/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST auth/register/  →  201 Created
+ POST tests/scorable-939d7e52-0a853322/attempts/  →  201 Created
+
+
+[xUnit.net 00:01:40.09]     TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTests [FAIL]
+[xUnit.net 00:01:40.09]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because User B should not access User A's private test. Response: {"detail":"No Test matches the given query."}, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:01:40.09]       Stack Trace:
+[xUnit.net 00:01:40.09]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:40.09]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:40.09]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:40.09]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:40.09]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs(46,0): at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTests()
+[xUnit.net 00:01:40.09]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:40.09]       Output:
+[xUnit.net 00:01:40.09]         POST tests/scorable-939d7e52-0a853322/questions/  →  201 Created
+[xUnit.net 00:01:40.09]         POST auth/login/  →  200 OK
+[xUnit.net 00:01:40.09]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:40.09]         GET tests/definitely-does-not-exist-12345/  →  404 NotFound
+[xUnit.net 00:01:40.09]         POST tests/takeschema-8d221bc8-181f2639/questions/  →  201 Created
+[xUnit.net 00:01:40.09]         POST tests/  →  201 Created
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptSubmission_AllCorrectAnswers_ScoresFullMarks [17 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchFolder_MoveToParent_UpdatesParentSuccessfully [9 s]
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.InviteCreation_WithInstructorRole_CreatesInstructorInvite [11 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WithValidData_CreatesTestSuccessfully [5 s]
+  Failed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTests [11 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because User B should not access User A's private test. Response: {"detail":"No Test matches the given query."}, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTests() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs:line 46
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/scorable-939d7e52-0a853322/questions/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST auth/register/  →  201 Created
+ GET tests/definitely-does-not-exist-12345/  →  404 NotFound
+ POST tests/takeschema-8d221bc8-181f2639/questions/  →  201 Created
+ POST tests/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderCreation_WithEmptyName_ReturnsBadRequest [6 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_SubmitAttempt_RespondsFast [12 s]
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.TokenRefresh_WithInvalidToken_DeniesAccess [1 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authentication_InvalidToken_DeniesAccess [937 ms]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyListing_AfterCreation_IncludesNewCompany [6 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetPublicTests_PublicTest_AppearsInList [7 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authentication_NoToken_DeniesProtectedEndpoints [1 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_SpecialCharactersInTitle_ShouldWork [4 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_AttemptCountAccurate_AfterMultipleSubmissions [22 s]
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.ExactAnswer_MixedTest_WithMultipleChoiceQuestion_ScoresCorrectly [13 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_ExtremelyLongEmail_IsRejected [1 s]
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.Registration_WithDuplicateEmail_RejectsRequest [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_EmailWithPlus_ShouldWork [1 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_AnalyticsResponse_HasRequiredFields [9 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_PassRate_IsNullWithNoSubmissions_AndValidAfter [11 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_FirstNameOnly_UpdatesFirstNamePreservesLastName [5 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.DataExposure_DetailedErrorMessages_DoNotLeakSensitiveInfo [1 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyUpdate_WithValidData_UpdatesCompanySuccessfully [6 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetTakeEndpoint_RespondsFast [7 s]
+[xUnit.net 00:01:49.04]     TestIT.ApiTests.Tests.MissingCoverageTests.AnonymousAttempt_EmptyAnonymousName_BehavesGracefully [FAIL]
+[xUnit.net 00:01:49.04]       Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because empty anonymous_name must be rejected with 400 — it is a required identifier. Response: {"id":17670,"anonymous_name":"","attempt_number":1,"started_at":"2026-03-13T12:28:51.360725Z"}, but found HttpStatusCode.Created {value: 201}.
+[xUnit.net 00:01:49.04]       Stack Trace:
+[xUnit.net 00:01:49.04]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:49.04]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:49.04]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:49.04]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:49.04]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs(451,0): at TestIT.ApiTests.Tests.MissingCoverageTests.AnonymousAttempt_EmptyAnonymousName_BehavesGracefully()
+[xUnit.net 00:01:49.04]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:49.04]       Output:
+[xUnit.net 00:01:49.04]         GET analytics/tests/analyticspass-6fc0f67c-239ac30a/  →  200 OK
+[xUnit.net 00:01:49.04]         POST auth/login/  →  200 OK
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_Scoring_WrongText_ScoresZero [12 s]
+  Failed TestIT.ApiTests.Tests.MissingCoverageTests.AnonymousAttempt_EmptyAnonymousName_BehavesGracefully [5 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because empty anonymous_name must be rejected with 400 — it is a required identifier. Response: {"id":17670,"anonymous_name":"","attempt_number":1,"started_at":"2026-03-13T12:28:51.360725Z"}, but found HttpStatusCode.Created {value: 201}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.MissingCoverageTests.AnonymousAttempt_EmptyAnonymousName_BehavesGracefully() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs:line 451
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ GET analytics/tests/analyticspass-6fc0f67c-239ac30a/  →  200 OK
+ POST auth/login/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_NoCorrectAnswer_ShouldFail [4 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_WhenUnauthenticated_DeniesAccess [4 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchTest_VisibilityOnly_UpdatesVisibilityPreservesTitle [4 s]
+[xUnit.net 00:01:49.46]     TestIT.ApiTests.Tests.SecurityTests.InputValidation_XSSInQuestionText_IsSanitized [FAIL]
+[xUnit.net 00:01:49.46]       Expected response.StatusCode to be HttpStatusCode.Created {value: 201} because the API must store XSS payloads as-is and rely on the frontend to escape on render, but found HttpStatusCode.BadRequest {value: 400}.
+[xUnit.net 00:01:49.46]       Stack Trace:
+[xUnit.net 00:01:49.46]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:49.46]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:49.46]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:49.46]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:49.46]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs(247,0): at TestIT.ApiTests.Tests.SecurityTests.InputValidation_XSSInQuestionText_IsSanitized()
+[xUnit.net 00:01:49.46]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:49.46]       Output:
+[xUnit.net 00:01:49.46]         POST tests/hideanswers-f44be7e1-a5b0afd5/attempts/  →  201 Created
+[xUnit.net 00:01:49.46]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:49.46]         GET tests/hideanswers-f44be7e1-a5b0afd5/take/  →  200 OK
+[xUnit.net 00:01:49.46]         POST auth/login/  →  200 OK
+[xUnit.net 00:01:49.46]         POST tests/  →  201 Created
+[xUnit.net 00:01:49.46]         GET tests/ea-wrong-f23c86d0-460428eb/results/  →  200 OK
+[xUnit.net 00:01:49.46]         POST tests/  →  201 Created
+[xUnit.net 00:01:49.46]         POST auth/login/  →  200 OK
+[xUnit.net 00:01:49.46]         POST tests/hideanswers-f44be7e1-a5b0afd5/attempts/17667/submit/  →  200 OK
+[xUnit.net 00:01:49.46]         POST tests/company-test-80a3eeee-330145d2/attempts/17668/submit/  →  200 OK
+[xUnit.net 00:01:49.46]         POST auth/register/  →  201 Created
+  Passed TestIT.ApiTests.Tests.IntegrationTests.CompanyWorkflow_AdminCreatesInvitesMemberTakesTest [15 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.ShowAnswersAfter_WhenFalse_DoesNotRevealCorrectAnswers [9 s]
+  Failed TestIT.ApiTests.Tests.SecurityTests.InputValidation_XSSInQuestionText_IsSanitized [3 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Created {value: 201} because the API must store XSS payloads as-is and rely on the frontend to escape on render, but found HttpStatusCode.BadRequest {value: 400}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.SecurityTests.InputValidation_XSSInQuestionText_IsSanitized() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs:line 247
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/hideanswers-f44be7e1-a5b0afd5/attempts/  →  201 Created
+ POST auth/register/  →  201 Created
+ GET tests/hideanswers-f44be7e1-a5b0afd5/take/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST tests/  →  201 Created
+ GET tests/ea-wrong-f23c86d0-460428eb/results/  →  200 OK
+ POST tests/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST tests/hideanswers-f44be7e1-a5b0afd5/attempts/17667/submit/  →  200 OK
+ POST tests/company-test-80a3eeee-330145d2/attempts/17668/submit/  →  200 OK
+ POST auth/register/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.FolderTests.TestFolderAssignment_Unassign_DecrementsTestCount [10 s]
+[xUnit.net 00:01:52.74]     TestIT.ApiTests.Tests.PerformanceTests.Latency_GetTestDetail_RespondsFast [FAIL]
+[xUnit.net 00:01:52.74]       Expected sw.ElapsedMilliseconds to be less than 1500L because GET /tests/{slug}/ took 1556ms, exceeding the 1500ms SLA, but found 1556L (difference of 56).
+[xUnit.net 00:01:52.74]       Stack Trace:
+[xUnit.net 00:01:52.74]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:52.74]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:52.74]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:52.74]            at FluentAssertions.Numeric.NumericAssertionsBase`3.BeLessThan(T expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:52.74]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/PerformanceTests.cs(145,0): at TestIT.ApiTests.Tests.PerformanceTests.Latency_GetTestDetail_RespondsFast()
+[xUnit.net 00:01:52.74]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:52.74]       Output:
+[xUnit.net 00:01:52.74]         POST auth/login/  →  200 OK
+  Failed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetTestDetail_RespondsFast [5 s]
+  Error Message:
+   Expected sw.ElapsedMilliseconds to be less than 1500L because GET /tests/{slug}/ took 1556ms, exceeding the 1500ms SLA, but found 1556L (difference of 56).
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Numeric.NumericAssertionsBase`3.BeLessThan(T expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.PerformanceTests.Latency_GetTestDetail_RespondsFast() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/PerformanceTests.cs:line 145
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/login/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_NegativeTimeLimit_ShouldFail [4 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_ConcurrentAttempts_AllScoredCorrectly [9 s]
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.MultiSelect_Scoring_OnlyWrongAnswersSelected_ScoresZero [9 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_Creation_WithCorrectAnswer_Succeeds [4 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_OversizedPayload_IsRejected [4 s]
+[xUnit.net 00:01:55.34]     TestIT.ApiTests.Tests.CoverageTests.GetResultDetail_ByNonAuthor_DeniesAccess [FAIL]
+[xUnit.net 00:01:55.34]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-author must receive 403 Forbidden, not a 404 that hides the resource, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:01:55.34]       Stack Trace:
+[xUnit.net 00:01:55.34]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:55.34]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:55.34]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:55.34]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:55.34]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs(146,0): at TestIT.ApiTests.Tests.CoverageTests.GetResultDetail_ByNonAuthor_DeniesAccess()
+[xUnit.net 00:01:55.34]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:55.34]       Output:
+[xUnit.net 00:01:55.34]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:55.34]         POST tests/ea-wrong-f23c86d0-460428eb/questions/  →  201 Created
+[xUnit.net 00:01:55.34]         POST tests/analyticspass-6fc0f67c-239ac30a/attempts/17665/submit/  →  200 OK
+[xUnit.net 00:01:55.34]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:55.34]         POST companies/  →  201 Created
+  Failed TestIT.ApiTests.Tests.CoverageTests.GetResultDetail_ByNonAuthor_DeniesAccess [13 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-author must receive 403 Forbidden, not a 404 that hides the resource, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.CoverageTests.GetResultDetail_ByNonAuthor_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs:line 146
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/register/  →  201 Created
+ POST tests/ea-wrong-f23c86d0-460428eb/questions/  →  201 Created
+ POST tests/analyticspass-6fc0f67c-239ac30a/attempts/17665/submit/  →  200 OK
+ POST auth/register/  →  201 Created
+ POST companies/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchQuestion_TextOnly_UpdatesTextPreservesAnswers [6 s]
+[xUnit.net 00:01:57.99]     TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AsNonAuthor_DeniesAccessToOtherUsersTest [FAIL]
+[xUnit.net 00:01:57.99]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because an authenticated non-author must receive 403, not a 404 that hides the resource, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:01:57.99]       Stack Trace:
+[xUnit.net 00:01:57.99]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:57.99]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:57.99]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:57.99]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:57.99]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/AnalyticsTests.cs(121,0): at TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AsNonAuthor_DeniesAccessToOtherUsersTest()
+[xUnit.net 00:01:57.99]         --- End of stack trace from previous location ---
+[xUnit.net 00:01:57.99]       Output:
+[xUnit.net 00:01:57.99]         GET analytics/tests/company-test-80a3eeee-330145d2/  →  200 OK
+[xUnit.net 00:01:57.99]         POST tests/resdetailauth-fea83736-c244bd82/attempts/17669/submit/  →  200 OK
+[xUnit.net 00:01:57.99]         POST auth/login/  →  200 OK
+[xUnit.net 00:01:57.99]         POST auth/register/  →  201 Created
+[xUnit.net 00:01:57.99]         GET tests/datacheck-a41f68bd-0ba0ac99/results/  →  200 OK
+[xUnit.net 00:01:57.99]         GET tests/ms-allwrong-055a7c49-46abe05f/results/  →  200 OK
+[xUnit.net 00:01:57.99]         POST auth/register/  →  201 Created
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_WhitespaceOnlyTitle_ShouldFail [4 s]
+  Failed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AsNonAuthor_DeniesAccessToOtherUsersTest [8 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because an authenticated non-author must receive 403, not a 404 that hides the resource, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AsNonAuthor_DeniesAccessToOtherUsersTest() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/AnalyticsTests.cs:line 121
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ GET analytics/tests/company-test-80a3eeee-330145d2/  →  200 OK
+ POST tests/resdetailauth-fea83736-c244bd82/attempts/17669/submit/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST auth/register/  →  201 Created
+ GET tests/datacheck-a41f68bd-0ba0ac99/results/  →  200 OK
+ GET tests/ms-allwrong-055a7c49-46abe05f/results/  →  200 OK
+ POST auth/register/  →  201 Created
+
+
+[xUnit.net 00:01:58.52]     TestIT.ApiTests.Tests.MissingCoverageTests.CompanyFolders_ByNonMember_DeniesAccess [FAIL]
+[xUnit.net 00:01:58.52]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when listing another company's folders. Response: {"detail":"No Company matches the given query."}, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:01:58.52]       Stack Trace:
+[xUnit.net 00:01:58.52]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:01:58.52]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:01:58.52]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:01:58.52]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:01:58.52]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs(386,0): at TestIT.ApiTests.Tests.MissingCoverageTests.CompanyFolders_ByNonMember_DeniesAccess()
+[xUnit.net 00:01:58.52]         --- End of stack trace from previous location ---
+  Failed TestIT.ApiTests.Tests.MissingCoverageTests.CompanyFolders_ByNonMember_DeniesAccess [9 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when listing another company's folders. Response: {"detail":"No Company matches the given query."}, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.MissingCoverageTests.CompanyFolders_ByNonMember_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs:line 386
+--- End of stack trace from previous location ---
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.MultiSelect_Creation_WithMultipleCorrectAnswers_Succeeds [5 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptSubmission_AlreadySubmitted_PreventsDoubleSubmission [11 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchTest_Unauthenticated_DeniesAccess [5 s]
+[xUnit.net 00:02:02.29]     TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotDeleteOtherUsersTests [FAIL]
+[xUnit.net 00:02:02.29]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when deleting another user's test, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:02:02.29]       Stack Trace:
+[xUnit.net 00:02:02.29]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:02.29]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:02.29]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:02.29]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:02.29]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs(118,0): at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotDeleteOtherUsersTests()
+[xUnit.net 00:02:02.29]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:02.29]       Output:
+[xUnit.net 00:02:02.29]         PATCH tests/patch-q-d4ece1bc-d6ee95ea/questions/37990/  →  200 OK
+[xUnit.net 00:02:02.29]         POST tests/scorable-d5cb54ef-c8cf4003/questions/  →  201 Created
+[xUnit.net 00:02:02.29]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:02.29]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:02.29]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:02.29]         POST companies/12371/folders/  →  201 Created
+[xUnit.net 00:02:02.29]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:02.29]         POST tests/  →  201 Created
+[xUnit.net 00:02:02.29]         POST tests/multiselect-83c84051-89d06617/attempts/  →  201 Created
+[xUnit.net 00:02:02.29]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:02.29]         POST tests/  →  201 Created
+[xUnit.net 00:02:02.29]         DELETE companies/12371/folders/4531/  →  403 Forbidden
+[xUnit.net 00:02:02.29]         POST tests/  →  201 Created
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderDeletion_ByNonOwner_DeniesAccess [11 s]
+  Failed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotDeleteOtherUsersTests [8 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when deleting another user's test, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotDeleteOtherUsersTests() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/SecurityTests.cs:line 118
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ PATCH tests/patch-q-d4ece1bc-d6ee95ea/questions/37990/  →  200 OK
+ POST tests/scorable-d5cb54ef-c8cf4003/questions/  →  201 Created
+ POST auth/register/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST companies/12371/folders/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST tests/  →  201 Created
+ POST tests/multiselect-83c84051-89d06617/attempts/  →  201 Created
+ POST auth/register/  →  201 Created
+ POST tests/  →  201 Created
+ DELETE companies/12371/folders/4531/  →  403 Forbidden
+ POST tests/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_NoAnswers_ShouldFail [4 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_MultiSelectPartialAnswer_ScoreIsValidPercentage [9 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authentication_MalformedToken_DeniesAccess [1 s]
+[xUnit.net 00:02:04.34]     TestIT.ApiTests.Tests.CoverageTests.PatchCompanyTest_AsNonMember_DeniesAccess [FAIL]
+[xUnit.net 00:02:04.34]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when patching a company test, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:02:04.34]       Stack Trace:
+[xUnit.net 00:02:04.35]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:04.35]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:04.35]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:04.35]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:04.35]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs(437,0): at TestIT.ApiTests.Tests.CoverageTests.PatchCompanyTest_AsNonMember_DeniesAccess()
+[xUnit.net 00:02:04.35]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:04.35]       Output:
+[xUnit.net 00:02:04.35]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:04.35]         POST tests/multiselect-83c84051-89d06617/questions/  →  201 Created
+[xUnit.net 00:02:04.35]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:04.35]         POST tests/ea-analytics-e84d801f-09beeffb/attempts/  →  201 Created
+[xUnit.net 00:02:04.35]         POST tests/company/12372/  →  201 Created
+[xUnit.net 00:02:04.35]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:04.35]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:04.35]         GET tests/multiselect-83c84051-89d06617/results/  →  200 OK
+[xUnit.net 00:02:04.35]         POST tests/ea-analytics-e84d801f-09beeffb/attempts/  →  201 Created
+[xUnit.net 00:02:04.35]         POST auth/login/  →  200 OK
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_TakeEndpoint_DoesNotRevealCorrectAnswer [5 s]
+  Failed TestIT.ApiTests.Tests.CoverageTests.PatchCompanyTest_AsNonMember_DeniesAccess [9 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when patching a company test, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.CoverageTests.PatchCompanyTest_AsNonMember_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs:line 437
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/register/  →  201 Created
+ POST tests/multiselect-83c84051-89d06617/questions/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST tests/ea-analytics-e84d801f-09beeffb/attempts/  →  201 Created
+ POST tests/company/12372/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST auth/register/  →  201 Created
+ GET tests/multiselect-83c84051-89d06617/results/  →  200 OK
+ POST tests/ea-analytics-e84d801f-09beeffb/attempts/  →  201 Created
+ POST auth/login/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.ExactAnswer_Analytics_TotalAttemptsReflectsTextSubmissions [11 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.PasswordVerification_WithCorrectPassword_GrantsAccess [5 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AfterSubmission_ReflectsAttemptData [8 s]
+[xUnit.net 00:02:09.72]     TestIT.ApiTests.Tests.MissingCoverageTests.InviteAcceptance_ByWrongUser_RejectsRequest [FAIL]
+[xUnit.net 00:02:09.72]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because an authenticated user must not be able to accept an invite addressed to a different email. Response: {"detail":"Invite is for a different email address."}, but found HttpStatusCode.BadRequest {value: 400}.
+[xUnit.net 00:02:09.72]       Stack Trace:
+[xUnit.net 00:02:09.72]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:09.72]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:09.72]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:09.72]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:09.72]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs(256,0): at TestIT.ApiTests.Tests.MissingCoverageTests.InviteAcceptance_ByWrongUser_RejectsRequest()
+[xUnit.net 00:02:09.72]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:09.72]       Output:
+[xUnit.net 00:02:09.72]         GET tests/multiselect-83c84051-89d06617/take/  →  200 OK
+[xUnit.net 00:02:09.72]         POST companies/  →  201 Created
+[xUnit.net 00:02:09.72]         POST auth/login/  →  200 OK
+  Failed TestIT.ApiTests.Tests.MissingCoverageTests.InviteAcceptance_ByWrongUser_RejectsRequest [11 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because an authenticated user must not be able to accept an invite addressed to a different email. Response: {"detail":"Invite is for a different email address."}, but found HttpStatusCode.BadRequest {value: 400}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.MissingCoverageTests.InviteAcceptance_ByWrongUser_RejectsRequest() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs:line 256
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ GET tests/multiselect-83c84051-89d06617/take/  →  200 OK
+ POST companies/  →  201 Created
+ POST auth/login/  →  200 OK
+
+
+[xUnit.net 00:02:10.08]     TestIT.ApiTests.Tests.PatchTests.PatchQuestion_ByNonOwner_DeniesAccess [FAIL]
+[xUnit.net 00:02:10.08]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when patching another user's question, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:02:10.08]       Stack Trace:
+[xUnit.net 00:02:10.08]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:10.08]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:10.08]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:10.08]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:10.08]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/PatchTests.cs(259,0): at TestIT.ApiTests.Tests.PatchTests.PatchQuestion_ByNonOwner_DeniesAccess()
+[xUnit.net 00:02:10.08]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:10.08]       Output:
+[xUnit.net 00:02:10.08]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:10.08]         POST companies/  →  201 Created
+[xUnit.net 00:02:10.08]         GET tests/ea-hideca-9309aeb0-e4546ae9/take/  →  200 OK
+[xUnit.net 00:02:10.08]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:10.08]         POST auth/login/  →  200 OK
+  Failed TestIT.ApiTests.Tests.PatchTests.PatchQuestion_ByNonOwner_DeniesAccess [9 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-owner must receive 403 Forbidden when patching another user's question, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.PatchTests.PatchQuestion_ByNonOwner_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/PatchTests.cs:line 259
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/login/  →  200 OK
+ POST companies/  →  201 Created
+ GET tests/ea-hideca-9309aeb0-e4546ae9/take/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST auth/login/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CompanyInvite_InvalidRoleValue_ShouldFail [7 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderDeletion_WithValidId_RemovesFolder [7 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_AllQuestionsSkipped_Scores0Percent [7 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_Scoring_DifferentCase_ScoresCorrectly [7 s]
+[xUnit.net 00:02:12.75]     TestIT.ApiTests.Tests.CoverageTests.GetCompanyTestDetail_AsNonMember_DeniesAccess [FAIL]
+[xUnit.net 00:02:12.75]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when accessing company test detail, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:02:12.75]       Stack Trace:
+[xUnit.net 00:02:12.75]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:12.75]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:12.75]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:12.75]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:12.75]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs(380,0): at TestIT.ApiTests.Tests.CoverageTests.GetCompanyTestDetail_AsNonMember_DeniesAccess()
+[xUnit.net 00:02:12.75]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:12.75]       Output:
+[xUnit.net 00:02:12.75]         POST tests/analyticsstats-01c36fac-6ced81b7/attempts/  →  201 Created
+[xUnit.net 00:02:12.75]         GET analytics/tests/ea-analytics-e84d801f-09beeffb/  →  200 OK
+[xUnit.net 00:02:12.75]         PUT tests/analyticsstats-01c36fac-6ced81b7/attempts/17686/  →  200 OK
+[xUnit.net 00:02:12.75]         POST companies/12373/invites/  →  201 Created
+[xUnit.net 00:02:12.75]         POST tests/verifypw-999be01f-8cd244cd/verify-password/  →  200 OK
+[xUnit.net 00:02:12.75]         POST companies/  →  201 Created
+[xUnit.net 00:02:12.75]         POST tests/datacheck-19b6fe79-b6ffbd6a/questions/  →  201 Created
+[xUnit.net 00:02:12.75]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:12.75]         POST tests/  →  201 Created
+[xUnit.net 00:02:12.75]         POST companies/12375/folders/  →  201 Created
+[xUnit.net 00:02:12.75]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:12.75]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:12.75]         POST tests/datacheck-19b6fe79-b6ffbd6a/attempts/17687/submit/  →  200 OK
+  Failed TestIT.ApiTests.Tests.CoverageTests.GetCompanyTestDetail_AsNonMember_DeniesAccess [8 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when accessing company test detail, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.CoverageTests.GetCompanyTestDetail_AsNonMember_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/CoverageTests.cs:line 380
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/analyticsstats-01c36fac-6ced81b7/attempts/  →  201 Created
+ GET analytics/tests/ea-analytics-e84d801f-09beeffb/  →  200 OK
+ PUT tests/analyticsstats-01c36fac-6ced81b7/attempts/17686/  →  200 OK
+ POST companies/12373/invites/  →  201 Created
+ POST tests/verifypw-999be01f-8cd244cd/verify-password/  →  200 OK
+ POST companies/  →  201 Created
+ POST tests/datacheck-19b6fe79-b6ffbd6a/questions/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST tests/  →  201 Created
+ POST companies/12375/folders/  →  201 Created
+ POST auth/login/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST tests/datacheck-19b6fe79-b6ffbd6a/attempts/17687/submit/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.InviteAcceptance_WithInvalidToken_RejectsRequest [3 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_BothNames_UpdatesBothFields [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_ZeroMaxAttempts_ShouldFail [2 s]
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.ExactAnswer_Update_ChangesCorrectAnswer_NewAnswerIsScored [8 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.ShowAnswersAfter_WhenTrue_ScoreIsRecordedAndTakeEndpointRemainsAccessible [9 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderListing_AfterDeletion_FolderNoLongerAppears [5 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.ExactAnswer_Creation_WithEmptyCorrectAnswer_RejectsRequest [3 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_ZeroTimeLimit_ShouldBeAllowed [2 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AverageScore_ReflectsSubmissionScores [8 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_QuestionUpdate_DoesNotAffectSubmittedAttempts [8 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderDeletion_NonExistentId_ReturnsNotFound [3 s]
+  Passed TestIT.ApiTests.Tests.MissingCoverageTests.TestVisibility_WhenChangedFromPublicToLinkOnly_DisappearsFromPublicListing [5 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLongTitle_ShouldHandleGracefully [3 s]
+[xUnit.net 00:02:20.99]     TestIT.ApiTests.Tests.TestTakingTests.MaxAttempts_OnceExhausted_BlocksFurtherAttempts [FAIL]
+[xUnit.net 00:02:20.99]       Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because exceeding max_attempts must return 400 Bad Request (quota exceeded), not 403 Forbidden. Response: {"error":"Maximum attempts reached"}, but found HttpStatusCode.Forbidden {value: 403}.
+[xUnit.net 00:02:20.99]       Stack Trace:
+[xUnit.net 00:02:20.99]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:20.99]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:20.99]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:20.99]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:20.99]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/TestTakingTests.cs(366,0): at TestIT.ApiTests.Tests.TestTakingTests.MaxAttempts_OnceExhausted_BlocksFurtherAttempts()
+[xUnit.net 00:02:20.99]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:20.99]       Output:
+[xUnit.net 00:02:20.99]         POST companies/  →  201 Created
+[xUnit.net 00:02:20.99]         PUT tests/datacheck-747a56f0-3a8661cb/attempts/17692/  →  200 OK
+[xUnit.net 00:02:20.99]         POST tests/  →  201 Created
+[xUnit.net 00:02:20.99]         GET analytics/tests/analyticsavg-f62b2204-de74b0a1/  →  200 OK
+[xUnit.net 00:02:20.99]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:20.99]         GET tests/public/  →  200 OK
+[xUnit.net 00:02:20.99]         PATCH tests/visfrom-4be9208f-62cb9e4a/  →  200 OK
+[xUnit.net 00:02:20.99]         POST tests/  →  201 Created
+[xUnit.net 00:02:20.99]         POST companies/  →  201 Created
+[xUnit.net 00:02:20.99]         POST tests/  →  201 Created
+[xUnit.net 00:02:20.99]         POST tests/datacheck-c6e2e6a1-af811243/questions/  →  201 Created
+  Passed TestIT.ApiTests.Tests.LatestFeatureTests.TestFolderAssignment_ByNonOwner_DeniesAccess [7 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.UpdateMemberRole_AsAdmin_ChangesRoleSuccessfully [8 s]
+  Failed TestIT.ApiTests.Tests.TestTakingTests.MaxAttempts_OnceExhausted_BlocksFurtherAttempts [5 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because exceeding max_attempts must return 400 Bad Request (quota exceeded), not 403 Forbidden. Response: {"error":"Maximum attempts reached"}, but found HttpStatusCode.Forbidden {value: 403}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.TestTakingTests.MaxAttempts_OnceExhausted_BlocksFurtherAttempts() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/TestTakingTests.cs:line 366
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST companies/  →  201 Created
+ PUT tests/datacheck-747a56f0-3a8661cb/attempts/17692/  →  200 OK
+ POST tests/  →  201 Created
+ GET analytics/tests/analyticsavg-f62b2204-de74b0a1/  →  200 OK
+ POST auth/register/  →  201 Created
+ GET tests/public/  →  200 OK
+ PATCH tests/visfrom-4be9208f-62cb9e4a/  →  200 OK
+ POST tests/  →  201 Created
+ POST companies/  →  201 Created
+ POST tests/  →  201 Created
+ POST tests/datacheck-c6e2e6a1-af811243/questions/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.MultiSelect_Scoring_OnlyPartialCorrectAnswers_ScoresZero [5 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_InvalidVisibilityValue_ShouldFail [1 s]
+[xUnit.net 00:02:23.38]     TestIT.ApiTests.Tests.MissingCoverageTests.ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore [FAIL]
+[xUnit.net 00:02:23.38]       Expected doc.RootElement.TryGetProperty("score", out _) to be True because when show_answers_after=true the submit response must include a 'score' field so the taker can see their result immediately, but found False.
+[xUnit.net 00:02:23.38]       Stack Trace:
+[xUnit.net 00:02:23.38]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:23.38]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:23.38]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:23.38]            at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+[xUnit.net 00:02:23.38]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs(143,0): at TestIT.ApiTests.Tests.MissingCoverageTests.ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore()
+[xUnit.net 00:02:23.38]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:23.38]       Output:
+[xUnit.net 00:02:23.38]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:23.38]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:23.38]         PATCH tests/ownertest-953b062a-ee4f38ae/  →  404 NotFound
+[xUnit.net 00:02:23.38]         PUT tests/ms-partial-286e394b-be409702/attempts/17696/  →  200 OK
+[xUnit.net 00:02:23.38]         POST tests/datacheck-c6e2e6a1-af811243/questions/  →  201 Created
+[xUnit.net 00:02:23.38]         POST tests/showafter-c53f818e-e6bb5e8f/attempts/  →  201 Created
+[xUnit.net 00:02:23.38]         GET tests/showafter-c53f818e-e6bb5e8f/take/  →  200 OK
+[xUnit.net 00:02:23.38]         POST tests/  →  201 Created
+  Passed TestIT.ApiTests.Tests.FolderTests.TestFolderAssignment_Unassign_ClearsFolder [3 s]
+  Failed TestIT.ApiTests.Tests.MissingCoverageTests.ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore [4 s]
+  Error Message:
+   Expected doc.RootElement.TryGetProperty("score", out _) to be True because when show_answers_after=true the submit response must include a 'score' field so the taker can see their result immediately, but found False.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeTrue(String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.MissingCoverageTests.ShowAnswersAfter_WhenTrue_SubmitResponseIncludesScore() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/MissingCoverageTests.cs:line 143
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/register/  →  201 Created
+ POST auth/register/  →  201 Created
+ PATCH tests/ownertest-953b062a-ee4f38ae/  →  404 NotFound
+ PUT tests/ms-partial-286e394b-be409702/attempts/17696/  →  200 OK
+ POST tests/datacheck-c6e2e6a1-af811243/questions/  →  201 Created
+ POST tests/showafter-c53f818e-e6bb5e8f/attempts/  →  201 Created
+ GET tests/showafter-c53f818e-e6bb5e8f/take/  →  200 OK
+ POST tests/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.GetTest_VeryLongSlug_ShouldHandleGracefully [2 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.DraftSave_WithValidAnswers_SavesDraftSuccessfully [3 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetResultDetail_ByAuthor_ReturnsDetailedBreakdown [3 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderUpdate_NonExistentId_ReturnsNotFound [2 s]
+  Passed TestIT.ApiTests.Tests.NewQuestionTypeTests.MultiSelect_Scoring_CorrectPlusWrongAnswers_ScoresZero [3 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_HalfCorrect_Scores50Percent [6 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_UnicodeCharactersInTitle_ShouldWork [1 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_VeryLongEmail_ShouldHandleGracefully [943 ms]
+  Passed TestIT.ApiTests.Tests.CoverageTests.RemoveMember_LastAdmin_DeniesRemoval [2 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.PasswordVerification_WithWrongPassword_DeniesAccess [3 s]
+[xUnit.net 00:02:29.20]     TestIT.ApiTests.Tests.FolderTests.FolderListing_AnotherUsersCompany_DeniesAccess [FAIL]
+[xUnit.net 00:02:29.20]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when listing another user's folders, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:02:29.20]       Stack Trace:
+[xUnit.net 00:02:29.20]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:29.20]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:29.20]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:29.20]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:29.20]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/FolderTests.cs(374,0): at TestIT.ApiTests.Tests.FolderTests.FolderListing_AnotherUsersCompany_DeniesAccess()
+[xUnit.net 00:02:29.20]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:29.20]       Output:
+[xUnit.net 00:02:29.20]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:29.20]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:29.20]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:29.20]         POST tests/  →  201 Created
+[xUnit.net 00:02:29.20]         POST companies/12384/folders/  →  201 Created
+[xUnit.net 00:02:29.20]         POST tests/wrongpw-ce777d7a-304a3868/verify-password/  →  400 BadRequest
+[xUnit.net 00:02:29.20]         POST auth/register/  →  201 Created
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_InvalidQuestionType_ShouldFail [2 s]
+  Failed TestIT.ApiTests.Tests.FolderTests.FolderListing_AnotherUsersCompany_DeniesAccess [4 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden when listing another user's folders, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.FolderTests.FolderListing_AnotherUsersCompany_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/FolderTests.cs:line 374
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/login/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST auth/login/  →  200 OK
+ POST tests/  →  201 Created
+ POST companies/12384/folders/  →  201 Created
+ POST tests/wrongpw-ce777d7a-304a3868/verify-password/  →  400 BadRequest
+ POST auth/register/  →  201 Created
+
+
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_SingleQuestionTest_ScoresCorrectly [4 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.TestAccess_PasswordProtected_BlocksWithoutPassword [3 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLargeTimeLimit_ShouldHandleGracefully [2 s]
+[xUnit.net 00:02:32.59]     TestIT.ApiTests.Tests.DataIntegrityTests.Immutability_SubmittedAttempts_CannotBeModified [FAIL]
+[xUnit.net 00:02:32.59]       Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because updating a submitted attempt must be rejected with 400 Bad Request, but found HttpStatusCode.Unauthorized {value: 401}.
+[xUnit.net 00:02:32.59]       Stack Trace:
+[xUnit.net 00:02:32.59]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:32.59]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:32.59]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:32.59]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:32.59]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/DataIntegrityTests.cs(401,0): at TestIT.ApiTests.Tests.DataIntegrityTests.Immutability_SubmittedAttempts_CannotBeModified()
+[xUnit.net 00:02:32.59]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:32.59]       Output:
+[xUnit.net 00:02:32.59]         POST tests/  →  400 BadRequest
+[xUnit.net 00:02:32.59]         POST tests/datacheck-443431fe-47b33cd7/questions/  →  201 Created
+[xUnit.net 00:02:32.59]         POST tests/  →  201 Created
+[xUnit.net 00:02:32.59]         GET companies/12385/members/  →  200 OK
+[xUnit.net 00:02:32.59]         PUT tests/datacheck-443431fe-47b33cd7/attempts/17704/  →  200 OK
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_EmailWithSubdomain_ShouldWork [750 ms]
+  Passed TestIT.ApiTests.Tests.CoverageTests.RemoveMember_AsAdmin_RemovesMemberSuccessfully [5 s]
+  Failed TestIT.ApiTests.Tests.DataIntegrityTests.Immutability_SubmittedAttempts_CannotBeModified [3 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.BadRequest {value: 400} because updating a submitted attempt must be rejected with 400 Bad Request, but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.DataIntegrityTests.Immutability_SubmittedAttempts_CannotBeModified() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/DataIntegrityTests.cs:line 401
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST tests/  →  400 BadRequest
+ POST tests/datacheck-443431fe-47b33cd7/questions/  →  201 Created
+ POST tests/  →  201 Created
+ GET companies/12385/members/  →  200 OK
+ PUT tests/datacheck-443431fe-47b33cd7/attempts/17704/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.FolderTests.TestFolderAssignment_MultipleTests_CountReflectsAllAssignments [3 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetPublicTests_Unauthenticated_Returns200 [917 ms]
+[xUnit.net 00:02:35.66]     TestIT.ApiTests.Tests.FolderTests.FolderCreation_InAnotherUsersCompany_DeniesAccess [FAIL]
+[xUnit.net 00:02:35.66]       Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden, not 404 which would hide the company's existence, but found HttpStatusCode.NotFound {value: 404}.
+[xUnit.net 00:02:35.66]       Stack Trace:
+[xUnit.net 00:02:35.66]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:35.66]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:35.66]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:35.66]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:35.66]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/FolderTests.cs(319,0): at TestIT.ApiTests.Tests.FolderTests.FolderCreation_InAnotherUsersCompany_DeniesAccess()
+[xUnit.net 00:02:35.66]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:35.66]       Output:
+[xUnit.net 00:02:35.66]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:35.66]         POST tests/  →  201 Created
+[xUnit.net 00:02:35.66]         POST tests/datacheck-3b244686-09625d04/questions/  →  201 Created
+[xUnit.net 00:02:35.66]         POST auth/register/  →  201 Created
+[xUnit.net 00:02:35.66]         POST tests/datacheck-3b244686-09625d04/attempts/  →  201 Created
+[xUnit.net 00:02:35.66]         GET tests/datacheck-3b244686-09625d04/results/  →  200 OK
+[xUnit.net 00:02:35.66]         GET tests/datacheck-3b244686-09625d04/results/  →  200 OK
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_ScoreRemainsConstant_AcrossMultipleFetches [2 s]
+  Failed TestIT.ApiTests.Tests.FolderTests.FolderCreation_InAnotherUsersCompany_DeniesAccess [2 s]
+  Error Message:
+   Expected response.StatusCode to be HttpStatusCode.Forbidden {value: 403} because authenticated non-member must receive 403 Forbidden, not 404 which would hide the company's existence, but found HttpStatusCode.NotFound {value: 404}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.FolderTests.FolderCreation_InAnotherUsersCompany_DeniesAccess() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/FolderTests.cs:line 319
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ POST auth/login/  →  200 OK
+ POST tests/  →  201 Created
+ POST tests/datacheck-3b244686-09625d04/questions/  →  201 Created
+ POST auth/register/  →  201 Created
+ POST tests/datacheck-3b244686-09625d04/attempts/  →  201 Created
+ GET tests/datacheck-3b244686-09625d04/results/  →  200 OK
+ GET tests/datacheck-3b244686-09625d04/results/  →  200 OK
+
+
+  Passed TestIT.ApiTests.Tests.FolderTests.TestFolderAssignment_UpdatesFolderTestCount [1 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.TestFolderAssignment_WithValidFolder_AssignsTestToFolder [1 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.UpdateMemberRole_ByNonAdmin_DeniesAccess [6 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderUpdate_WithEmptyName_ReturnsBadRequest [1 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderDeletion_WithAssignedTest_TestRecordRemainsIntact [1 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderUpdate_WithNewName_RenamesFolderSuccessfully [1 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderCreation_TopLevel_CreatesFolderSuccessfully [1 s]
+DEBUG: API returned 0 total tests
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_DeleteAllTestData [1 s]
+[Cleanup] ✓ Deleted account: cleanup_cascade_32a9347c@example.com
+[xUnit.net 00:02:51.24]     TestIT.ApiTests.Tests.CleanupTests.AccountCleanup_WithCascadeData_DeletesEverything [FAIL]
+[xUnit.net 00:02:51.24]       Expected loginAttempt.StatusCode to be HttpStatusCode.BadRequest {value: 400} because login must fail with 400 after account deletion (invalid credentials), but found HttpStatusCode.Unauthorized {value: 401}.
+[xUnit.net 00:02:51.24]       Stack Trace:
+[xUnit.net 00:02:51.24]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:51.24]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:51.24]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:51.24]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:51.24]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/CleanupTests.cs(279,0): at TestIT.ApiTests.Tests.CleanupTests.AccountCleanup_WithCascadeData_DeletesEverything()
+[xUnit.net 00:02:51.24]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:51.24]       Output:
+[xUnit.net 00:02:51.24]         Testing CASCADE DELETE with account cleanup...
+[xUnit.net 00:02:51.24]         
+[xUnit.net 00:02:51.24]         POST tests/  →  201 Created
+[xUnit.net 00:02:51.24]         Created account 'cleanup_cascade_32a9347c@example.com' with:
+[xUnit.net 00:02:51.24]           - 2 tests
+[xUnit.net 00:02:51.24]           - 3 questions total
+[xUnit.net 00:02:51.24]         
+[xUnit.net 00:02:51.24]         DELETE auth/me/  →  204 NoContent
+  Failed TestIT.ApiTests.Tests.CleanupTests.AccountCleanup_WithCascadeData_DeletesEverything [3 s]
+  Error Message:
+   Expected loginAttempt.StatusCode to be HttpStatusCode.BadRequest {value: 400} because login must fail with 400 after account deletion (invalid credentials), but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.CleanupTests.AccountCleanup_WithCascadeData_DeletesEverything() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/CleanupTests.cs:line 279
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ Testing CASCADE DELETE with account cleanup...
+ 
+ POST tests/  →  201 Created
+ Created account 'cleanup_cascade_32a9347c@example.com' with:
+   - 2 tests
+   - 3 questions total
+ 
+ DELETE auth/me/  →  204 NoContent
+
+
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_DeleteOldTestData_7Days [1 s]
+[xUnit.net 00:02:54.95]     TestIT.ApiTests.Tests.CleanupTests.Diagnostic_VerifyDeleteEndpoint_Works [FAIL]
+[xUnit.net 00:02:54.95]       Expected loginAttempt.StatusCode to be HttpStatusCode.BadRequest {value: 400} because login must return 400 after account deletion (invalid credentials), but found HttpStatusCode.Unauthorized {value: 401}.
+[xUnit.net 00:02:54.95]       Stack Trace:
+[xUnit.net 00:02:54.95]            at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+[xUnit.net 00:02:54.95]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+[xUnit.net 00:02:54.95]            at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+[xUnit.net 00:02:54.95]            at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+[xUnit.net 00:02:54.95]         /home/kolev95/examtest1/TestIT.ApiTests/Tests/CleanupTests.cs(338,0): at TestIT.ApiTests.Tests.CleanupTests.Diagnostic_VerifyDeleteEndpoint_Works()
+[xUnit.net 00:02:54.95]         --- End of stack trace from previous location ---
+[xUnit.net 00:02:54.95]       Output:
+[xUnit.net 00:02:54.95]         === Verifying DELETE /auth/me/ Endpoint ===
+[xUnit.net 00:02:54.95]         
+[xUnit.net 00:02:54.95]         POST auth/login/  →  200 OK
+[xUnit.net 00:02:54.95]         DELETE /auth/me/ returned: NoContent
+[xUnit.net 00:02:54.95]         ✓ DELETE endpoint works correctly
+  Failed TestIT.ApiTests.Tests.CleanupTests.Diagnostic_VerifyDeleteEndpoint_Works [2 s]
+  Error Message:
+   Expected loginAttempt.StatusCode to be HttpStatusCode.BadRequest {value: 400} because login must return 400 after account deletion (invalid credentials), but found HttpStatusCode.Unauthorized {value: 401}.
+  Stack Trace:
+     at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at TestIT.ApiTests.Tests.CleanupTests.Diagnostic_VerifyDeleteEndpoint_Works() in /home/kolev95/examtest1/TestIT.ApiTests/Tests/CleanupTests.cs:line 338
+--- End of stack trace from previous location ---
+  Standard Output Messages:
+ === Verifying DELETE /auth/me/ Endpoint ===
+ 
+ POST auth/login/  →  200 OK
+ DELETE /auth/me/ returned: NoContent
+ ✓ DELETE endpoint works correctly
+
+
+DEBUG: API returned 0 total tests
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_DryRun [1 s]
+[Cleanup] Starting cleanup of 275 test accounts (1 from log)...
+[Cleanup] ✓ Deleted account: stress_1a9f43cb@example.com
+[Cleanup] ✓ Deleted account: stress_6d1107ea@example.com
+[Cleanup] ✓ Deleted account: stress_69b83cd3@example.com
+[Cleanup] ✓ Deleted account: stress_303b2473@example.com
+[Cleanup] ✓ Deleted account: stress_eacf8381@example.com
+[Cleanup] ✓ Deleted account: stress_cd83714e@example.com
+[Cleanup] ✓ Deleted account: stress_aee08106@example.com
+[Cleanup] ✓ Deleted account: stress_84bfb253@example.com
+[Cleanup] ✓ Deleted account: stress_f1ad7d1e@example.com
+[Cleanup] ✓ Deleted account: stress_38822eb5@example.com
+[Cleanup] ✓ Deleted account: stress_9ad4d002@example.com
+[Cleanup] ✓ Deleted account: stress_c3bbed87@example.com
+[Cleanup] ✓ Deleted account: stress_dee07cf3@example.com
+[Cleanup] ✓ Deleted account: stress_3936d129@example.com
+[Cleanup] ✓ Deleted account: stress_37d421c5@example.com
+[Cleanup] ✓ Deleted account: stress_34c41406@example.com
+[Cleanup] ✓ Deleted account: stress_d595919c@example.com
+[Cleanup] ✓ Deleted account: stress_5ea27dea@example.com
+[Cleanup] ✓ Deleted account: stress_f169f28f@example.com
+[Cleanup] ✓ Deleted account: stress_d034e5ef@example.com
+[Cleanup] ✓ Deleted account: stress_f4304f9b@example.com
+[Cleanup] ✓ Deleted account: stress_a9234052@example.com
+[Cleanup] ✓ Deleted account: stress_1732f2ed@example.com
+[Cleanup] ✓ Deleted account: stress_8a64ce0e@example.com
+[Cleanup] ✓ Deleted account: stress_3073ea09@example.com
+[Cleanup] ✓ Deleted account: stress_0432f1d4@example.com
+[Cleanup] ✓ Deleted account: stress_65e777af@example.com
+[Cleanup] ✓ Deleted account: stress_651f251a@example.com
+[Cleanup] ✓ Deleted account: stress_7b371452@example.com
+[Cleanup] ✓ Deleted account: stress_f419366f@example.com
+[Cleanup] ✓ Deleted account: stress_0f0b3cbd@example.com
+[Cleanup] ✓ Deleted account: stress_2c65ce0b@example.com
+[Cleanup] ✓ Deleted account: stress_0ee63197@example.com
+[Cleanup] ✓ Deleted account: stress_200a94f9@example.com
+[Cleanup] ✓ Deleted account: stress_b254f968@example.com
+[Cleanup] ✓ Deleted account: stress_87b87c92@example.com
+[Cleanup] ✓ Deleted account: stress_836a12cb@example.com
+[Cleanup] ✓ Deleted account: stress_995f4683@example.com
+[Cleanup] ✓ Deleted account: stress_af3020fc@example.com
+[Cleanup] ✓ Deleted account: stress_b0a52e35@example.com
+[Cleanup] ✓ Deleted account: cleanup_test_2_912901be@example.com
+[Cleanup] ✓ Deleted account: testuser_c1fccf71@example.com
+[Cleanup] ✓ Deleted account: testuser_31b0429e@example.com
+[Cleanup] ✓ Deleted account: testuser_8f8905b7@example.com
+[Cleanup] ✓ Deleted account: testuser_e0f3aab2@example.com
+[Cleanup] ✓ Deleted account: testuser_e4a94189@example.com
+[Cleanup] ✓ Deleted account: testuser_9b50c65f@example.com
+[Cleanup] ✓ Deleted account: testuser_05256b97@example.com
+[Cleanup] ✓ Deleted account: testuser_e048798a@example.com
+[Cleanup] ✓ Deleted account: testuser_820afbb3@example.com
+[Cleanup] ✓ Deleted account: testuser_bf4f5427@example.com
+[Cleanup] ✓ Deleted account: testuser_dd7855df@example.com
+[Cleanup] ✓ Deleted account: testuser_30ecd6ba@example.com
+[Cleanup] ✓ Deleted account: testuser_a4416566@example.com
+[Cleanup] ✓ Deleted account: testuser_24c2cf63@example.com
+[Cleanup] ✓ Deleted account: testuser_8019d31b@example.com
+[Cleanup] ✓ Deleted account: testuser_7662cc59@example.com
+[Cleanup] ✓ Deleted account: testuser_b482c0eb@example.com
+[Cleanup] ✓ Deleted account: testuser_2e0cf0fa@example.com
+[Cleanup] ✓ Deleted account: testuser_dad3d272@example.com
+[Cleanup] ✓ Deleted account: testuser_038d8700@example.com
+[Cleanup] ✓ Deleted account: testuser_7e0d83f0@example.com
+[Cleanup] ✓ Deleted account: testuser_9bde9fa9@example.com
+[Cleanup] ✓ Deleted account: testuser_60b46c94@example.com
+[Cleanup] ✓ Deleted account: testuser_594a9e05@example.com
+[Cleanup] ✓ Deleted account: testuser_911aae50@example.com
+[Cleanup] ✓ Deleted account: testuser_04687817@example.com
+[Cleanup] ✓ Deleted account: testuser_88787f9e@example.com
+[Cleanup] ✓ Deleted account: testuser_07285f6c@example.com
+[Cleanup] ✓ Deleted account: testuser_5e8bdc58@example.com
+[Cleanup] ✓ Deleted account: testuser_1837d46e@example.com
+[Cleanup] ✓ Deleted account: testuser_638c40df@example.com
+[Cleanup] ✓ Deleted account: testuser_db7438ad@example.com
+[Cleanup] ✓ Deleted account: testuser_169da037@example.com
+[Cleanup] ✓ Deleted account: testuser_168e7f0d@example.com
+[Cleanup] ✓ Deleted account: testuser_02b97c52@example.com
+[Cleanup] ✓ Deleted account: testuser_9dd622aa@example.com
+[Cleanup] ✓ Deleted account: testuser_c92357db@example.com
+[Cleanup] ✓ Deleted account: testuser_a419d8d9@example.com
+[Cleanup] ✓ Deleted account: testuser_77cffb74@example.com
+[Cleanup] ✓ Deleted account: testuser_839765a1@example.com
+[Cleanup] ✓ Deleted account: testuser_be04741c@example.com
+[Cleanup] ✓ Deleted account: testuser_246f6db5@example.com
+[Cleanup] ✓ Deleted account: testuser_57cb9491@example.com
+[Cleanup] ✓ Deleted account: testuser_655d3a74@example.com
+[Cleanup] ✓ Deleted account: testuser_1715bab2@example.com
+[Cleanup] ✓ Deleted account: testuser_ee59049b@example.com
+[Cleanup] ✓ Deleted account: testuser_d9181e50@example.com
+[Cleanup] ✓ Deleted account: testuser_64981ec7@example.com
+[Cleanup] ✓ Deleted account: testuser_90cfefeb@example.com
+[Cleanup] ✓ Deleted account: testuser_46e3f0eb@example.com
+[Cleanup] ✓ Deleted account: testuser_d5872d82@example.com
+[Cleanup] ✓ Deleted account: testuser_86ee1c2f@example.com
+[Cleanup] ✓ Deleted account: testuser_a5d87697@example.com
+[Cleanup] ✓ Deleted account: testuser_d80fc89c@example.com
+[Cleanup] ✓ Deleted account: testuser_7e949498@example.com
+[Cleanup] ✓ Deleted account: testuser_f40ab9c7@example.com
+[Cleanup] ✓ Deleted account: testuser_a414f42d@example.com
+[Cleanup] ✓ Deleted account: testuser_043e681b@example.com
+[Cleanup] ✓ Deleted account: testuser_e0a37d2a@example.com
+[Cleanup] ✓ Deleted account: testuser_8d4be200@example.com
+[Cleanup] ✓ Deleted account: testuser_774c4bf0@example.com
+[Cleanup] ✓ Deleted account: testuser_59f2cc46@example.com
+[Cleanup] ✓ Deleted account: testuser_4d16486a@example.com
+[Cleanup] ✓ Deleted account: testuser_a18f71b9@example.com
+[Cleanup] ✓ Deleted account: testuser_180e3558@example.com
+[Cleanup] ✓ Deleted account: testuser_a2b4817d@example.com
+[Cleanup] ✓ Deleted account: testuser_bc846130@example.com
+[Cleanup] ✓ Deleted account: testuser_0a0563b6@example.com
+[Cleanup] ✓ Deleted account: admin_550755659fc1@example.com
+[Cleanup] ✓ Deleted account: testuser_baaae0c2@example.com
+[Cleanup] ✓ Deleted account: testuser_aa4972b1@example.com
+[Cleanup] ✓ Deleted account: testuser_ff69f958@example.com
+[Cleanup] ✓ Deleted account: testuser_5a7abc59@example.com
+[Cleanup] ✓ Deleted account: testuser_17dc841c@example.com
+[Cleanup] ✓ Deleted account: student_85260fc96f77@example.com
+[Cleanup] ✓ Deleted account: testuser_9c48ada1@example.com
+[Cleanup] ✓ Deleted account: testuser_65b3264f@example.com
+[Cleanup] ✓ Deleted account: testuser_8230fe81@example.com
+[Cleanup] ✓ Deleted account: testuser_bc76359a@example.com
+[Cleanup] ✓ Deleted account: testuser_80a61ab8@example.com
+[Cleanup] ✓ Deleted account: cleanup_test_1_c806358c@example.com
+[Cleanup] ✓ Deleted account: testuser_404044ad@example.com
+[Cleanup] ✓ Deleted account: testuser_660fd703@example.com
+[Cleanup] ✓ Deleted account: testuser_41fb3e2c@example.com
+[Cleanup] ✓ Deleted account: testuser_d2c83365@example.com
+[Cleanup] ✓ Deleted account: testuser_6ff4b630@example.com
+[Cleanup] ✓ Deleted account: testuser_93045f56@example.com
+[Cleanup] ✓ Deleted account: testuser_9434bd92@example.com
+[Cleanup] ✓ Deleted account: testuser_3eba74ab@example.com
+[Cleanup] ✓ Deleted account: testuser_5a2930c5@example.com
+[Cleanup] ✓ Deleted account: testuser_83456368@example.com
+[Cleanup] ✓ Deleted account: testuser_1c0d146c@example.com
+[Cleanup] ✓ Deleted account: author_82b8132e27d5@example.com
+[Cleanup] ✓ Deleted account: testuser_894c8c8b@example.com
+[Cleanup] ✓ Deleted account: testuser_8867add3@example.com
+[Cleanup] ✓ Deleted account: testuser_1bf2cc82@example.com
+[Cleanup] ✓ Deleted account: testuser_04991c88@example.com
+[Cleanup] ✓ Deleted account: author_86dca1336af5@example.com
+[Cleanup] ✓ Deleted account: testuser_5585f108@example.com
+[Cleanup] ✓ Deleted account: testuser_1b5d1303@example.com
+[Cleanup] ✓ Deleted account: testuser_6a56029a@example.com
+[Cleanup] ✓ Deleted account: testuser_91ee8b8c@example.com
+[Cleanup] ✓ Deleted account: testuser_5b6ee292@example.com
+[Cleanup] ✓ Deleted account: perm_admin_0851315d06@example.com
+[Cleanup] ✓ Deleted account: testuser_14945b1f@example.com
+[Cleanup] ✓ Deleted account: testuser_c550cf8d@example.com
+[Cleanup] ✓ Deleted account: testuser_1526c410@example.com
+[Cleanup] ✓ Deleted account: testuser_1785892d@example.com
+[Cleanup] ✓ Deleted account: testuser_ddf010d0@example.com
+[Cleanup] ✓ Deleted account: testuser_5f1fb46c@example.com
+[Cleanup] ✓ Deleted account: testuser_f1d02997@example.com
+[Cleanup] ✓ Deleted account: testuser_4404af4d@example.com
+[Cleanup] ✓ Deleted account: testuser_27e59e0c@example.com
+[Cleanup] ✓ Deleted account: testuser_75cb3c34@example.com
+[Cleanup] ✓ Deleted account: testuser_e4458813@example.com
+[Cleanup] ✓ Deleted account: testuser_ea0cad5c@example.com
+[Cleanup] ✓ Deleted account: testuser_104175d5@example.com
+[Cleanup] ✓ Deleted account: testuser_1fb3583e@example.com
+[Cleanup] ✓ Deleted account: testuser_8233e522@example.com
+[Cleanup] ✓ Deleted account: testuser_2b5cf669@example.com
+[Cleanup] ✓ Deleted account: testuser_2bf0687b@example.com
+[Cleanup] ✓ Deleted account: testuser_97efb00e@example.com
+[Cleanup] ✓ Deleted account: testuser_31015330@example.com
+[Cleanup] ✓ Deleted account: testuser_ffe60368@example.com
+[Cleanup] ✓ Deleted account: testuser_19419e84@example.com
+[Cleanup] ✓ Deleted account: testuser_4eb5dba4@example.com
+[Cleanup] ✓ Deleted account: perm_student_0cbb16709d@example.com
+[Cleanup] ✓ Deleted account: testuser_12ee0da9@example.com
+[Cleanup] ✓ Deleted account: testuser_96cbcb0b@example.com
+[Cleanup] ✓ Deleted account: testuser_ea13631d@example.com
+[Cleanup] ✓ Deleted account: cleanup_test_3_e5e695da@example.com
+[Cleanup] ✓ Deleted account: testuser_ce2b0bc1@example.com
+[Cleanup] ✓ Deleted account: testuser_ee3e7f3b@example.com
+[Cleanup] ✓ Deleted account: testuser_d1ae5cf0@example.com
+[Cleanup] ✓ Deleted account: testuser_a4ed9692@example.com
+[Cleanup] ✓ Deleted account: testuser_5ca1ae4b@example.com
+[Cleanup] ✓ Deleted account: testuser_f5178f6a@example.com
+[Cleanup] ✓ Deleted account: testuser_48e404cb@example.com
+[Cleanup] ✓ Deleted account: testuser_b2f66b99@example.com
+[Cleanup] ✓ Deleted account: testuser_b24afaab@example.com
+[Cleanup] ✓ Deleted account: testuser_8133e5b6@example.com
+[Cleanup] ✓ Deleted account: testuser_ae4a4ba4@example.com
+[Cleanup] ✓ Deleted account: testuser_f9ae2f49@example.com
+[Cleanup] ✓ Deleted account: testuser_44ed116d@example.com
+[Cleanup] ✓ Deleted account: testuser_20b9b3bd@example.com
+[Cleanup] ✓ Deleted account: testuser_cff68b48@example.com
+[Cleanup] ✓ Deleted account: testuser_29a08cce@example.com
+[Cleanup] ✓ Deleted account: testuser_79ea83ae@example.com
+[Cleanup] ✓ Deleted account: userb_34af0bf256@example.com
+[Cleanup] ✓ Deleted account: testuser_51ae2459@example.com
+[Cleanup] ✓ Deleted account: testuser_5866f3f9@example.com
+[Cleanup] ✓ Deleted account: testuser_76fc6d51@example.com
+[Cleanup] ✓ Deleted account: testuser_124213ee@example.com
+[Cleanup] ✓ Deleted account: testuser_7ec23e54@example.com
+[Cleanup] ✓ Deleted account: testuser_6095b49b@example.com
+[Cleanup] ✓ Deleted account: testuser_665bc3b4@example.com
+[Cleanup] ✓ Deleted account: testuser_fdc29b10@example.com
+[Cleanup] ✓ Deleted account: testuser_d5e5db6b@example.com
+[Cleanup] ✓ Deleted account: testuser_71c53a1b@example.com
+[Cleanup] ✓ Deleted account: testuser_d12ce319@example.com
+[Cleanup] ✓ Deleted account: testuser_be2a42d5@example.com
+[Cleanup] ✓ Deleted account: testuser_1ca5820a@example.com
+[Cleanup] ✓ Deleted account: testuser_5bca1ac2@example.com
+[Cleanup] ✓ Deleted account: testuser_6e14435e@example.com
+[Cleanup] ✓ Deleted account: testuser_8a1fd0d6@example.com
+[Cleanup] ✓ Deleted account: testuser_94982208@example.com
+[Cleanup] ✓ Deleted account: testuser_7a0472d6@example.com
+[Cleanup] ✓ Deleted account: testuser_0fe55611@example.com
+[Cleanup] ✓ Deleted account: testuser_a35ffbbd@example.com
+[Cleanup] Failed to login as cleanup_cascade_32a9347c@example.com
+[Cleanup] ✓ Deleted account: testuser_70522ac2@example.com
+[Cleanup] ✓ Deleted account: testuser_1477e9b5@example.com
+[Cleanup] ✓ Deleted account: testuser_ec9dd628@example.com
+[Cleanup] ✓ Deleted account: testuser_eece9863@example.com
+[Cleanup] ✓ Deleted account: testuser_118d61d5@example.com
+[Cleanup] ✓ Deleted account: testuser_02b4e465@example.com
+[Cleanup] ✓ Deleted account: testuser_4f000a87@example.com
+[Cleanup] ✓ Deleted account: testuser_5cbbe10e@example.com
+[Cleanup] ✓ Deleted account: testuser_25aeb901@example.com
+[Cleanup] ✓ Deleted account: testuser_d2695258@example.com
+[Cleanup] ✓ Deleted account: testuser_faaf97e6@example.com
+[Cleanup] ✓ Deleted account: testuser_61209ed6@example.com
+[Cleanup] ✓ Deleted account: testuser_a7fdac54@example.com
+[Cleanup] ✓ Deleted account: testuser_84f49ba2@example.com
+[Cleanup] ✓ Deleted account: testuser_24128ad7@example.com
+[Cleanup] ✓ Deleted account: testuser_8886ef68@example.com
+[Cleanup] ✓ Deleted account: testuser_f3c290e7@example.com
+[Cleanup] ✓ Deleted account: testuser_47c83d8c@example.com
+[Cleanup] ✓ Deleted account: testuser_4d77914d@example.com
+[Cleanup] ✓ Deleted account: testuser_14d8676e@example.com
+[Cleanup] ✓ Deleted account: testuser_09db9894@example.com
+[Cleanup] ✓ Deleted account: usera_20c4d339d2@example.com
+[Cleanup] ✓ Deleted account: testuser_63b0b25b@example.com
+[Cleanup] ✓ Deleted account: testuser_58789569@example.com
+[Cleanup] ✓ Deleted account: testuser_38ebdad9@example.com
+[Cleanup] ✓ Deleted account: testuser_d70340e6@example.com
+[Cleanup] ✓ Deleted account: testuser_b259b496@example.com
+[Cleanup] ✓ Deleted account: testuser_f9e5b72c@example.com
+[Cleanup] ✓ Deleted account: testuser_75a9e89c@example.com
+[Cleanup] ✓ Deleted account: testuser_f6b01ab8@example.com
+[Cleanup] ✓ Deleted account: testuser_8206f6a2@example.com
+[Cleanup] ✓ Deleted account: testuser_f916ac88@example.com
+[Cleanup] ✓ Deleted account: testuser_5b8d23a2@example.com
+[Cleanup] ✓ Deleted account: testuser_7ef69185@example.com
+[Cleanup] ✓ Deleted account: testuser_931b9345@example.com
+[Cleanup] ✓ Deleted account: testuser_f7879765@example.com
+[Cleanup] ✓ Deleted account: testuser_ac9ecaf8@example.com
+[Cleanup] ✓ Deleted account: testuser_922d19ab@example.com
+[Cleanup] ✓ Deleted account: testuser_0872f97e@example.com
+[Cleanup] ✓ Deleted account: testuser_2c1cf5b5@example.com
+[Cleanup] ✓ Deleted account: testuser_cebeb270@example.com
+[Cleanup] ✓ Deleted account: testuser_43821aab@example.com
+[Cleanup] ✓ Deleted account: testuser_5770ccc1@example.com
+[Cleanup] ✓ Deleted account: testuser_dc008ebb@example.com
+[Cleanup] ✓ Deleted account: testuser_8a976f7f@example.com
+[Cleanup] ✓ Deleted account: testuser_271942f5@example.com
+[Cleanup] ✓ Deleted account: testuser_80df128f@example.com
+[Cleanup] ✓ Deleted account: testuser_b9c7ffb7@example.com
+[Cleanup] ✓ Deleted account: testuser_c09f3538@example.com
+[Cleanup] ✓ Deleted account: testuser_0d68a4d1@example.com
+[Cleanup] ✓ Deleted account: member_e177aa79b738@example.com
+[Cleanup] ✓ Deleted account: testuser_d8ba0b49@example.com
+[Cleanup] ✓ Deleted account: testuser_715e47df@example.com
+[Cleanup] ✓ Deleted account: testuser_c7fd1b9b@example.com
+[Cleanup] ✓ Deleted account: testuser_bf1d278b@example.com
+[Cleanup] ✓ Deleted account: testuser_144994e6@example.com
+[Cleanup] ✓ Deleted account: testuser_110397d6@example.com
+[Cleanup] ✓ Deleted account: testuser_2d3309cd@example.com
+[Cleanup] ✓ Deleted account: testuser_29fc2558@example.com
+[Cleanup] ✓ Deleted account: testuser_30039eae@example.com
+[Cleanup] ✓ Deleted account: testuser_3a0599d2@example.com
+[Cleanup] ✓ Deleted account: testuser_a32a76d9@example.com
+[Cleanup] ✓ Deleted account: testuser_1097f23d@example.com
+[Cleanup] Failed to login as cleanup_test_3_6baed8ef@example.com
+[Cleanup] Completed: 273/275 accounts deleted
+[Cleanup] Errors: 2
+  Passed TestIT.ApiTests.Tests.CleanupTests.AccountCleanup_AllTrackedAccounts_DeletesSuccessfully [3 m 44 s]
+DEBUG: API returned 0 total tests
+[xUnit.net 00:06:43.27]   Finished:    TestIT.ApiTests
+[Cleanup] Starting cleanup of 275 test accounts (1 from log)...
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_AnalyzeTestData [1 s]
+Results File: /home/kolev95/examtest1/TestIT.ApiTests/TestResults/manual-results-2026-03-13_14-26-48.trx
+
+Test Run Failed.
+Total tests: 242
+     Passed: 215
+     Failed: 27
+ Total time: 6.7322 Minutes
+
+[14:33:56] Generating HTML report...
+Report written to: /home/kolev95/examtest1/TestIT.ApiTests/manual-runs/test-report-2026-03-13_14-26-48-test-run.html
+[14:33:56] ✓ Report: /home/kolev95/examtest1/TestIT.ApiTests/manual-runs/test-report-2026-03-13_14-26-48-test-run.html
+
+=========================================
+✗ FAILED
+=========================================

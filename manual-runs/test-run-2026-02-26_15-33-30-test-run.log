@@ -1,0 +1,501 @@
+=========================================
+Test Run: 2026-02-26_15-33-30
+Description: test-run
+=========================================
+
+[15:33:30] Running tests...
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  TestIT.ApiTests -> /home/kolev95/examtest1/TestIT.ApiTests/bin/Debug/net8.0/TestIT.ApiTests.dll
+Test run for /home/kolev95/examtest1/TestIT.ApiTests/bin/Debug/net8.0/TestIT.ApiTests.dll (.NETCoreApp,Version=v8.0)
+Microsoft (R) Test Execution Command Line Tool Version 17.8.0 (x64)
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.01] xUnit.net VSTest Adapter v2.5.3.1+6b60a9e56a (64-bit .NET 8.0.24)
+[xUnit.net 00:00:00.52]   Discovering: TestIT.ApiTests
+[xUnit.net 00:00:00.97]   Discovered:  TestIT.ApiTests
+[xUnit.net 00:00:00.99]   Starting:    TestIT.ApiTests
+     Warning:
+     The component "Fluent Assertions" is governed by the rules defined in the Xceed License Agreement and
+     the Xceed Fluent Assertions Community License. You may use Fluent Assertions free of charge for
+     non-commercial use only. An active subscription is required to use Fluent Assertions for commercial use.
+
+     Please contact Xceed Sales mailto:sales@xceed.com to acquire a subscription at a very low cost.
+
+     A paid commercial license supports the development and continued increasing support of
+     Fluent Assertions users under both commercial and community licenses. Help us
+     keep Fluent Assertions at the forefront of unit testing.
+
+     For more information, visit https://xceed.com/products/unit-testing/fluent-assertions/
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Login_WithValidCredentials_ReturnsAuthenticationTokens [6 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.GetTest_InvalidSlugFormat_Returns404 [6 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WithTitleOnly_PopulatesDefaultFields [7 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_SQLInjectionInTestTitle_IsSanitized [7 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithValidCredentials_CreatesUserAccount [1 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionUpdate_WithNonExistentId_ReturnsNotFound [8 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetCompanyTestDetail_AsMember_ReturnsTestData [8 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_TestResponse_HasRequiredFields [8 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_NoSubmissions_ReturnsZeroStats [8 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchTest_ByNonOwner_DeniesAccess [9 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_NegativeMaxAttempts_ShouldFail [2 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderCreation_WithParent_CreatesNestedFolderStructure [8 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.PermissionFlow_StudentCannotCreateCompanyTests [9 s]
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteCreation_DuplicatePendingInvite_RejectsRequest [9 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithWeakPassword_RejectsRequest [2 s]
+
+=== Stress Test Results: 100 Concurrent Reads ===
+Total Time: 3407ms
+Successful: 100/100
+Avg Duration: 1675ms
+Max Duration: 3348ms
+Throughput: 29.35 requests/sec
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptStart_AsAnonymousUser_CreatesAttemptSuccessfully [9 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_StartAttempt_RespondsFast [9 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_Unauthenticated_DeniesAccess [1 s]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentTestRetrieval_HandlesReadLoad [10 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_DuplicateTitle_GeneratesUniqueSlug [7 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyTestCreation_AsStudent_DeniesAccess [14 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.UserProfile_WhenAuthenticated_ReturnsUserDetails [4 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_WhenUnauthenticated_DeniesAccess [5 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_ListTests_RespondsFast [4 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionUpdate_WithValidData_UpdatesQuestionSuccessfully [6 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_QuestionResponse_HasRequiredFields [5 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderListing_AfterCreation_IncludesNewFolder [5 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_LastNameOnly_UpdatesLastNamePreservesFirstName [4 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_QuestionOrderChange_DoesNotCorruptAttempts [14 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Login_WithInvalidCredentials_DeniesAccess [899 ms]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestDetails_WithNonExistentSlug_ReturnsNotFound [1 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyTestCreation_WithValidData_CreatesTestInCompany [1 s]
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteListing_WithPendingInvites_ReturnsPendingInvites [7 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.SaveAnswers_EmptyAnswersList_ShouldWork [9 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WhenUnauthenticated_DeniesAccess [2 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Login_WithMissingPassword_RejectsRequest [3 s]
+
+=== Stress Test Results: 50 Concurrent Submissions ===
+Total Time: 6529ms
+Successful: 48/50 (96.0%)
+Failed: 2
+Response Times:
+  Avg: 2759ms
+  Min: 1330ms
+  Max: 6459ms
+  P95: 6317ms
+Status Code Distribution:
+  OK: 48
+  InternalServerError: 2
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithMissingRequiredFields_RejectsRequest [2 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.DeleteCompanyTest_AsNonMember_DeniesAccess [12 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_CompanyResponse_HasRequiredFields [6 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTestResults [13 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.Registration_WithMismatchedPasswords_RejectsRequest [579 ms]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentTestSubmissions_HandlesLoad [10 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.UserProfile_WhenUnauthenticated_DeniesAccess [874 ms]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyDetails_AsAdmin_ReturnsCompanyData [5 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptSubmission_AllWrongAnswers_ScoresZeroMarks [12 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_NullDescription_ShouldWork [3 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchFolder_Name_UpdatesNameSuccessfully [7 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.AuthorStudentLifecycle_AuthorCreatesStudentTakesAuthorViewsAnalytics [12 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionDeletion_VerifyRemoval_QuestionNoLongerInTest [8 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderDeletion_WithValidId_RemovesFolder [8 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.QuestionAddition_WithValidData_AddsQuestionToTest [4 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AsNonAuthor_DeniesAccessToOtherUsersTest [9 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_EmailWithDots_ShouldWork [1 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetAnalytics_RespondsFast [9 s]
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteCreation_WithValidEmail_SendsInviteSuccessfully [9 s]
+  Passed TestIT.ApiTests.Tests.AuthenticationTests.TokenRefresh_WithValidRefreshToken_IssuesNewAccessToken [4 s]
+
+=== Stress Test Results: 100 Questions Creation ===
+Total Time: 3231ms
+Successful: 100/100
+Throughput: 30.95 questions/sec
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_MassQuestionCreation_HandlesLargeTests [6 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetPublicTests_LinkOnlyTest_DoesNotAppearInList [6 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchCompany_Name_UpdatesNameSuccessfully [5 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyTestListing_AsAdmin_ReturnsCompanyTests [11 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.Immutability_TestDeletion_PreservesSubmittedResults [19 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.TestAccess_PublicTest_AllowsAnonymousAccess [13 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_ResultResponse_HasRequiredFields [18 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_EmptyPassword_ShouldWork [15 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestDeletion_WithValidSlug_RemovesTestCompletely [17 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyCreation_WhenUnauthenticated_DeniesAccess [7 s]
+
+=== Stress Test Results: 40 Concurrent Registrations ===
+Total Time: 15925ms
+Successful: 40/40
+Avg Duration: 12326ms
+P95 Duration: 15611ms
+Status Code Distribution:
+  Created: 40
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotUpdateOtherUsersTests [22 s]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentUserRegistrations_HandlesLoad [15 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderUpdate_WithNewName_RenamesFolderSuccessfully [20 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.CompleteTestAuthorJourney_RegisterLoginCreateTestAddQuestionsPublish [22 s]
+
+=== Stress Test Results: 30 Concurrent Test Creations ===
+Total Time: 1094ms
+Successful: 30/30
+Avg Duration: 946ms
+Max Duration: 1089ms
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetQuestion_WithNonExistentId_ReturnsNotFound [17 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchTest_TitleOnly_UpdatesTitlePreservesOtherFields [17 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionReorder_WithValidOrder_ReordersSuccessfully [22 s]
+  Passed TestIT.ApiTests.Tests.StressTests.StressTest_ConcurrentTestCreations_HandlesLoad [2 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyCreation_WithValidData_CreatesCompanySuccessfully [5 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetResults_RespondsFast [22 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_LoginResponse_HasRequiredFieldsOnly [7 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_NegativeMaxAttempts_IsRejected [3 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestListing_AsAuthor_ReturnsOwnTests [6 s]
+  Passed TestIT.ApiTests.Tests.AnalyticsTests.Analytics_AfterSubmission_ReflectsAttemptData [23 s]
+  Passed TestIT.ApiTests.Tests.FolderTests.FolderCreation_TopLevel_CreatesFolderSuccessfully [5 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.SubmitAttempt_NoAnswersSaved_ShouldScoreZero [9 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetProfile_RespondsFast [3 s]
+  Passed TestIT.ApiTests.Tests.InviteTests.InviteAcceptance_WithValidToken_AddsUserToCompany [23 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_UserResponse_HasRequiredFieldsOnly [3 s]
+  Passed TestIT.ApiTests.Tests.QuestionManagementTests.QuestionCreation_MultiSelectType_CreatesWithMultipleCorrectAnswers [4 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.PatchCompanyTest_AsAdmin_UpdatesTestSuccessfully [4 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyDeletion_AsAdmin_RemovesCompanyCompletely [3 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestDetails_WithValidSlug_ReturnsTestData [3 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.ResultsRetrieval_AsAuthor_ReturnsAllSubmissions [14 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_AllQuestionsCorrect_Scores100Percent [16 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchCompany_ByNonMember_DeniesAccess [6 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.CrossCompanySecurity_UserBCannotAccessUserACompany [7 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_CreateTest_RespondsFast [3 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_EmptyQuestionText_ShouldFail [3 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WithMissingTitle_RejectsRequest [2 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherCompaniesData [6 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.MemberListing_NewCompany_CreatorIsOnlyAdmin [3 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetQuestion_WithValidId_ReturnsQuestionData [3 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_AttemptResponse_HasRequiredFields [3 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.GetTest_NonExistentSlug_Returns404 [3 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchFolder_MoveToParent_UpdatesParentSuccessfully [4 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestUpdate_WithValidData_UpdatesTestSuccessfully [3 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyListing_AfterCreation_IncludesNewCompany [2 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_DraftSaveDoesNotAffectFinalScore [5 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.DeleteCompanyTest_AsAdmin_RemovesTestSuccessfully [2 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_Login_RespondsFast [3 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.DataExposure_CorrectAnswers_NotExposedBeforeSubmission [3 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_TakeTestResponse_DoesNotLeakCorrectAnswers [3 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptSubmission_AllCorrectAnswers_ScoresFullMarks [9 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLongPassword_ShouldHandleGracefully [3 s]
+  Passed TestIT.ApiTests.Tests.TestsManagementTests.TestCreation_WithValidData_CreatesTestSuccessfully [3 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_FirstNameOnly_UpdatesFirstNamePreservesLastName [3 s]
+  Passed TestIT.ApiTests.Tests.CompanyTests.CompanyUpdate_WithValidData_UpdatesCompanySuccessfully [3 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.DataExposure_PasswordNotReturned_InProfileEndpoint [3 s]
+  Passed TestIT.ApiTests.Tests.IntegrationTests.CompanyWorkflow_AdminCreatesInvitesMemberTakesTest [7 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetPublicTests_PublicTest_AppearsInList [4 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_SubmitAttempt_RespondsFast [4 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_SpecialCharactersInTitle_ShouldWork [1 s]
+  Passed TestIT.ApiTests.Tests.SchemaValidationTests.Schema_AnalyticsResponse_HasRequiredFields [4 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchTest_VisibilityOnly_UpdatesVisibilityPreservesTitle [1 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.ShowAnswersAfter_WhenFalse_DoesNotRevealCorrectAnswers [2 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_AttemptCountAccurate_AfterMultipleSubmissions [5 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_EmailWithPlus_ShouldWork [1 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetTakeEndpoint_RespondsFast [2 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotAccessOtherUsersTests [3 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchQuestion_TextOnly_UpdatesTextPreservesAnswers [1 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authentication_InvalidToken_DeniesAccess [351 ms]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authentication_NoToken_DeniesProtectedEndpoints [295 ms]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_ExtremelyLongEmail_IsRejected [465 ms]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_NoCorrectAnswer_ShouldFail [1 s]
+  Passed TestIT.ApiTests.Tests.PerformanceTests.Latency_GetTestDetail_RespondsFast [1 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_ConcurrentAttempts_AllScoredCorrectly [2 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetResultDetail_ByNonAuthor_DeniesAccess [4 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.DataExposure_DetailedErrorMessages_DoNotLeakSensitiveInfo [687 ms]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.AttemptSubmission_AlreadySubmitted_PreventsDoubleSubmission [3 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchTest_Unauthenticated_DeniesAccess [1 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_NegativeTimeLimit_ShouldFail [1 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_XSSInQuestionText_IsSanitized [1 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_MultiSelectPartialAnswer_ScoreIsValidPercentage [3 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.PasswordVerification_WithCorrectPassword_GrantsAccess [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_WhitespaceOnlyTitle_ShouldFail [1 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.PatchCompanyTest_AsNonMember_DeniesAccess [3 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.InputValidation_OversizedPayload_IsRejected [2 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchQuestion_ByNonOwner_DeniesAccess [4 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_NoAnswers_ShouldFail [1 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_AllQuestionsSkipped_Scores0Percent [2 s]
+  Passed TestIT.ApiTests.Tests.PatchTests.PatchProfile_BothNames_UpdatesBothFields [1 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.ShowAnswersAfter_WhenTrue_ScoreIsRecordedAndTakeEndpointRemainsAccessible [3 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetCompanyTestDetail_AsNonMember_DeniesAccess [3 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authorization_UserCannotDeleteOtherUsersTests [3 s]
+  Passed TestIT.ApiTests.Tests.SecurityTests.Authentication_MalformedToken_DeniesAccess [260 ms]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_QuestionUpdate_DoesNotAffectSubmittedAttempts [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CompanyInvite_InvalidRoleValue_ShouldFail [2 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.MaxAttempts_OnceExhausted_BlocksFurtherAttempts [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_ZeroMaxAttempts_ShouldFail [1 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_HalfCorrect_Scores50Percent [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_ZeroTimeLimit_ShouldBeAllowed [1 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.UpdateMemberRole_AsAdmin_ChangesRoleSuccessfully [3 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.DraftSave_WithValidAnswers_SavesDraftSuccessfully [1 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLongTitle_ShouldHandleGracefully [1 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_SingleQuestionTest_ScoresCorrectly [2 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetResultDetail_ByAuthor_ReturnsDetailedBreakdown [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_InvalidVisibilityValue_ShouldFail [1 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.PasswordVerification_WithWrongPassword_DeniesAccess [2 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.RemoveMember_LastAdmin_DeniesRemoval [1 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.Immutability_SubmittedAttempts_CannotBeModified [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.GetTest_VeryLongSlug_ShouldHandleGracefully [1 s]
+  Passed TestIT.ApiTests.Tests.TestTakingTests.TestAccess_PasswordProtected_BlocksWithoutPassword [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_UnicodeCharactersInTitle_ShouldWork [1 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_VeryLongEmail_ShouldHandleGracefully [199 ms]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.DataConsistency_ScoreRemainsConstant_AcrossMultipleFetches [2 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateQuestion_InvalidQuestionType_ShouldFail [1 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.RemoveMember_AsAdmin_RemovesMemberSuccessfully [3 s]
+  Passed TestIT.ApiTests.Tests.DataIntegrityTests.ScoringAccuracy_AllQuestionsWrong_Scores0Percent [1 s]
+  Passed TestIT.ApiTests.Tests.CoverageTests.GetPublicTests_Unauthenticated_Returns200 [748 ms]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.CreateTest_VeryLargeTimeLimit_ShouldHandleGracefully [1 s]
+  Passed TestIT.ApiTests.Tests.EdgeCaseTests.Register_EmailWithSubdomain_ShouldWork [728 ms]
+  Passed TestIT.ApiTests.Tests.CoverageTests.UpdateMemberRole_ByNonAdmin_DeniesAccess [6 s]
+[xUnit.net 00:01:31.33]     TestIT.ApiTests.Tests.CleanupTests.Manual_CleanupPersistentUserTests_ByPattern [SKIP]
+[xUnit.net 00:01:31.33]       Manual - Pattern-based cleanup for persistent test user
+DEBUG: API returned 0 total tests
+  Skipped TestIT.ApiTests.Tests.CleanupTests.Manual_CleanupPersistentUserTests_ByPattern [1 ms]
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_DeleteAllTestData [1 s]
+[Cleanup] ✓ Deleted account: cleanup_cascade_ba866af1@example.com
+  Passed TestIT.ApiTests.Tests.CleanupTests.AccountCleanup_WithCascadeData_DeletesEverything [2 s]
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_DeleteOldTestData_7Days [1 s]
+  Passed TestIT.ApiTests.Tests.CleanupTests.Diagnostic_VerifyDeleteEndpoint_Works [1 s]
+DEBUG: API returned 0 total tests
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_DryRun [1 s]
+[Cleanup] Starting cleanup of 209 test accounts (1 from log)...
+[Cleanup] ✓ Deleted account: stress_89cef0ad@example.com
+[Cleanup] ✓ Deleted account: stress_11ae447c@example.com
+[Cleanup] ✓ Deleted account: stress_e9b205ec@example.com
+[Cleanup] ✓ Deleted account: stress_0c512927@example.com
+[Cleanup] ✓ Deleted account: stress_0f542b5a@example.com
+[Cleanup] ✓ Deleted account: stress_35e0de28@example.com
+[Cleanup] ✓ Deleted account: stress_3f44a889@example.com
+[Cleanup] ✓ Deleted account: stress_06358af4@example.com
+[Cleanup] ✓ Deleted account: stress_b675d43e@example.com
+[Cleanup] ✓ Deleted account: stress_e8919e36@example.com
+[Cleanup] ✓ Deleted account: stress_cdf80af0@example.com
+[Cleanup] ✓ Deleted account: stress_33a143fe@example.com
+[Cleanup] ✓ Deleted account: stress_0353924e@example.com
+[Cleanup] ✓ Deleted account: stress_12b7daec@example.com
+[Cleanup] ✓ Deleted account: stress_642a19df@example.com
+[Cleanup] ✓ Deleted account: stress_42826239@example.com
+[Cleanup] ✓ Deleted account: stress_6bfab633@example.com
+[Cleanup] ✓ Deleted account: stress_fa9693be@example.com
+[Cleanup] ✓ Deleted account: stress_ef5313d9@example.com
+[Cleanup] ✓ Deleted account: stress_005af43d@example.com
+[Cleanup] ✓ Deleted account: stress_f0d3f9ee@example.com
+[Cleanup] ✓ Deleted account: stress_880ee06b@example.com
+[Cleanup] ✓ Deleted account: stress_8d3d30bb@example.com
+[Cleanup] ✓ Deleted account: stress_6e2aaec8@example.com
+[Cleanup] ✓ Deleted account: stress_98218d86@example.com
+[Cleanup] ✓ Deleted account: stress_e74eaaa4@example.com
+[Cleanup] ✓ Deleted account: stress_e8d8a948@example.com
+[Cleanup] ✓ Deleted account: stress_ca391ba7@example.com
+[Cleanup] ✓ Deleted account: stress_ec15aa11@example.com
+[Cleanup] ✓ Deleted account: stress_2abacaef@example.com
+[Cleanup] ✓ Deleted account: stress_e15caab8@example.com
+[Cleanup] ✓ Deleted account: stress_74dd50ce@example.com
+[Cleanup] ✓ Deleted account: stress_ba79fa3f@example.com
+[Cleanup] ✓ Deleted account: stress_fcf4ae29@example.com
+[Cleanup] ✓ Deleted account: stress_af1dc1d8@example.com
+[Cleanup] ✓ Deleted account: stress_0e95a357@example.com
+[Cleanup] ✓ Deleted account: stress_e17e128f@example.com
+[Cleanup] ✓ Deleted account: stress_32661c13@example.com
+[Cleanup] ✓ Deleted account: stress_17f920bb@example.com
+[Cleanup] ✓ Deleted account: stress_fda2da41@example.com
+[Cleanup] ✓ Deleted account: testuser_d0b773d8@example.com
+[Cleanup] ✓ Deleted account: testuser_c1168a64@example.com
+[Cleanup] ✓ Deleted account: testuser_b04d71a3@example.com
+[Cleanup] ✓ Deleted account: testuser_8619516d@example.com
+[Cleanup] ✓ Deleted account: testuser_cb563f33@example.com
+[Cleanup] ✓ Deleted account: testuser_8a15cf67@example.com
+[Cleanup] ✓ Deleted account: testuser_7660cdad@example.com
+[Cleanup] ✓ Deleted account: testuser_9375aa60@example.com
+[Cleanup] ✓ Deleted account: testuser_459a99d4@example.com
+[Cleanup] ✓ Deleted account: testuser_1750e306@example.com
+[Cleanup] ✓ Deleted account: testuser_f98684a0@example.com
+[Cleanup] ✓ Deleted account: testuser_75537c95@example.com
+[Cleanup] ✓ Deleted account: testuser_8a382fdc@example.com
+[Cleanup] ✓ Deleted account: testuser_78c217fb@example.com
+[Cleanup] ✓ Deleted account: member_8e4105f80f17@example.com
+[Cleanup] ✓ Deleted account: testuser_85e7b277@example.com
+[Cleanup] ✓ Deleted account: admin_be8ac362b63c@example.com
+[Cleanup] ✓ Deleted account: testuser_94ba59bd@example.com
+[Cleanup] ✓ Deleted account: testuser_2ec2d46c@example.com
+[Cleanup] ✓ Deleted account: testuser_8bc591bf@example.com
+[Cleanup] ✓ Deleted account: testuser_90b4d66d@example.com
+[Cleanup] ✓ Deleted account: testuser_1b721a76@example.com
+[Cleanup] ✓ Deleted account: testuser_da3dc058@example.com
+[Cleanup] ✓ Deleted account: author_1898ca3bfb96@example.com
+[Cleanup] ✓ Deleted account: testuser_0d233d84@example.com
+[Cleanup] ✓ Deleted account: testuser_f01c049f@example.com
+[Cleanup] ✓ Deleted account: testuser_252ebe05@example.com
+[Cleanup] ✓ Deleted account: testuser_e9dc95b6@example.com
+[Cleanup] ✓ Deleted account: testuser_49eca38b@example.com
+[Cleanup] ✓ Deleted account: cleanup_test_2_51d22a4f@example.com
+[Cleanup] ✓ Deleted account: testuser_7021270f@example.com
+[Cleanup] ✓ Deleted account: testuser_b5765964@example.com
+[Cleanup] ✓ Deleted account: testuser_a4b25014@example.com
+[Cleanup] ✓ Deleted account: testuser_9fa47108@example.com
+[Cleanup] ✓ Deleted account: testuser_7bcd3c31@example.com
+[Cleanup] ✓ Deleted account: testuser_430b5188@example.com
+[Cleanup] ✓ Deleted account: testuser_482135df@example.com
+[Cleanup] ✓ Deleted account: testuser_78a46b3a@example.com
+[Cleanup] ✓ Deleted account: testuser_920472d8@example.com
+[Cleanup] ✓ Deleted account: testuser_c2838180@example.com
+[Cleanup] ✓ Deleted account: testuser_ffae7ed7@example.com
+[Cleanup] ✓ Deleted account: testuser_7dede79d@example.com
+[Cleanup] ✓ Deleted account: testuser_c7eeede5@example.com
+[Cleanup] ✓ Deleted account: testuser_a3869a23@example.com
+[Cleanup] ✓ Deleted account: testuser_41e5985b@example.com
+[Cleanup] ✓ Deleted account: testuser_63703eaa@example.com
+[Cleanup] ✓ Deleted account: testuser_d9b1d9d1@example.com
+[Cleanup] ✓ Deleted account: testuser_5d3e79d3@example.com
+[Cleanup] ✓ Deleted account: testuser_f6d780fc@example.com
+[Cleanup] ✓ Deleted account: testuser_06ffe5f7@example.com
+[Cleanup] ✓ Deleted account: testuser_f1233cc1@example.com
+[Cleanup] ✓ Deleted account: cleanup_test_3_0decec78@example.com
+[Cleanup] Failed to login as cleanup_cascade_ba866af1@example.com
+[Cleanup] ✓ Deleted account: testuser_e410e368@example.com
+[Cleanup] ✓ Deleted account: testuser_cf9f71d2@example.com
+[Cleanup] ✓ Deleted account: testuser_f6bb4971@example.com
+[Cleanup] ✓ Deleted account: testuser_9f6e690e@example.com
+[Cleanup] ✓ Deleted account: testuser_e0d43c9f@example.com
+[Cleanup] ✓ Deleted account: testuser_d7b5da6e@example.com
+[Cleanup] ✓ Deleted account: testuser_23d20898@example.com
+[Cleanup] ✓ Deleted account: testuser_86126692@example.com
+[Cleanup] ✓ Deleted account: testuser_4358af09@example.com
+[Cleanup] ✓ Deleted account: testuser_dd441bf2@example.com
+[Cleanup] ✓ Deleted account: testuser_818dc26d@example.com
+[Cleanup] ✓ Deleted account: testuser_d0a68da6@example.com
+[Cleanup] ✓ Deleted account: testuser_bd816460@example.com
+[Cleanup] ✓ Deleted account: userb_b6314406ce@example.com
+[Cleanup] ✓ Deleted account: testuser_0407e66b@example.com
+[Cleanup] ✓ Deleted account: testuser_307f2e42@example.com
+[Cleanup] ✓ Deleted account: testuser_86b3c871@example.com
+[Cleanup] ✓ Deleted account: testuser_cf300527@example.com
+[Cleanup] ✓ Deleted account: testuser_6547bb23@example.com
+[Cleanup] ✓ Deleted account: testuser_1da29547@example.com
+[Cleanup] ✓ Deleted account: testuser_488474db@example.com
+[Cleanup] ✓ Deleted account: testuser_849dec1d@example.com
+[Cleanup] ✓ Deleted account: testuser_76dcb135@example.com
+[Cleanup] ✓ Deleted account: testuser_1fc9038e@example.com
+[Cleanup] ✓ Deleted account: testuser_0d77f9e4@example.com
+[Cleanup] ✓ Deleted account: testuser_d60155a4@example.com
+[Cleanup] ✓ Deleted account: testuser_dce8a7d8@example.com
+[Cleanup] ✓ Deleted account: testuser_a04634f6@example.com
+[Cleanup] ✓ Deleted account: testuser_de23ae89@example.com
+[Cleanup] ✓ Deleted account: testuser_532d7f02@example.com
+[Cleanup] ✓ Deleted account: testuser_390d840b@example.com
+[Cleanup] ✓ Deleted account: testuser_1b47dd28@example.com
+[Cleanup] ✓ Deleted account: testuser_03558244@example.com
+[Cleanup] ✓ Deleted account: testuser_d3a6ebcd@example.com
+[Cleanup] ✓ Deleted account: testuser_9c4ed053@example.com
+[Cleanup] ✓ Deleted account: testuser_3df77e14@example.com
+[Cleanup] ✓ Deleted account: testuser_9b3ccd4c@example.com
+[Cleanup] ✓ Deleted account: testuser_92752b0c@example.com
+[Cleanup] ✓ Deleted account: testuser_aa27c153@example.com
+[Cleanup] ✓ Deleted account: testuser_6d66467b@example.com
+[Cleanup] ✓ Deleted account: testuser_5fcd517f@example.com
+[Cleanup] ✓ Deleted account: testuser_f4f420eb@example.com
+[Cleanup] ✓ Deleted account: perm_student_83595c4806@example.com
+[Cleanup] ✓ Deleted account: testuser_2b6d60f3@example.com
+[Cleanup] ✓ Deleted account: testuser_835b27f0@example.com
+[Cleanup] ✓ Deleted account: testuser_5e3eaf13@example.com
+[Cleanup] ✓ Deleted account: testuser_c80befae@example.com
+[Cleanup] ✓ Deleted account: testuser_eb7a9000@example.com
+[Cleanup] ✓ Deleted account: testuser_9d8459c5@example.com
+[Cleanup] ✓ Deleted account: testuser_8d09e8eb@example.com
+[Cleanup] ✓ Deleted account: testuser_ec22d684@example.com
+[Cleanup] ✓ Deleted account: testuser_75930c3b@example.com
+[Cleanup] ✓ Deleted account: testuser_421ee20d@example.com
+[Cleanup] ✓ Deleted account: testuser_13c0a4ef@example.com
+[Cleanup] ✓ Deleted account: testuser_7c433869@example.com
+[Cleanup] ✓ Deleted account: testuser_dd50da20@example.com
+[Cleanup] ✓ Deleted account: testuser_3c07d8d1@example.com
+[Cleanup] ✓ Deleted account: testuser_00f3027f@example.com
+[Cleanup] ✓ Deleted account: testuser_075def6a@example.com
+[Cleanup] ✓ Deleted account: testuser_bd0a3915@example.com
+[Cleanup] ✓ Deleted account: testuser_8925d515@example.com
+[Cleanup] ✓ Deleted account: testuser_6dd43b13@example.com
+[Cleanup] ✓ Deleted account: testuser_aa5e84c6@example.com
+[Cleanup] ✓ Deleted account: testuser_47c4b1bc@example.com
+[Cleanup] ✓ Deleted account: testuser_5b5ffbed@example.com
+[Cleanup] ✓ Deleted account: testuser_31fe0e5a@example.com
+[Cleanup] ✓ Deleted account: testuser_2b4249c9@example.com
+[Cleanup] ✓ Deleted account: testuser_38664e9e@example.com
+[Cleanup] ✓ Deleted account: testuser_358f0323@example.com
+[Cleanup] ✓ Deleted account: testuser_d527128a@example.com
+[Cleanup] ✓ Deleted account: testuser_b9aa8de8@example.com
+[Cleanup] ✓ Deleted account: author_b0ea765515a2@example.com
+[Cleanup] ✓ Deleted account: testuser_6fbc95f5@example.com
+[Cleanup] ✓ Deleted account: testuser_aea68785@example.com
+[Cleanup] ✓ Deleted account: testuser_e9c21b7e@example.com
+[Cleanup] ✓ Deleted account: testuser_b23068e0@example.com
+[Cleanup] ✓ Deleted account: cleanup_test_1_0788dfe1@example.com
+[Cleanup] ✓ Deleted account: testuser_3a8d2173@example.com
+[Cleanup] ✓ Deleted account: testuser_e21663a9@example.com
+[Cleanup] ✓ Deleted account: testuser_b21bd063@example.com
+[Cleanup] ✓ Deleted account: testuser_7f7f2def@example.com
+[Cleanup] ✓ Deleted account: testuser_1ef73b70@example.com
+[Cleanup] ✓ Deleted account: testuser_83f09c02@example.com
+[Cleanup] ✓ Deleted account: usera_8a18883085@example.com
+[Cleanup] ✓ Deleted account: testuser_167fbc7a@example.com
+[Cleanup] ✓ Deleted account: testuser_b4174acf@example.com
+[Cleanup] ✓ Deleted account: testuser_ecd7c731@example.com
+[Cleanup] ✓ Deleted account: testuser_35dd5ed8@example.com
+[Cleanup] ✓ Deleted account: student_f9d0202530d7@example.com
+[Cleanup] ✓ Deleted account: testuser_fd0d87aa@example.com
+[Cleanup] ✓ Deleted account: testuser_244c5a5b@example.com
+[Cleanup] ✓ Deleted account: testuser_f978cef3@example.com
+[Cleanup] ✓ Deleted account: testuser_f6d03459@example.com
+[Cleanup] ✓ Deleted account: testuser_bb1af4c6@example.com
+[Cleanup] ✓ Deleted account: testuser_3641f29d@example.com
+[Cleanup] ✓ Deleted account: testuser_4ccdf8ba@example.com
+[Cleanup] ✓ Deleted account: testuser_a7b034b8@example.com
+[Cleanup] ✓ Deleted account: testuser_7382ddb3@example.com
+[Cleanup] ✓ Deleted account: testuser_24d614b8@example.com
+[Cleanup] ✓ Deleted account: testuser_82144527@example.com
+[Cleanup] ✓ Deleted account: testuser_f29ce6c4@example.com
+[Cleanup] ✓ Deleted account: testuser_85776266@example.com
+[Cleanup] ✓ Deleted account: testuser_bbded401@example.com
+[Cleanup] ✓ Deleted account: testuser_9c04ac59@example.com
+[Cleanup] ✓ Deleted account: testuser_4b18584d@example.com
+[Cleanup] ✓ Deleted account: testuser_1b157ed8@example.com
+[Cleanup] ✓ Deleted account: testuser_24cdc99f@example.com
+[Cleanup] ✓ Deleted account: testuser_642be92f@example.com
+[Cleanup] ✓ Deleted account: testuser_86fc283e@example.com
+[Cleanup] ✓ Deleted account: testuser_380253a1@example.com
+[Cleanup] ✓ Deleted account: testuser_85890989@example.com
+[Cleanup] ✓ Deleted account: testuser_45dbf488@example.com
+[Cleanup] ✓ Deleted account: testuser_24c50366@example.com
+[Cleanup] ✓ Deleted account: perm_admin_299aa54568@example.com
+[Cleanup] ✓ Deleted account: testuser_15f011a5@example.com
+[Cleanup] Failed to login as cleanup_test_3_6baed8ef@example.com
+[Cleanup] Completed: 207/209 accounts deleted
+[Cleanup] Errors: 2
+  Passed TestIT.ApiTests.Tests.CleanupTests.AccountCleanup_AllTrackedAccounts_DeletesSuccessfully [2 m 37 s]
+DEBUG: API returned 0 total tests
+  Passed TestIT.ApiTests.Tests.CleanupTests.ManualCleanup_AnalyzeTestData [1 s]
+[xUnit.net 00:04:19.63]     TestIT.ApiTests.Tests.CleanupTests.Backend_BulkCleanupEndpoint_IfImplemented [SKIP]
+[xUnit.net 00:04:19.63]       Tests future backend feature - bulk cleanup endpoint
+[xUnit.net 00:04:19.64]     TestIT.ApiTests.Tests.CleanupTests.Manual_CleanupOldAccounts [SKIP]
+[xUnit.net 00:04:19.64]       Manual - Run to delete old tracked accounts
+[xUnit.net 00:04:19.64]     TestIT.ApiTests.Tests.CleanupTests.Manual_CleanupAllTrackedAccounts [SKIP]
+[xUnit.net 00:04:19.64]       Manual - Run this to clean up all tracked accounts from test runs
+[xUnit.net 00:04:19.67]   Finished:    TestIT.ApiTests
+[Cleanup] Starting cleanup of 209 test accounts (1 from log)...
+  Skipped TestIT.ApiTests.Tests.CleanupTests.Backend_BulkCleanupEndpoint_IfImplemented [1 ms]
+  Skipped TestIT.ApiTests.Tests.CleanupTests.Manual_CleanupOldAccounts [1 ms]
+  Skipped TestIT.ApiTests.Tests.CleanupTests.Manual_CleanupAllTrackedAccounts [1 ms]
+Results File: /home/kolev95/examtest1/TestIT.ApiTests/TestResults/manual-results-2026-02-26_15-33-30.trx
+
+Test Run Successful.
+Total tests: 190
+     Passed: 186
+    Skipped: 4
+ Total time: 4.3686 Minutes
+
+[15:38:32] Generating HTML report...
+Report written to: /home/kolev95/examtest1/TestIT.ApiTests/manual-runs/test-report-2026-02-26_15-33-30-test-run.html
+[15:38:32] ✓ Report: /home/kolev95/examtest1/TestIT.ApiTests/manual-runs/test-report-2026-02-26_15-33-30-test-run.html
+
+=========================================
+✓ PASSED
+=========================================
