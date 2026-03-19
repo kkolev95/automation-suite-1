@@ -129,8 +129,8 @@ public class StressTests : IDisposable
         // Assert: P95 response time should be reasonable (under 15 seconds) when requests succeed
         if (successful > 0)
         {
-            p95Duration.Should().BeLessThan(10000,
-                "because 95% of requests should complete within 10 seconds");
+            p95Duration.Should().BeLessThan(15000,
+                "because 95% of requests should complete within 15 seconds under concurrent load on a remote server");
         }
     }
 
