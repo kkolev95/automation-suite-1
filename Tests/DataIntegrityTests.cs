@@ -448,6 +448,82 @@ public class DataIntegrityTests : IDisposable
             $"Score recorded before deletion: {scoreBefore}");
     }
 
+    [Fact]
+    public async Task DataConsistency_FlippingIsCorrect_DoesNotChangeHistoricalScore()
+    {
+        // Arrange: taker selects the correct answer and scores 100%
+        await PersistentTestUser.GetOrCreateAndLoginAsync(_apiClient);
+
+        var testResp = await _apiClient.PostAsync("tests/",
+            new CreateTestRequest
+            {
+                Title = $"FlipTest_{Guid.NewGuid().ToString("N")[..8]}",
+                Visibility = "public",
+                MaxAttempts = 5
+            });
+        testResp.StatusCode.Should().Be(HttpStatusCode.Created);
+        var test = await _apiClient.DeserializeResponseAsync<TestResponse>(testResp);
+
+        var qResp = await _apiClient.PostAsync($"tests/{test!.Slug}/questions/",
+            new CreateQuestionRequest
+            {
+                QuestionText = "Capital of France?",
+                QuestionType = "multiple_choice",
+                Answers = new List<CreateAnswerRequest>
+                {
+                    new() { AnswerText = "Paris",  IsCorrect = true,  Order = 1 },
+                    new() { AnswerText = "London", IsCorrect = false, Order = 2 }
+                }
+            });
+        qResp.StatusCode.Should().Be(HttpStatusCode.Created);
+        var question = await _apiClient.DeserializeResponseAsync<QuestionResponse>(qResp);
+        var correctId = question!.Answers.First(a => a.IsCorrect).Id;
+
+        // Taker submits the correct answer
+        using var takerClient = new ApiClient(TestConfiguration.GetBaseUrl());
+        var startResp = await takerClient.PostAsync($"tests/{test.Slug}/attempts/",
+            new StartAttemptRequest { AnonymousName = "Flip Taker" });
+        startResp.StatusCode.Should().Be(HttpStatusCode.Created);
+        var attempt = await takerClient.DeserializeResponseAsync<AttemptResponse>(startResp);
+
+        await takerClient.PutAsync($"tests/{test.Slug}/attempts/{attempt!.Id}/",
+            new SaveDraftRequest
+            {
+                DraftAnswers = new Dictionary<string, List<int>>
+                {
+                    { question.Id.ToString(), new List<int> { correctId } }
+                }
+            });
+        await takerClient.PostAsync($"tests/{test.Slug}/attempts/{attempt.Id}/submit/",
+            new Dictionary<string, object>());
+
+        var scoreBefore = (await _apiClient.GetAsync<List<ResultResponse>>($"tests/{test.Slug}/results/"))!
+            .First(r => r.AnonymousName == "Flip Taker").Score;
+        scoreBefore.Should().Be(100.0, "taker answered correctly so score must be 100 before the flip");
+
+        // Act: author flips is_correct — Paris is now WRONG, London is now RIGHT
+        // The answer IDs are the same; only the is_correct flag changes
+        var updateResp = await _apiClient.PutAsync($"tests/{test.Slug}/questions/{question.Id}/",
+            new UpdateQuestionRequest
+            {
+                QuestionText = "Capital of France?",
+                QuestionType = "multiple_choice",
+                Answers = new List<CreateAnswerRequest>
+                {
+                    new() { AnswerText = "Paris",  IsCorrect = false, Order = 1 },
+                    new() { AnswerText = "London", IsCorrect = true,  Order = 2 }
+                }
+            });
+        updateResp.StatusCode.Should().Be(HttpStatusCode.OK);
+
+        // Assert: historical score is unchanged — snapshot at submission time
+        var scoreAfter = (await _apiClient.GetAsync<List<ResultResponse>>($"tests/{test.Slug}/results/"))!
+            .First(r => r.AnonymousName == "Flip Taker").Score;
+        scoreAfter.Should().Be(scoreBefore,
+            "flipping is_correct on existing answers must not retroactively change submitted scores — " +
+            "scores are snapshots captured at submission time");
+    }
+
     // ═══════════════════════════════════════════════════════════════════════════
     // Helper Methods
     // ═══════════════════════════════════════════════════════════════════════════
