@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Run tests
+        id: run_tests
+        env:
+          ApiSettings__BaseUrl: ${{ secrets.API_BASE_URL || 'https://exampractices.com/api/' }}
+        run: |
+          mkdir -p TestResults reports
+          dotnet test \
+            --no-build -c Release \
+            --logger "trx;LogFileName=ci-results.trx" \
+            --logger "console;verbosity=normal" \
+            --results-directory ./TestResults \
+            2>&1 | tee reports/ci-run.log
+        continue-on-error: true
+
+      - name: Generate HTML report
+        if: always()
+        run: |
+          if [ -f "TestResults/ci-results.trx" ] && [ -f "generate_report.py" ]; then
+            python3 generate_report.py TestResults/ci-results.trx reports/ci-report.html
+          fi
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ github.run_number }}
+          path: |
+            TestResults/ci-results.trx
+            reports/ci-report.html
+            reports/ci-run.log
+          retention-days: 14
+
+      - name: Publish test summary
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: xUnit Test Results
+          path: TestResults/ci-results.trx
+          reporter: dotnet-trx
+          fail-on-error: false
+
+      - name: Fail if tests failed
+        if: steps.run_tests.outcome == 'failure'
+        run: exit 1
